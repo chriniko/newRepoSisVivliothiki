@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="menuBar">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="diaxeirisiMelwnMenu">
+          <Properties>
+            <Property name="mnemonic" type="int" value="102"/>
+            <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3c7;&#x3b5;&#x3af;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x39c;&#x3b5;&#x3bb;&#x3ce;&#x3bd;"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="eisagwgiNeouMelousItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3c3;&#x3b1;&#x3b3;&#x3c9;&#x3b3;&#x3ae; &#x3bd;&#x3ad;&#x3bf;&#x3c5; &#x3bc;&#x3ad;&#x3bb;&#x3bf;&#x3c5;&#x3c2;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eisagwgiNeouMelousItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="anazitisiMelousItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3b6;&#x3ae;&#x3c4;&#x3b7;&#x3c3;&#x3b7; &#x39c;&#x3ad;&#x3bb;&#x3bf;&#x3c5;&#x3c2;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anazitisiMelousItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="emfanishMelwnItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3bc;&#x3c6;&#x3ac;&#x3bd;&#x3b9;&#x3c3;&#x3b7; &#x39c;&#x3b5;&#x3bb;&#x3ce;&#x3bd;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emfanishMelwnItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="diaxeirisiVivliwnMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3c7;&#x3b5;&#x3af;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x392;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3c9;&#x3bd;"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="eisagwgiNeouVivliouItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3c3;&#x3b1;&#x3b3;&#x3c9;&#x3b3;&#x3ae; &#x3bd;&#x3ad;&#x3bf;&#x3c5; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf;&#x3c5;"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="anazitisiVivliouItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3b6;&#x3ae;&#x3c4;&#x3b7;&#x3c3;&#x3b7; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf;&#x3c5;"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="emfanisiVivliwnItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3bc;&#x3c6;&#x3ac;&#x3bd;&#x3b9;&#x3c3;&#x3b7; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3c9;&#x3bd;"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="diaxeirisiEkdotwnMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3c7;&#x3b5;&#x3af;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x395;&#x3ba;&#x3b4;&#x3bf;&#x3c4;&#x3ce;&#x3bd;"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="eisagwgiNeouEkdotiItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3c3;&#x3b1;&#x3b3;&#x3c9;&#x3b3;&#x3ae; &#x3bd;&#x3ad;&#x3bf;&#x3c5; &#x3b5;&#x3ba;&#x3b4;&#x3cc;&#x3c4;&#x3b7;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eisagwgiNeouEkdotiItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="emfanisiEkdotwnItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3bc;&#x3c6;&#x3ac;&#x3bd;&#x3b9;&#x3c3;&#x3b7; &#x3b5;&#x3ba;&#x3b4;&#x3bf;&#x3c4;&#x3ce;&#x3bd;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emfanisiEkdotwnItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="diaxeirisiSiggrafewnMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3c7;&#x3b5;&#x3af;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x3a3;&#x3c5;&#x3b3;&#x3b3;&#x3c1;&#x3b1;&#x3c6;&#x3ad;&#x3c9;&#x3bd;"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="eisagwgiNeouSiggrafeaItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3c3;&#x3b1;&#x3b3;&#x3c9;&#x3b3;&#x3ae; &#x3bd;&#x3ad;&#x3bf;&#x3c5; &#x3c3;&#x3c5;&#x3b3;&#x3b3;&#x3c1;&#x3b1;&#x3c6;&#x3ad;&#x3b1;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eisagwgiNeouSiggrafeaItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="emfanisiSiggrafewnItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3bc;&#x3c6;&#x3ac;&#x3bd;&#x3b9;&#x3c3;&#x3b7; &#x3c3;&#x3c5;&#x3b3;&#x3b3;&#x3c1;&#x3b1;&#x3c6;&#x3ad;&#x3c9;&#x3bd;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emfanisiSiggrafewnItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="diaxeirishDaneismwnMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3c7;&#x3b5;&#x3af;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x3b4;&#x3b1;&#x3bd;&#x3b5;&#x3b9;&#x3c3;&#x3bc;&#x3ce;&#x3bd;"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="neosDaneismosAntitypouVivliouItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x39d;&#x3ad;&#x3bf;&#x3c2; &#x3b4;&#x3b1;&#x3bd;&#x3b5;&#x3b9;&#x3c3;&#x3bc;&#x3cc;&#x3c2; &#x3b1;&#x3bd;&#x3c4;&#x3af;&#x3c4;&#x3c5;&#x3c0;&#x3bf;&#x3c5; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf;&#x3c5;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="neosDaneismosAntitypouVivliouItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="emfanisiDaneismenwnAntitypwnItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3bc;&#x3c6;&#x3ac;&#x3bd;&#x3b9;&#x3c3;&#x3b7; &#x3b4;&#x3b1;&#x3bd;&#x3b5;&#x3b9;&#x3c3;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3b1;&#x3bd;&#x3c4;&#x3af;&#x3c4;&#x3c5;&#x3c0;&#x3c9;&#x3bd; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3c9;&#x3bd; &#x3bc;&#x3ad;&#x3bb;&#x3bf;&#x3c5;&#x3c2;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emfanisiDaneismenwnAntitypwnItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="diaxeirishVivliwnMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3c7;&#x3b5;&#x3af;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3c9;&#x3bd;"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="eisagwgiVivliouItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3b9;&#x3c3;&#x3b1;&#x3b3;&#x3c9;&#x3b3;&#x3ae; &#x3bd;&#x3ad;&#x3bf;&#x3c5; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf;&#x3c5;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eisagwgiVivliouItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="emfanisiBooksItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3bc;&#x3c6;&#x3ac;&#x3bd;&#x3b9;&#x3c3;&#x3b7; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3c9;&#x3bd;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emfanisiBooksItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="searchBookItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3b6;&#x3ae;&#x3c4;&#x3b7;&#x3c3;&#x3b7; &#x392;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf;&#x3c5;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBookItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="diaxeirishAntitypwnVivliwnItem">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3c7;&#x3b5;&#x3af;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x3b1;&#x3bd;&#x3c4;&#x3af;&#x3c4;&#x3c5;&#x3c0;&#x3c9;&#x3bd; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf;&#x3c5;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="diaxeirishAntitypwnVivliwnItemMouseClicked"/>
+          </Events>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="aboutMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x3a3;&#x3c7;&#x3b5;&#x3c4;&#x3b9;&#x3ba;&#x3ac;..."/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="kleisimoEfarmogisItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x39a;&#x3bb;&#x3b5;&#x3af;&#x3c3;&#x3b9;&#x3bc;&#x3bf; &#x3b5;&#x3c6;&#x3b1;&#x3c1;&#x3bc;&#x3bf;&#x3b3;&#x3ae;&#x3c2;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kleisimoEfarmogisItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="0"/>
+    <Property name="title" type="java.lang.String" value="&#x3a3;&#x3cd;&#x3c3;&#x3c4;&#x3b7;&#x3bc;&#x3b1; &#x392;&#x3b9;&#x3b2;&#x3bb;&#x3b9;&#x3bf;&#x3b8;&#x3ae;&#x3ba;&#x3b7;&#x3c2;"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosing" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosing"/>
+  </Events>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="desktopPane" pref="1204" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="desktopPane" pref="696" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JDesktopPane" name="desktopPane">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+    </Container>
+  </SubComponents>
+</Form>
