@@ -12,7 +12,7 @@ public class Siggrafeas implements Serializable {
     private int id;
     private String onoma;
     private String epitheto;
-    private ArrayList<VivlioHasSIggrafeis> vivlia;
+    private ArrayList<VivlioHasSiggrafeis> vivlia;
 
     public Siggrafeas() {
     }
@@ -46,11 +46,11 @@ public class Siggrafeas implements Serializable {
         this.epitheto = epitheto;
     }
 
-    public ArrayList<VivlioHasSIggrafeis> getVivlia() {
+    public ArrayList<VivlioHasSiggrafeis> getVivlia() {
         return vivlia;
     }
 
-    public void setVivlia(ArrayList<VivlioHasSIggrafeis> vivlia) {
+    public void setVivlia(ArrayList<VivlioHasSiggrafeis> vivlia) {
         this.vivlia = vivlia;
     }
 

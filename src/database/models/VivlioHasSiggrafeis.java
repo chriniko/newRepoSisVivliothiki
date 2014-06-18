@@ -6,17 +6,17 @@ import java.io.Serializable;
  *
  * @author nikos
  */
-class VivlioHasSIggrafeis implements Serializable {
+class VivlioHasSiggrafeis implements Serializable {
 
     private String isbnVivliou;
     private int idSiggrafea;
 
-    public VivlioHasSIggrafeis(String isbnVivliou, int idSiggrafea) {
+    public VivlioHasSiggrafeis(String isbnVivliou, int idSiggrafea) {
         this.isbnVivliou = isbnVivliou;
         this.idSiggrafea = idSiggrafea;
     }
 
-    public VivlioHasSIggrafeis() {
+    public VivlioHasSiggrafeis() {
     }
 
     @Override
