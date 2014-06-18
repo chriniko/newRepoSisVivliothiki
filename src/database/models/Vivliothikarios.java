@@ -1,10 +1,12 @@
 package database.models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Akis
  */
-public class Vivliothikarios {
+public class Vivliothikarios implements Serializable{
 
     private int am;
     private String password;
@@ -24,5 +26,4 @@ public class Vivliothikarios {
     public void setAm(int am) {
         this.am = am;
     }
-
 }
