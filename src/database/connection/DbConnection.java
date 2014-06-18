@@ -1,7 +1,5 @@
 package database.connection;
 
-import com.mysql.jdbc.Connection;
-
 /**
  *
  * @author nikos
