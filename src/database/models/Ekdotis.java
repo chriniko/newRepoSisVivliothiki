@@ -1,6 +1,7 @@
 package database.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -10,6 +11,7 @@ public class Ekdotis implements Serializable {
 
     private int id;
     private String name;
+    private ArrayList<Vivlio> vivlia;
 
     public Ekdotis() {
     }
@@ -21,7 +23,7 @@ public class Ekdotis implements Serializable {
 
     @Override
     public String toString() {
-        return "Ekdotis{" + "id=" + id + ", name=" + name + '}';
+        return "Ekdotis{" + "id=" + id + ", name=" + name + ", vivlia=" + vivlia + '}';
     }
 
     public String getName() {
@@ -38,5 +40,13 @@ public class Ekdotis implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ArrayList<Vivlio> getVivlia() {
+        return vivlia;
+    }
+
+    public void setVivlia(ArrayList<Vivlio> vivlia) {
+        this.vivlia = vivlia;
     }
 }

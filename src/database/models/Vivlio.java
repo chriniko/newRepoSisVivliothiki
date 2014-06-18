@@ -5,63 +5,25 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Akis
+ * @author nikos
  */
-public class Vivlio implements Serializable{
-    
+public class Vivlio implements Serializable {
+
     private String isbn;
-    private String title;
-    private String imageUrl;
-    private String description;
-    private Ekdotis ekdotis;
-    private ArrayList<Syggrafeas> syggrafeis;
+    private String titlos;
+    private String url_exwfilou_vivliou;
+    private String perigrafi_vivliou;
+    private String id_ekdoti;
+    private ArrayList<VivlioHasSIggrafeis> siggrafeis;
+    private ArrayList<Antitypo> antitypaVivliou;
 
     public Vivlio() {
     }
 
-    public ArrayList<Syggrafeas> getSyggrafeis() {
-        return syggrafeis;
+    @Override
+    public String toString() {
+        return "Vivlio{" + "isbn=" + isbn + ", titlos=" + titlos + ", url_exwfilou_vivliou=" + url_exwfilou_vivliou + ", perigrafi_vivliou=" + perigrafi_vivliou + ", id_ekdoti=" + id_ekdoti + ", siggrafeis=" + siggrafeis + ", antitypaVivliou=" + antitypaVivliou + '}';
     }
-
-    public void setSyggrafeis(Syggrafeas syggrafeas) {
-        this.syggrafeis.add(syggrafeas);
-    }
-                
-    public Ekdotis getEkdotis() {
-        return ekdotis;
-    }
-
-    public void setEkdotis(Ekdotis ekdotis) {
-        this.ekdotis = ekdotis;
-    }
-
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-    
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
 
     public String getIsbn() {
         return isbn;
@@ -71,9 +33,52 @@ public class Vivlio implements Serializable{
         this.isbn = isbn;
     }
 
-    @Override
-    public String toString() {
-        return "Vivlio{" + "isbn=" + isbn + ", title=" + title + ", imageUrl=" + imageUrl + ", description=" + description + ", ekdotis=" + ekdotis + '}';
+    public String getTitlos() {
+        return titlos;
     }
-           
+
+    public void setTitlos(String titlos) {
+        this.titlos = titlos;
+    }
+
+    public String getUrl_exwfilou_vivliou() {
+        return url_exwfilou_vivliou;
+    }
+
+    public void setUrl_exwfilou_vivliou(String url_exwfilou_vivliou) {
+        this.url_exwfilou_vivliou = url_exwfilou_vivliou;
+    }
+
+    public String getPerigrafi_vivliou() {
+        return perigrafi_vivliou;
+    }
+
+    public void setPerigrafi_vivliou(String perigrafi_vivliou) {
+        this.perigrafi_vivliou = perigrafi_vivliou;
+    }
+
+    public String getId_ekdoti() {
+        return id_ekdoti;
+    }
+
+    public void setId_ekdoti(String id_ekdoti) {
+        this.id_ekdoti = id_ekdoti;
+    }
+
+    public ArrayList<VivlioHasSIggrafeis> getSiggrafeis() {
+        return siggrafeis;
+    }
+
+    public void setSiggrafeis(ArrayList<VivlioHasSIggrafeis> siggrafeis) {
+        this.siggrafeis = siggrafeis;
+    }
+
+    public ArrayList<Antitypo> getAntitypaVivliou() {
+        return antitypaVivliou;
+    }
+
+    public void setAntitypaVivliou(ArrayList<Antitypo> antitypaVivliou) {
+        this.antitypaVivliou = antitypaVivliou;
+    }
+
 }
