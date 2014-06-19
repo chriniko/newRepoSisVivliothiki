@@ -1,16 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.EkdotesDAO;
+import database.models.Ekdotis;
+import database.models.Vivlio;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import table_models.EmfanisiEkdotwnTableModel;
 
 /**
  *
  * @author nikos
  */
 public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
+
+    private final EkdotesDAO ekdotesDao = new EkdotesDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form EmfanisiEkdotwnInternalFrame
@@ -38,6 +42,8 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
         enimerwsiEkdotiBtn = new javax.swing.JButton();
         akirwsiEnimerwsisBtn = new javax.swing.JButton();
         epivevaiwshEnimerwsisBtn = new javax.swing.JButton();
+        auxwnArithmosLbl = new javax.swing.JLabel();
+        auxwnArithmosFld = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -45,17 +51,17 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Εμφάνιση Εκδοτών");
 
-        ekdotesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        ekdotesTable.setModel(new EmfanisiEkdotwnTableModel());
+        ekdotesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ekdotesTableMouseClicked(evt);
             }
-        ));
+        });
+        ekdotesTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ekdotesTableKeyReleased(evt);
+            }
+        });
         scrollPane.setViewportView(ekdotesTable);
 
         onomaEkdotiLbl.setText("Όνομα εκδότη:");
@@ -63,47 +69,81 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
         onomaEkdotiFld.setEditable(false);
 
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoDialogBtnActionPerformed(evt);
+            }
+        });
 
         diagrafiEkdotiBtn.setText("Διαγραφή Εκδότη");
         diagrafiEkdotiBtn.setEnabled(false);
+        diagrafiEkdotiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diagrafiEkdotiBtnActionPerformed(evt);
+            }
+        });
 
         enimerwsiEkdotiBtn.setText("Ενημέρωση εκδότη");
         enimerwsiEkdotiBtn.setEnabled(false);
+        enimerwsiEkdotiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enimerwsiEkdotiBtnActionPerformed(evt);
+            }
+        });
 
         akirwsiEnimerwsisBtn.setText("Ακύρωση Ενημέρωσης");
         akirwsiEnimerwsisBtn.setEnabled(false);
+        akirwsiEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                akirwsiEnimerwsisBtnActionPerformed(evt);
+            }
+        });
 
         epivevaiwshEnimerwsisBtn.setText("Επιβεβαίωση Ενημέρωσης");
         epivevaiwshEnimerwsisBtn.setEnabled(false);
+        epivevaiwshEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                epivevaiwshEnimerwsisBtnActionPerformed(evt);
+            }
+        });
+
+        auxwnArithmosLbl.setText("Αύξων αριθμός εκδότη:");
+
+        auxwnArithmosFld.setEditable(false);
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
         mainPaneLayout.setHorizontalGroup(
             mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPaneLayout.createSequentialGroup()
+                .addComponent(enimerwsiEkdotiBtn)
+                .addGap(18, 18, 18)
+                .addComponent(akirwsiEnimerwsisBtn)
+                .addGap(18, 18, 18)
+                .addComponent(epivevaiwshEnimerwsisBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addComponent(diagrafiEkdotiBtn)
+                .addGap(18, 18, 18)
+                .addComponent(kleisimoDialogBtn))
+            .addGroup(mainPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(mainPaneLayout.createSequentialGroup()
-                        .addComponent(onomaEkdotiLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(onomaEkdotiFld, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(mainPaneLayout.createSequentialGroup()
-                        .addComponent(enimerwsiEkdotiBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(akirwsiEnimerwsisBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(epivevaiwshEnimerwsisBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                        .addComponent(diagrafiEkdotiBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(kleisimoDialogBtn)))
-                .addContainerGap())
+                    .addComponent(onomaEkdotiLbl)
+                    .addComponent(auxwnArithmosLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(onomaEkdotiFld, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                    .addComponent(auxwnArithmosFld))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPaneLayout.setVerticalGroup(
             mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(auxwnArithmosLbl)
+                    .addComponent(auxwnArithmosFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(onomaEkdotiLbl)
                     .addComponent(onomaEkdotiFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -114,7 +154,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(epivevaiwshEnimerwsisBtn)
                     .addComponent(diagrafiEkdotiBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(kleisimoDialogBtn))
-                .addGap(101, 101, 101))
+                .addGap(66, 66, 66))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,7 +165,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
+                        .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,15 +178,98 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mainPane, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kleisimoDialogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoDialogBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoDialogBtnActionPerformed
+
+    private void ekdotesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ekdotesTableMouseClicked
+        fortwsi_epilegmenou_onomatos_ekdoti_sto_txt_field();
+    }//GEN-LAST:event_ekdotesTableMouseClicked
+
+    private void ekdotesTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ekdotesTableKeyReleased
+        fortwsi_epilegmenou_onomatos_ekdoti_sto_txt_field();
+    }//GEN-LAST:event_ekdotesTableKeyReleased
+
+    private void akirwsiEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_akirwsiEnimerwsisBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_akirwsiEnimerwsisBtnActionPerformed
+
+    private void epivevaiwshEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epivevaiwshEnimerwsisBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_epivevaiwshEnimerwsisBtnActionPerformed
+
+    private void diagrafiEkdotiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagrafiEkdotiBtnActionPerformed
+
+        int res = JOptionPane.showConfirmDialog(this, "Είστε σίγουρος?");
+        if (res != JOptionPane.YES_OPTION) {
+            return;
+        }//if.
+
+        //twra tha elegxoume an o sigekrimenos ekdotis exei kapoio reference se vivlio, ean exei tote den to diagrafoume, 
+        //leme sto xristi na diagrapsei prwta to vivlio kai meta na xanaprospathisei, ean den exei kanena reference tote ton diagrafoume...
+        ArrayList<Vivlio> vivliaEkdoti = ekdotesDao.anaktisiVivliwnEkdoti(Integer.parseInt(auxwnArithmosFld.getText()));
+        if (vivliaEkdoti != null && !vivliaEkdoti.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ο εκδότης που θές να διαγράψεις ειναι reference στο πινακα 'vivlia',\n"
+                    + " διέγραψε πρώτα τα βιβλία που είναι reference και ξαναπροσπάθησε!");
+            return;
+        }//if.
+
+        //ean ftasame edw shmainei oti o sigekrimenos ekdotis den exei reference sta vivlia ara ton diagrafoume...
+        boolean diegrafi = ekdotesDao.diagrafiEkdoti(Integer.parseInt(auxwnArithmosFld.getText()));
+        if (!diegrafi) {
+            JOptionPane.showMessageDialog(this, "Δεν ήταν επιτυχής η διαγραφή του εκδοτη, δες την ΒΔ!");
+            return;
+        }//if.
+
+        //ananewnoume to modelo tou JTable...
+        ekdotesTable.setModel(new EmfanisiEkdotwnTableModel());
+        ekdotesTable.repaint();
+
+        enimerwsiEkdotiBtn.setEnabled(false);
+        diagrafiEkdotiBtn.setEnabled(false);
+        auxwnArithmosFld.setText("");
+        onomaEkdotiFld.setText("");
+
+    }//GEN-LAST:event_diagrafiEkdotiBtnActionPerformed
+
+    private void enimerwsiEkdotiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enimerwsiEkdotiBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enimerwsiEkdotiBtnActionPerformed
+
+    private void fortwsi_epilegmenou_onomatos_ekdoti_sto_txt_field() {
+
+        int selectedRow = ekdotesTable.getSelectedRow();
+        if (selectedRow == -1) {
+            enimerwsiEkdotiBtn.setEnabled(false);
+            diagrafiEkdotiBtn.setEnabled(false);
+            auxwnArithmosFld.setText("");
+            onomaEkdotiFld.setText("");
+            return;
+        }//if.
+
+        ArrayList<Ekdotis> ekdotes = ((EmfanisiEkdotwnTableModel) ekdotesTable.getModel()).getData();
+
+        Ekdotis epilegmenosEkdotis = ekdotes.get(selectedRow);
+
+        auxwnArithmosFld.setText(epilegmenosEkdotis.getId() + "");
+        onomaEkdotiFld.setText(epilegmenosEkdotis.getName());
+
+        enimerwsiEkdotiBtn.setEnabled(true);
+        diagrafiEkdotiBtn.setEnabled(true);
+
+    }//fortwsi_epilegmenou_onomatos_ekdoti_sto_txt_field.
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton akirwsiEnimerwsisBtn;
+    private javax.swing.JTextField auxwnArithmosFld;
+    private javax.swing.JLabel auxwnArithmosLbl;
     private javax.swing.JButton diagrafiEkdotiBtn;
     private javax.swing.JTable ekdotesTable;
     private javax.swing.JButton enimerwsiEkdotiBtn;

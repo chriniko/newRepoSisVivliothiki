@@ -13,7 +13,7 @@ public class Vivlio implements Serializable {
     private String titlos;
     private String url_exwfilou_vivliou;
     private String perigrafi_vivliou;
-    private String id_ekdoti;
+    private int id_ekdoti;
     private ArrayList<VivlioHasSiggrafeis> siggrafeis;
     private ArrayList<Antitypo> antitypaVivliou;
 
@@ -57,11 +57,11 @@ public class Vivlio implements Serializable {
         this.perigrafi_vivliou = perigrafi_vivliou;
     }
 
-    public String getId_ekdoti() {
+    public int getId_ekdoti() {
         return id_ekdoti;
     }
 
-    public void setId_ekdoti(String id_ekdoti) {
+    public void setId_ekdoti(int id_ekdoti) {
         this.id_ekdoti = id_ekdoti;
     }
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formes;
 
 import database.connection.DbConnection;
@@ -21,6 +16,7 @@ import table_models.EmfanisiMelwnTableModel;
 public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
 
     private final MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());
+    @SuppressWarnings("FieldMayBeFinal")
     private Melos melosUnderUpdate = new Melos();
     private boolean someRecordUnderUpdate = false;
 

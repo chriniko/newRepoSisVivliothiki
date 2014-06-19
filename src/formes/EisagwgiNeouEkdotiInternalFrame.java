@@ -3,14 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.EkdotesDAO;
+import database.models.Ekdotis;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author nikos
  */
 public class EisagwgiNeouEkdotiInternalFrame extends javax.swing.JInternalFrame {
+
+    private final EkdotesDAO ekdotesDao = new EkdotesDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form EisagwgiNeouEkdotiInternalFrame
@@ -43,8 +49,18 @@ public class EisagwgiNeouEkdotiInternalFrame extends javax.swing.JInternalFrame 
         onomaEkdotiLbl.setText("Όνομα εκδότη:");
 
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
+        kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoParathirouBtnActionPerformed(evt);
+            }
+        });
 
         eisagwgiEkdotiBtn.setText("Εισαγωγή Εκδότη");
+        eisagwgiEkdotiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eisagwgiEkdotiBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -94,6 +110,28 @@ public class EisagwgiNeouEkdotiInternalFrame extends javax.swing.JInternalFrame 
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
+
+    private void eisagwgiEkdotiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eisagwgiEkdotiBtnActionPerformed
+
+        String onomaEkdoti = onomaEkdotiFld.getText();
+
+        if (onomaEkdoti.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ εισάγετε έγκυρο όνομα εκδότη!");
+            return;
+        }
+        Ekdotis neosEkdotis = new Ekdotis();
+        neosEkdotis.setName(onomaEkdoti);
+
+        ekdotesDao.insertEkdoti(neosEkdotis);
+
+        JOptionPane.showMessageDialog(this, "Η εισαγωγή του νέου εκδότη στην ΒΔ έγινε επιτυχώς!");
+        this.dispose();
+
+    }//GEN-LAST:event_eisagwgiEkdotiBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
