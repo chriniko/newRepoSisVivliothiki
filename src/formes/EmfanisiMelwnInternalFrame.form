@@ -69,7 +69,9 @@
                       <Component id="onomaFld" alignment="0" max="32767" attributes="0"/>
                       <Component id="arithmosMitrwouFld" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="364" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="refreshMelhTableBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="enimerwsiMelousBtn" min="-2" max="-2" attributes="0"/>
@@ -77,7 +79,7 @@
                   <Component id="akirwsiEnimerwsisBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="epivevaiwsiEnimerwsisBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="129" max="32767" attributes="0"/>
                   <Component id="diagrafiMelousBtn" linkSize="1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="kleisimoDialogBtn" linkSize="1" min="-2" max="-2" attributes="0"/>
@@ -87,10 +89,11 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="arithmosMitrwouMelousLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="arithmosMitrwouFld" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="refreshMelhTableBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -183,18 +186,35 @@
             <Property name="text" type="java.lang.String" value="&#x395;&#x3bd;&#x3b7;&#x3bc;&#x3ad;&#x3c1;&#x3c9;&#x3c3;&#x3b7; &#x3bc;&#x3ad;&#x3bb;&#x3bf;&#x3c5;&#x3c2;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enimerwsiMelousBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="akirwsiEnimerwsisBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x391;&#x3ba;&#x3cd;&#x3c1;&#x3c9;&#x3c3;&#x3b7; &#x395;&#x3bd;&#x3b7;&#x3bc;&#x3ad;&#x3c1;&#x3c9;&#x3c3;&#x3b7;&#x3c2;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="akirwsiEnimerwsisBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="epivevaiwsiEnimerwsisBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b9;&#x3b2;&#x3b5;&#x3b2;&#x3b1;&#x3af;&#x3c9;&#x3c3;&#x3b7; &#x395;&#x3bd;&#x3b7;&#x3bc;&#x3ad;&#x3c1;&#x3c9;&#x3c3;&#x3b7;&#x3c2;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="epivevaiwsiEnimerwsisBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="refreshMelhTableBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3bd;&#x3ad;&#x3c9;&#x3c3;&#x3b7; &#x3c0;&#x3af;&#x3bd;&#x3b1;&#x3ba;&#x3b1;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshMelhTableBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

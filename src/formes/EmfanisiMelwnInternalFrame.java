@@ -8,6 +8,7 @@ package formes;
 import database.connection.DbConnection;
 import database.daos.MelhDAO;
 import database.models.Antitypo;
+import database.models.IstorikoMelous;
 import database.models.Melos;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -19,9 +20,10 @@ import table_models.EmfanisiMelwnTableModel;
  */
 public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
 
-    
     private final MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());
-    
+    private Melos melosUnderUpdate = new Melos();
+    private boolean someRecordUnderUpdate = false;
+
     /**
      * Creates new form EmfanisiMelwnInternalFrame
      */
@@ -52,6 +54,7 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
         enimerwsiMelousBtn = new javax.swing.JButton();
         akirwsiEnimerwsisBtn = new javax.swing.JButton();
         epivevaiwsiEnimerwsisBtn = new javax.swing.JButton();
+        refreshMelhTableBtn = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
         melhTable = new javax.swing.JTable();
 
@@ -94,12 +97,34 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
 
         enimerwsiMelousBtn.setText("Ενημέρωση μέλους");
         enimerwsiMelousBtn.setEnabled(false);
+        enimerwsiMelousBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enimerwsiMelousBtnActionPerformed(evt);
+            }
+        });
 
         akirwsiEnimerwsisBtn.setText("Ακύρωση Ενημέρωσης");
         akirwsiEnimerwsisBtn.setEnabled(false);
+        akirwsiEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                akirwsiEnimerwsisBtnActionPerformed(evt);
+            }
+        });
 
         epivevaiwsiEnimerwsisBtn.setText("Επιβεβαίωση Ενημέρωσης");
         epivevaiwsiEnimerwsisBtn.setEnabled(false);
+        epivevaiwsiEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                epivevaiwsiEnimerwsisBtnActionPerformed(evt);
+            }
+        });
+
+        refreshMelhTableBtn.setText("Ανανέωση πίνακα");
+        refreshMelhTableBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshMelhTableBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -118,14 +143,16 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(epithetoFld, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(onomaFld, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(arithmosMitrwouFld, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(refreshMelhTableBtn)
+                .addContainerGap())
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addComponent(enimerwsiMelousBtn)
                 .addGap(18, 18, 18)
                 .addComponent(akirwsiEnimerwsisBtn)
                 .addGap(18, 18, 18)
                 .addComponent(epivevaiwsiEnimerwsisBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(diagrafiMelousBtn)
                 .addGap(18, 18, 18)
                 .addComponent(kleisimoDialogBtn))
@@ -136,10 +163,11 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
         mainPaneLayout.setVerticalGroup(
             mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPaneLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(arithmosMitrwouMelousLbl)
-                    .addComponent(arithmosMitrwouFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(arithmosMitrwouFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refreshMelhTableBtn))
                 .addGap(18, 18, 18)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(onomaMelousLbl)
@@ -219,20 +247,167 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
 
             //prwta elegxoume ean to melos exei daneismena antitypa ean exei tote den epitrepoume thn diagrafi tou melous...
             ArrayList<Antitypo> antitypa = melhDAO.anaktisiDaneismenwnAntitypwn(Integer.parseInt(arithmosMitrwouFld.getText()));
-            
-            if(antitypa!= null && !antitypa.isEmpty()){
+
+            if (antitypa != null && !antitypa.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Το μέλος που προσπαθείτε να διαγράψετε εχει δανειστεί αντίτυπα "
                         + "τα οποια δεν εχει επιστρέψει.\nΠρώτα πρέπει να επιστραφούν και μετά δοκιμάστε ξανά για διαφραφή.");
                 return;
             }//if.
-            
-            //alliws ean ftasame edw shmainei oti to melos den exei antitypa pou prepei na epistrepsei ara ton diagrafoume...
-            
+
+            //alliws ean ftasame edw shmainei oti to melos den exei antitypa pou prepei na epistrepsei...
+            //twra elegxoume ean exei istoriko daneismwn ean exei diagrafoume to istoriko kai meta to melos,
+            //ean den exei istoriko diagrafoume kateutheian to melos.
+            ArrayList<IstorikoMelous> istoriko = melhDAO.anaktisiIstorikouDaneismwnMelous(Integer.parseInt(arithmosMitrwouFld.getText()));
+
+            if (istoriko != null && !istoriko.isEmpty()) {
+                boolean del = melhDAO.diagrafiIstorikouDaneismwnMelous(Integer.parseInt(arithmosMitrwouFld.getText()));
+                if (!del) {//ean den htan epituxes to delete tote...
+                    JOptionPane.showMessageDialog(this, "Κάτι πήγε στραβά κατα την διαγραφή του ιστορικού του χρήστη, κοιτάξτε την ΒΔ!");
+                    return;
+                }
+            }//if.
+
+            //twra eftase h stigmh na diagrapsoume ton xristi....
+            boolean melosDiegrafi = melhDAO.diagrafiMelous(Integer.parseInt(arithmosMitrwouFld.getText()));
+            if (!melosDiegrafi) {
+                JOptionPane.showMessageDialog(this, "Κάτι πήγε στραβά κατα την διαγραφή του μέλους, κοιτάξτε την ΒΔ!");
+                return;
+            }//if.
+
+            //emfanizoume minima epityxias...
+            JOptionPane.showMessageDialog(this, "Διαγραφή μέλους επιτυχής!");
+
+            //enhmerwnoume to modelo tou table...
+            melhTable.setModel(new EmfanisiMelwnTableModel());
+
+            arithmosMitrwouFld.setText("");
+            onomaFld.setText("");
+            epithetoFld.setText("");
+            emailFld.setText("");
+            enimerwsiMelousBtn.setEnabled(false);
+            diagrafiMelousBtn.setEnabled(false);
+
         }//if.
 
     }//GEN-LAST:event_diagrafiMelousBtnActionPerformed
 
+    private void refreshMelhTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshMelhTableBtnActionPerformed
+        //enhmerwnoume to modelo tou table...
+        melhTable.setModel(new EmfanisiMelwnTableModel());
+        melhTable.repaint();
+
+        arithmosMitrwouFld.setText("");
+        onomaFld.setText("");
+        epithetoFld.setText("");
+        emailFld.setText("");
+        enimerwsiMelousBtn.setEnabled(false);
+        diagrafiMelousBtn.setEnabled(false);
+    }//GEN-LAST:event_refreshMelhTableBtnActionPerformed
+
+    private void enimerwsiMelousBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enimerwsiMelousBtnActionPerformed
+
+        this.setClosable(false);
+
+        someRecordUnderUpdate = true;
+
+        melosUnderUpdate.setAm(Integer.parseInt(arithmosMitrwouFld.getText()));
+        melosUnderUpdate.setOnoma(onomaFld.getText());
+        melosUnderUpdate.setEpitheto(epithetoFld.getText());
+        melosUnderUpdate.setEmail(emailFld.getText());
+
+        melhTable.setEnabled(false);
+
+        onomaFld.setEditable(true);
+        epithetoFld.setEditable(true);
+        emailFld.setEditable(true);
+
+        refreshMelhTableBtn.setEnabled(false);
+        kleisimoDialogBtn.setEnabled(false);
+        diagrafiMelousBtn.setEnabled(false);
+        enimerwsiMelousBtn.setEnabled(false);
+
+        akirwsiEnimerwsisBtn.setEnabled(true);
+        epivevaiwsiEnimerwsisBtn.setEnabled(true);
+
+        onomaFld.requestFocus();
+
+
+    }//GEN-LAST:event_enimerwsiMelousBtnActionPerformed
+
+    private void akirwsiEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_akirwsiEnimerwsisBtnActionPerformed
+
+        this.setClosable(true);
+
+        someRecordUnderUpdate = false;
+
+        arithmosMitrwouFld.setText(melosUnderUpdate.getAm() + "");
+        onomaFld.setText(melosUnderUpdate.getOnoma());
+        epithetoFld.setText(melosUnderUpdate.getEpitheto());
+        emailFld.setText(melosUnderUpdate.getEmail());
+
+        melhTable.setEnabled(true);
+
+        onomaFld.setEditable(false);
+        epithetoFld.setEditable(false);
+        emailFld.setEditable(false);
+
+        refreshMelhTableBtn.setEnabled(true);
+        kleisimoDialogBtn.setEnabled(true);
+        diagrafiMelousBtn.setEnabled(true);
+        enimerwsiMelousBtn.setEnabled(true);
+
+        akirwsiEnimerwsisBtn.setEnabled(false);
+        epivevaiwsiEnimerwsisBtn.setEnabled(false);
+
+    }//GEN-LAST:event_akirwsiEnimerwsisBtnActionPerformed
+
+    private void epivevaiwsiEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epivevaiwsiEnimerwsisBtnActionPerformed
+
+        //pairnoume ta dedomena....
+        Melos newDataForMelos = new Melos();
+        newDataForMelos.setAm(Integer.parseInt(arithmosMitrwouFld.getText()));
+        newDataForMelos.setOnoma(onomaFld.getText());
+        newDataForMelos.setEpitheto(epithetoFld.getText());
+        newDataForMelos.setEmail(emailFld.getText());
+
+        boolean enimerwthike = melhDAO.enimerwsiEggrafisMelous(newDataForMelos);
+
+        if (!enimerwthike) {
+            JOptionPane.showMessageDialog(this, "Κάτι πήγε στραβά κατα την ενημέρωση, κοιτάξτε την ΒΔ!");
+            return;
+        }//if.
+
+        JOptionPane.showMessageDialog(this, "Τα στοιχεία του μέλους ενημερώθηκαν επιτυχώς!");
+
+        this.setClosable(true);
+
+        someRecordUnderUpdate = false;
+
+        melhTable.setEnabled(true);
+
+        onomaFld.setEditable(false);
+        epithetoFld.setEditable(false);
+        emailFld.setEditable(false);
+
+        refreshMelhTableBtn.setEnabled(true);
+        kleisimoDialogBtn.setEnabled(true);
+        diagrafiMelousBtn.setEnabled(true);
+        enimerwsiMelousBtn.setEnabled(true);
+
+        akirwsiEnimerwsisBtn.setEnabled(false);
+        epivevaiwsiEnimerwsisBtn.setEnabled(false);
+
+        refreshMelhTableBtn.doClick();
+
+
+    }//GEN-LAST:event_epivevaiwsiEnimerwsisBtnActionPerformed
+
     private void fortwsiPliroforiwnEggrafisMelousStaTxtFields() {
+
+        if (someRecordUnderUpdate) {
+            return;
+        }
+
         int selectedRow = melhTable.getSelectedRow();
         if (selectedRow < 0) {
             arithmosMitrwouFld.setText("");
@@ -270,6 +445,7 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JTable melhTable;
     private javax.swing.JTextField onomaFld;
     private javax.swing.JLabel onomaMelousLbl;
+    private javax.swing.JButton refreshMelhTableBtn;
     private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 }

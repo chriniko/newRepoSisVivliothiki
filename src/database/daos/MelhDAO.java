@@ -21,9 +21,9 @@ public class MelhDAO {
     private PreparedStatement pStat;
     private ResultSet rs;
     private static final String ANAKTISI_DANEISMENWN_ANTITYPWN_QUERY = "SELECT * FROM antitypa WHERE am_daneismenou_melous = ?";
-    private static final String DIAGRAFI_MELOUS_QUERY = "DELETE * FROM melh WHERE am_melous = ?";
+    private static final String DIAGRAFI_MELOUS_QUERY = "DELETE FROM melh WHERE am_melous = ?";
     private static final String ANAKTISI_ISTORIKOU_DANEISMWN_MELOUS = "SELECT * FROM istoriko_melous WHERE melh_am_melous = ?";
-    private static final String DIAGRAFI_ISTORIKOU_DANEISMWN_MELOUS = "DELETE * FROM istoriko_melous WHERE melh_am_melous = ?";
+    private static final String DIAGRAFI_ISTORIKOU_DANEISMWN_MELOUS = "DELETE FROM istoriko_melous WHERE melh_am_melous = ?";
     private static final String ENIMERWSI_EGGRAFIS_MELOUS = "UPDATE melh SET onoma_melous=?, epitheto_melous=?, email_melous=? "
             + " WHERE am_melous = ?";
 
@@ -114,7 +114,7 @@ public class MelhDAO {
         ArrayList allMembers = new ArrayList();
         Melos melos;
         try {
-            String sql = "SELECT * FROM sistima_vivliothikis_ergasia.melh ORDER BY epitheto_melous";
+            String sql = "SELECT * FROM sistima_vivliothikis_ergasia.melh ORDER BY 1";
             try (Statement s = con.createStatement()) {
                 rs = s.executeQuery(sql);
 
