@@ -1,5 +1,6 @@
 package database.daos;
 
+import database.models.Antitypo;
 import database.models.Melos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,14 +13,18 @@ import java.util.ArrayList;
  *
  * @author nikos
  */
+@SuppressWarnings("ThrowableResultIgnored")
 public class MelhDAO {
 
     private final Connection con;
+    private PreparedStatement pStat;
+    private ResultSet rs;
+    private static final String ANAKTISI_DANEISMENWN_ANTITYPWN_QUERY = "SELECT * FROM antitypa WHERE am_daneismenou_melous = ?";
 
     public MelhDAO(Connection conn) {
         this.con = conn;
     }
-//----------------------------------------------------------------------------------    
+    //----------------------------------------------------------------------------------    
 
     public void insertMelos(Melos melos) {
 
@@ -39,7 +44,7 @@ public class MelhDAO {
         }
 
     }
-//----------------------------------------------------------------------------------    
+    //----------------------------------------------------------------------------------    
 
     public Melos searchMelosByAm(int am) {
 
@@ -68,7 +73,7 @@ public class MelhDAO {
 
         return null;
     }
-//----------------------------------------------------------------------------------    
+    //----------------------------------------------------------------------------------    
 
     public Melos searchMelosByEpitheto(String epitheto) {
 
@@ -96,7 +101,7 @@ public class MelhDAO {
         }
         return null;
     }
-//----------------------------------------------------------------------------------    
+    //----------------------------------------------------------------------------------    
 
     public ArrayList<Melos> findAll() {
 
@@ -125,7 +130,70 @@ public class MelhDAO {
 
         return allMembers;
     }
-//----------------------------------------------------------------------------------        
+    //----------------------------------------------------------------------------------        
+
+    public ArrayList<Antitypo> anaktisiDaneismenwnAntitypwn(int am) {
+
+        try {
+
+            pStat = con.prepareStatement(ANAKTISI_DANEISMENWN_ANTITYPWN_QUERY);
+            pStat.setInt(1, am);
+            rs = pStat.executeQuery();
+
+            Antitypo ant;
+            ArrayList<Antitypo> antitypa = new ArrayList<>();
+
+            while (rs.next()) {
+
+                ant = new Antitypo();
+
+                ant.setIsbnVivliou(rs.getString("vivlia_isbn_vivliou"));
+                ant.setIdAntitypou(rs.getInt("id_antitypou"));
+                ant.setKatastasiAntitypou(rs.getString("katastasi_antitypou"));
+                ant.setAm_daneismenou_melous(rs.getInt("am_daneismenou_melous"));
+                ant.setHmnia_daneismou(rs.getDate("hmnia_daneismou"));
+
+                antitypa.add(ant);
+
+            }//while.
+
+            return antitypa;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            while ((ex = ex.getNextException()) != null) {
+                System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+            }
+        } finally {
+
+            try {
+                if (!rs.isClosed()) {
+                    rs.close();
+                }
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                while ((ex = ex.getNextException()) != null) {
+                    System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+                }
+            }
+
+        }//finally.
+
+        return null;
+    }//anaktisiDaneismenwnAntitypwn.
+
+    //---------------------------------------------------------------------------------
+    public ArrayList<IstorikoMelous> anaktisiIstorikouDaneismwn(int am) {
+        return null;
+    }
+
+    //---------------------------------------------------------------------------------
+    public boolean diagrafiMelous(int am) {
+        return false;
+    }//diagrafiMelous.
 
     /*    
      public static void main(String[] args)

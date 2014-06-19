@@ -3,8 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.MelhDAO;
+import database.models.Antitypo;
+import database.models.Melos;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import table_models.EmfanisiMelwnTableModel;
 
 /**
  *
@@ -12,6 +19,9 @@ package formes;
  */
 public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
 
+    
+    private final MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());
+    
     /**
      * Creates new form EmfanisiMelwnInternalFrame
      */
@@ -76,6 +86,11 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
 
         diagrafiMelousBtn.setText("Διαγραφή Μέλους");
         diagrafiMelousBtn.setEnabled(false);
+        diagrafiMelousBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diagrafiMelousBtnActionPerformed(evt);
+            }
+        });
 
         enimerwsiMelousBtn.setText("Ενημέρωση μέλους");
         enimerwsiMelousBtn.setEnabled(false);
@@ -147,17 +162,17 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        melhTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        melhTable.setModel(new EmfanisiMelwnTableModel());
+        melhTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                melhTableMouseClicked(evt);
             }
-        ));
+        });
+        melhTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                melhTableKeyReleased(evt);
+            }
+        });
         scrollPane.setViewportView(melhTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,6 +202,56 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
     private void kleisimoDialogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoDialogBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_kleisimoDialogBtnActionPerformed
+
+    private void melhTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_melhTableMouseClicked
+        fortwsiPliroforiwnEggrafisMelousStaTxtFields();
+    }//GEN-LAST:event_melhTableMouseClicked
+
+    private void melhTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_melhTableKeyReleased
+        fortwsiPliroforiwnEggrafisMelousStaTxtFields();
+    }//GEN-LAST:event_melhTableKeyReleased
+
+    private void diagrafiMelousBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagrafiMelousBtnActionPerformed
+
+        int result = JOptionPane.showConfirmDialog(this, "Είστε σίγουρος?");
+
+        if (result == JOptionPane.YES_OPTION) {
+
+            //prwta elegxoume ean to melos exei daneismena antitypa ean exei tote den epitrepoume thn diagrafi tou melous...
+            ArrayList<Antitypo> antitypa = melhDAO.anaktisiDaneismenwnAntitypwn(Integer.parseInt(arithmosMitrwouFld.getText()));
+            
+            if(antitypa!= null && !antitypa.isEmpty()){
+                JOptionPane.showMessageDialog(this, "Το μέλος που προσπαθείτε να διαγράψετε εχει δανειστεί αντίτυπα "
+                        + "τα οποια δεν εχει επιστρέψει.\nΠρώτα πρέπει να επιστραφούν και μετά δοκιμάστε ξανά για διαφραφή.");
+                return;
+            }//if.
+            
+            //alliws ean ftasame edw shmainei oti to melos den exei antitypa pou prepei na epistrepsei ara ton diagrafoume...
+            
+        }//if.
+
+    }//GEN-LAST:event_diagrafiMelousBtnActionPerformed
+
+    private void fortwsiPliroforiwnEggrafisMelousStaTxtFields() {
+        int selectedRow = melhTable.getSelectedRow();
+        if (selectedRow < 0) {
+            arithmosMitrwouFld.setText("");
+            onomaFld.setText("");
+            epithetoFld.setText("");
+            emailFld.setText("");
+            enimerwsiMelousBtn.setEnabled(false);
+            diagrafiMelousBtn.setEnabled(false);
+            return;
+        }
+        ArrayList<Melos> melh = ((EmfanisiMelwnTableModel) melhTable.getModel()).getData();
+        Melos melos = melh.get(selectedRow);
+        arithmosMitrwouFld.setText(melos.getAm() + "");
+        onomaFld.setText(melos.getOnoma());
+        epithetoFld.setText(melos.getEpitheto());
+        emailFld.setText(melos.getEmail());
+        enimerwsiMelousBtn.setEnabled(true);
+        diagrafiMelousBtn.setEnabled(true);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
