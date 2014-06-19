@@ -68,6 +68,11 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
         epithetoFld.setEditable(false);
 
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoDialogBtnActionPerformed(evt);
+            }
+        });
 
         diagrafiMelousBtn.setText("Διαγραφή Μέλους");
         diagrafiMelousBtn.setEnabled(false);
@@ -178,6 +183,10 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kleisimoDialogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoDialogBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoDialogBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
