@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -93,12 +94,38 @@ public class MelhDAO {
         return melos;
     }
 //----------------------------------------------------------------------------------    
-    
-    
-    
-    
-    
-    
+     public ArrayList<Melos> findAll(){
+         
+        ArrayList allMembers = new ArrayList();
+        Melos melos;
+        try
+        {            
+            String sql = "SELECT * FROM sistima_vivliothikis_ergasia.melh ORDER BY epitheto_melous";
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery(sql);                       
+                        
+            while(rs.next())
+            {
+                melos = new Melos();
+                
+                melos.setAm(Integer.parseInt(rs.getString("am_melous")));
+                melos.setOnoma(rs.getString("onoma_melous"));
+                melos.setEpitheto(rs.getString("epitheto_melous"));
+                melos.setEmail(rs.getString("email_melous"));
+                melos.setPass(rs.getString("pass_melous"));
+                                              
+                allMembers.add(melos);
+            }            
+        }
+        catch(Exception e)
+        {
+            System.out.println(e + "       MelhDAO.findAll()");
+        }
+        
+        return allMembers;
+    }
+//----------------------------------------------------------------------------------        
+        
 /*    
     public static void main(String[] args)
 {
