@@ -10,18 +10,15 @@ public class Vivliothikarios implements Serializable {
 
     private int am;
     private String password;
+    private String onoma;
+    private String epitheto;
 
     public Vivliothikarios() {
     }
 
-    public Vivliothikarios(int am, String password) {
-        this.am = am;
-        this.password = password;
-    }
-
     @Override
     public String toString() {
-        return "Vivliothikarios{" + "am=" + am + ", password=" + password + '}';
+        return "Vivliothikarios{" + "am=" + am + ", password=" + password + ", onoma=" + onoma + ", epitheto=" + epitheto + '}';
     }
 
     public String getPassword() {
@@ -38,5 +35,21 @@ public class Vivliothikarios implements Serializable {
 
     public void setAm(int am) {
         this.am = am;
+    }
+
+    public String getOnoma() {
+        return onoma;
+    }
+
+    public void setOnoma(String onoma) {
+        this.onoma = onoma;
+    }
+
+    public String getEpitheto() {
+        return epitheto;
+    }
+
+    public void setEpitheto(String epitheto) {
+        this.epitheto = epitheto;
     }
 }

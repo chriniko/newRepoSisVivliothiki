@@ -1,5 +1,7 @@
 package formes;
 
+import database.connection.DbConnection;
+import database.daos.VivliothikarioiDAO;
 import javax.swing.JOptionPane;
 
 /**
@@ -7,6 +9,8 @@ import javax.swing.JOptionPane;
  * @author nikos
  */
 public class SindesiStoSistima extends javax.swing.JFrame {
+
+    VivliothikarioiDAO vivliothikarioiDAO = new VivliothikarioiDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form SindesiStoSistima
@@ -25,16 +29,16 @@ public class SindesiStoSistima extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        mainPane = new javax.swing.JPanel();
+        amLbl = new javax.swing.JLabel();
+        passLbl = new javax.swing.JLabel();
+        amFld = new javax.swing.JTextField();
+        passFld = new javax.swing.JPasswordField();
+        logariasmosLbl = new javax.swing.JLabel();
+        logariasmosComboBox = new javax.swing.JComboBox();
+        kleisimoEfarmogisBtn = new javax.swing.JButton();
+        sindesiBtn = new javax.swing.JButton();
+        welcomeLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Σύνδεση στο σύστημα βιβλιοθήκης");
@@ -44,76 +48,86 @@ public class SindesiStoSistima extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Αριθμός μητρώου:");
+        amLbl.setText("Αριθμός μητρώου:");
 
-        jLabel2.setText("Κωδικός:");
+        passLbl.setText("Κωδικός:");
 
-        jLabel3.setText("Τύπος λογαριασμού:");
+        logariasmosLbl.setText("Τύπος λογαριασμού:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Χρήστης", "Βιβλιοθηκάριος" }));
+        logariasmosComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Χρήστης", "Βιβλιοθηκάριος" }));
 
-        jButton1.setText("Κλείσιμο εφαρμογής");
+        kleisimoEfarmogisBtn.setText("Κλείσιμο εφαρμογής");
+        kleisimoEfarmogisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoEfarmogisBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Σύνδεση");
+        sindesiBtn.setText("Σύνδεση");
+        sindesiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sindesiBtnActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Καλώς ήρθατε! Παρακαλώ συνδεθείτε για να συνεχίσετε.");
+        welcomeLbl.setText("Καλώς ήρθατε! Παρακαλώ συνδεθείτε για να συνεχίσετε.");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
+        mainPane.setLayout(mainPaneLayout);
+        mainPaneLayout.setHorizontalGroup(
+            mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(sindesiBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(kleisimoEfarmogisBtn))
+                    .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addComponent(welcomeLbl)
                         .addGap(0, 125, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
+                    .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
+                                    .addComponent(passLbl)
                                     .addGap(72, 72, 72))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
+                                .addGroup(mainPaneLayout.createSequentialGroup()
+                                    .addComponent(logariasmosLbl)
                                     .addGap(7, 7, 7)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                            .addGroup(mainPaneLayout.createSequentialGroup()
+                                .addComponent(amLbl)
                                 .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(amFld)
+                            .addGroup(mainPaneLayout.createSequentialGroup()
+                                .addComponent(logariasmosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jPasswordField1))))
+                            .addComponent(passFld))))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        mainPaneLayout.setVerticalGroup(
+            mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(welcomeLbl)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(amLbl)
+                    .addComponent(amFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passLbl)
+                    .addComponent(passFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logariasmosLbl)
+                    .addComponent(logariasmosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sindesiBtn)
+                    .addComponent(kleisimoEfarmogisBtn))
                 .addContainerGap())
         );
 
@@ -123,14 +137,14 @@ public class SindesiStoSistima extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -145,6 +159,25 @@ public class SindesiStoSistima extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_formWindowClosing
+
+    private void kleisimoEfarmogisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoEfarmogisBtnActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_kleisimoEfarmogisBtnActionPerformed
+
+    private void sindesiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sindesiBtnActionPerformed
+
+        if (amFld.getText().trim().equals("") || passFld.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ συμπλήρωσε τα πεδία!");
+            return;
+        }
+
+        if (this.logariasmosComboBox.getSelectedIndex() == 1) {
+
+        } else if (logariasmosComboBox.getSelectedIndex() == 0) {
+
+        }
+
+    }//GEN-LAST:event_sindesiBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,15 +210,15 @@ public class SindesiStoSistima extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField amFld;
+    private javax.swing.JLabel amLbl;
+    private javax.swing.JButton kleisimoEfarmogisBtn;
+    private javax.swing.JComboBox logariasmosComboBox;
+    private javax.swing.JLabel logariasmosLbl;
+    private javax.swing.JPanel mainPane;
+    private javax.swing.JPasswordField passFld;
+    private javax.swing.JLabel passLbl;
+    private javax.swing.JButton sindesiBtn;
+    private javax.swing.JLabel welcomeLbl;
     // End of variables declaration//GEN-END:variables
 }
