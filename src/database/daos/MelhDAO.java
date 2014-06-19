@@ -20,6 +20,7 @@ public class MelhDAO {
     private PreparedStatement pStat;
     private ResultSet rs;
     private static final String ANAKTISI_DANEISMENWN_ANTITYPWN_QUERY = "SELECT * FROM antitypa WHERE am_daneismenou_melous = ?";
+    private static final String DIAGRAFI_MELOUS_QUERY = "DELETE * FROM melh WHERE am_melous = ?";
 
     public MelhDAO(Connection conn) {
         this.con = conn;
@@ -186,10 +187,36 @@ public class MelhDAO {
     }//anaktisiDaneismenwnAntitypwn.
 
     //---------------------------------------------------------------------------------
-   
-
     //---------------------------------------------------------------------------------
     public boolean diagrafiMelous(int am) {
+
+        try {
+            pStat = con.prepareStatement(DIAGRAFI_MELOUS_QUERY);
+            pStat.setInt(1, am);
+
+            int res = pStat.executeUpdate();
+
+            return res == 1;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            while ((ex = ex.getNextException()) != null) {
+                System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+            }//while.
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                while ((ex = ex.getNextException()) != null) {
+                    System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+                }
+            }
+
+        }
+
         return false;
     }//diagrafiMelous.
 
