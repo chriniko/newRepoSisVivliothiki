@@ -1,6 +1,7 @@
 package database.daos;
 
 import database.models.Antitypo;
+import database.models.IstorikoMelous;
 import database.models.Melos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +22,10 @@ public class MelhDAO {
     private ResultSet rs;
     private static final String ANAKTISI_DANEISMENWN_ANTITYPWN_QUERY = "SELECT * FROM antitypa WHERE am_daneismenou_melous = ?";
     private static final String DIAGRAFI_MELOUS_QUERY = "DELETE * FROM melh WHERE am_melous = ?";
+    private static final String ANAKTISI_ISTORIKOU_DANEISMWN_MELOUS = "SELECT * FROM istoriko_melous WHERE melh_am_melous = ?";
+    private static final String DIAGRAFI_ISTORIKOU_DANEISMWN_MELOUS = "DELETE * FROM istoriko_melous WHERE melh_am_melous = ?";
+    private static final String ENIMERWSI_EGGRAFIS_MELOUS = "UPDATE melh SET onoma_melous=?, epitheto_melous=?, email_melous=? "
+            + " WHERE am_melous = ?";
 
     public MelhDAO(Connection conn) {
         this.con = conn;
@@ -53,7 +58,7 @@ public class MelhDAO {
         try {
             String sql = "SELECT * FROM sistima_vivliothikis_ergasia.melh WHERE am_melous LIKE '" + am + "'";
             try (Statement s = con.createStatement()) {
-                ResultSet rs = s.executeQuery(sql);
+                rs = s.executeQuery(sql);
 
                 if (rs.first()) {
                     melos.setAm(Integer.parseInt(rs.getString("am_melous")));
@@ -82,7 +87,7 @@ public class MelhDAO {
         try {
             String sql = "SELECT * FROM sistima_vivliothikis_ergasia.melh WHERE epitheto_melous LIKE '" + epitheto + "'";
             try (Statement s = con.createStatement()) {
-                ResultSet rs = s.executeQuery(sql);
+                rs = s.executeQuery(sql);
 
                 if (rs.first()) {
                     melos.setAm(Integer.parseInt(rs.getString("am_melous")));
@@ -111,7 +116,7 @@ public class MelhDAO {
         try {
             String sql = "SELECT * FROM sistima_vivliothikis_ergasia.melh ORDER BY epitheto_melous";
             try (Statement s = con.createStatement()) {
-                ResultSet rs = s.executeQuery(sql);
+                rs = s.executeQuery(sql);
 
                 while (rs.next()) {
                     melos = new Melos();
@@ -187,6 +192,87 @@ public class MelhDAO {
     }//anaktisiDaneismenwnAntitypwn.
 
     //---------------------------------------------------------------------------------
+    public ArrayList<IstorikoMelous> anaktisiIstorikouDaneismwnMelous(int am) {
+
+        try {
+
+            pStat = con.prepareStatement(ANAKTISI_ISTORIKOU_DANEISMWN_MELOUS);
+            pStat.setInt(1, am);
+
+            rs = pStat.executeQuery();
+
+            ArrayList<IstorikoMelous> istorikoDaneismwn = new ArrayList<>();
+            IstorikoMelous tempObj;
+
+            while (rs.next()) {
+
+                tempObj = new IstorikoMelous();
+                tempObj.setIsbnVivliou(rs.getString("antitypa_vivlia_isbn_vivliou"));
+                tempObj.setIdAntitypou(rs.getInt("antitypa_id_antitypou"));
+                tempObj.setAmMelous(rs.getInt("melh_am_melous"));
+                tempObj.setHmniaDaneismou(rs.getDate("hmnia_daneismou"));
+                tempObj.setHmniaEpistrofis(rs.getDate("hmnia_epistrofis"));
+
+                istorikoDaneismwn.add(tempObj);
+            }//while.
+
+            return istorikoDaneismwn;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            while ((ex = ex.getNextException()) != null) {
+                System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+            }
+        } finally {
+            try {
+                if (!rs.isClosed()) {
+                    rs.close();
+                }
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                while ((ex = ex.getNextException()) != null) {
+                    System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+                }
+            }
+        }//finally.
+        return null;
+    }//anaktisiIstorikouDaneismwnMelous.
+
+    //---------------------------------------------------------------------------------
+    public boolean diagrafiIstorikouDaneismwnMelous(int am) {
+
+        try {
+
+            pStat = con.prepareStatement(DIAGRAFI_ISTORIKOU_DANEISMWN_MELOUS);
+            pStat.setInt(1, am);
+
+            int res = pStat.executeUpdate();
+            return res == 1;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            while ((ex = ex.getNextException()) != null) {
+                System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+            }
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                while ((ex = ex.getNextException()) != null) {
+                    System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+                }
+            }
+        }
+
+        return false;
+    }//diagrafiIstorikouDaneismwnMelous.
+
     //---------------------------------------------------------------------------------
     public boolean diagrafiMelous(int am) {
 
@@ -219,6 +305,42 @@ public class MelhDAO {
 
         return false;
     }//diagrafiMelous.
+
+    //-------------------------------------------------------------------------------
+    public boolean enimerwsiEggrafisMelous(Melos input) {
+        try {
+
+            pStat = con.prepareStatement(ENIMERWSI_EGGRAFIS_MELOUS);
+
+            pStat.setString(1, input.getOnoma());
+            pStat.setString(2, input.getEpitheto());
+            pStat.setString(3, input.getEmail());
+            pStat.setInt(4, input.getAm());
+
+            int res = pStat.executeUpdate();
+
+            return res == 1;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            while ((ex = ex.getNextException()) != null) {
+                System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+            }//while.
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                while ((ex = ex.getNextException()) != null) {
+                    System.err.println(ex.getSQLState() + "  -  " + ex.getErrorCode());
+                }
+            }
+
+        }//finally.
+        return false;
+    }//enimerwsiEggrafisMelous.
 
     /*    
      public static void main(String[] args)

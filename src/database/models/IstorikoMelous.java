@@ -7,7 +7,7 @@ import java.util.Date;
  *
  * @author nikos
  */
-class IstorikoMelous implements Serializable {
+public class IstorikoMelous implements Serializable {
 
     private String isbnVivliou;
     private int idAntitypou;
