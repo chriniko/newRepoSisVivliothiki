@@ -1,10 +1,20 @@
 package formes;
 
+import database.connection.DbConnection;
+import database.daos.MelhDAO;
+import database.models.Melos;
+import javax.swing.JOptionPane;
+import utils.EmailValidator;
+import utils.SessionIdentifierGenerator;
+import utils.Utils;
+
 /**
  *
  * @author nikos
  */
 public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
+
+    private final MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form EisagwgiMelousInternalFrame
@@ -36,6 +46,7 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
         kleisimoDialogBtn = new javax.swing.JButton();
         eisagwgiNeouMelousBtn = new javax.swing.JButton();
         statusLbl = new javax.swing.JLabel();
+        generatePassBtn = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -54,10 +65,27 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
         kwdikosMelousLbl.setText("Κωδικός μέλους (password):");
 
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoDialogBtnActionPerformed(evt);
+            }
+        });
 
         eisagwgiNeouMelousBtn.setText("Εισαγωγή νέου μέλους");
+        eisagwgiNeouMelousBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eisagwgiNeouMelousBtnActionPerformed(evt);
+            }
+        });
 
         statusLbl.setText("Παρακαλώ εισάγετε τα στοιχεία του νέου μελους.");
+
+        generatePassBtn.setText("Γέννηση Κωδικόυ");
+        generatePassBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generatePassBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -66,6 +94,14 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(mainPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
+                        .addGap(0, 152, Short.MAX_VALUE)
+                        .addComponent(eisagwgiNeouMelousBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(kleisimoDialogBtn))
+                    .addGroup(mainPaneLayout.createSequentialGroup()
+                        .addComponent(statusLbl)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(mainPaneLayout.createSequentialGroup()
                         .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(arithmosMitrwouMelousLbl)
@@ -75,19 +111,14 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(kwdikosMelousLbl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(mainPaneLayout.createSequentialGroup()
+                                .addComponent(generatePassBtn)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(arithmosMitrwouFld)
                             .addComponent(onomaFld)
                             .addComponent(emailFld)
                             .addComponent(epithetoFld)
-                            .addComponent(kwdikosFld)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
-                        .addGap(0, 152, Short.MAX_VALUE)
-                        .addComponent(eisagwgiNeouMelousBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(kleisimoDialogBtn))
-                    .addGroup(mainPaneLayout.createSequentialGroup()
-                        .addComponent(statusLbl)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(kwdikosFld))))
                 .addContainerGap())
         );
         mainPaneLayout.setVerticalGroup(
@@ -113,7 +144,9 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kwdikosMelousLbl)
                     .addComponent(kwdikosFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(generatePassBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(statusLbl)
                 .addGap(57, 57, 57)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -142,6 +175,67 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kleisimoDialogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoDialogBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoDialogBtnActionPerformed
+
+    private void eisagwgiNeouMelousBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eisagwgiNeouMelousBtnActionPerformed
+
+        String[] values = {arithmosMitrwouFld.getText(), onomaFld.getText(), epithetoFld.getText(), emailFld.getText(), kwdikosFld.getText()};
+
+        //elegxoume ean ta pedia exoun simplirwthei swsta....
+        int res = Utils.elegxosSimplirwmenwnPediwn(values);
+        if (res != Utils.OK) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε το " + res + " πεδίο!");
+            return;
+        }
+
+        //elegxos ean to am einai numeric...
+        try {
+            Integer.parseInt(arithmosMitrwouFld.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Ο αριθμός μητρώου πρέπει να αποτελείται μονο απο αριθμούς");
+            return;
+        }
+
+        //kanoume validate tou email...
+        boolean isEmailValid = new EmailValidator().validate(emailFld.getText());
+        if (!isEmailValid) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ δώστε έγκυρο email!");
+            return;
+        }
+
+        //ean ftasame edw tote eisagoume ta stoixeia tou user sth vasi...
+        Melos neoMelos = new Melos();
+        neoMelos.setAm(Integer.parseInt(arithmosMitrwouFld.getText()));
+        neoMelos.setOnoma(onomaFld.getText());
+        neoMelos.setEpitheto(epithetoFld.getText());
+        neoMelos.setEmail(emailFld.getText());
+        neoMelos.setPass(kwdikosFld.getText());
+        neoMelos.setDaneismenaAntitypa(null);
+        neoMelos.setIstorikoDaneismwn(null);
+
+        //eisagwgi tou melous sti vasi...
+        melhDAO.insertMelos(neoMelos);
+
+        JOptionPane.showMessageDialog(this, "Ο νέος χρήστης αποθηκεύτηκε επιτυχώς στη βάση!");
+        eisagwgiNeouMelousBtn.setEnabled(false);
+        generatePassBtn.setEnabled(false);
+        arithmosMitrwouFld.setEditable(false);
+        onomaFld.setEditable(false);
+        epithetoFld.setEditable(false);
+        emailFld.setEditable(false);
+        kwdikosFld.setEditable(false);
+        statusLbl.setText("Επιτυχής εισαγωγή στη βάση!");
+
+    }//GEN-LAST:event_eisagwgiNeouMelousBtnActionPerformed
+
+    private void generatePassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generatePassBtnActionPerformed
+        SessionIdentifierGenerator gen = new SessionIdentifierGenerator();
+        String genPass = gen.nextSessionId();
+        kwdikosFld.setText(genPass);
+    }//GEN-LAST:event_generatePassBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField arithmosMitrwouFld;
@@ -151,6 +245,7 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel emailMelousLbl;
     private javax.swing.JTextField epithetoFld;
     private javax.swing.JLabel epithetoMelousLbl;
+    private javax.swing.JButton generatePassBtn;
     private javax.swing.JButton kleisimoDialogBtn;
     private javax.swing.JTextField kwdikosFld;
     private javax.swing.JLabel kwdikosMelousLbl;

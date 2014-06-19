@@ -3,14 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.MelhDAO;
+import database.models.Melos;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author nikos
  */
 public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
+
+    private MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form AnazitisiMelousInternalFrame
@@ -80,6 +86,11 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
         kwdikosFld.setEditable(false);
 
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoDialogBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchResultPaneLayout = new javax.swing.GroupLayout(searchResultPane);
         searchResultPane.setLayout(searchResultPaneLayout);
@@ -148,8 +159,18 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
         dwsePliroforiaLbl.setText("Δώσε πληροφορία:");
 
         anazitisiBtn.setText("Αναζήτηση!");
+        anazitisiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anazitisiBtnActionPerformed(evt);
+            }
+        });
 
         katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
+        katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katharismosPediwnBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchPaneLayout = new javax.swing.GroupLayout(searchPane);
         searchPane.setLayout(searchPaneLayout);
@@ -231,6 +252,99 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void katharismosPediwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katharismosPediwnBtnActionPerformed
+
+        arithmosMitrwouFld.setText("");
+        emailFld.setText("");
+        epithetoFld.setText("");
+        kwdikosFld.setText("");
+        onomaFld.setText("");
+        pliroforiaFld.setText("");
+
+    }//GEN-LAST:event_katharismosPediwnBtnActionPerformed
+
+    private void kleisimoDialogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoDialogBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoDialogBtnActionPerformed
+
+    private void anazitisiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anazitisiBtnActionPerformed
+
+        if (arithmoMitrwouRadioBtn.isSelected()) {
+
+            String input = pliroforiaFld.getText();
+            if (input.trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Παρακαλώ δώσε έγκυρο ΑΜ!");
+                return;
+            }
+
+            try {
+                Integer.parseInt(input);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Ο αριθμός μητρώου αποτελείται μονο απο αριθμούς!");
+                return;
+            }
+
+            Melos res = melhDAO.searchMelosByAm(Integer.parseInt(input));
+            if (res == null) {
+
+                JOptionPane.showMessageDialog(this, "Δεν υπάρχει μέλος με αυτο το ΑΜ!");
+
+                arithmosMitrwouFld.setText("");
+                emailFld.setText("");
+                epithetoFld.setText("");
+                kwdikosFld.setText("");
+                onomaFld.setText("");
+                pliroforiaFld.setText("");
+
+            } else {
+
+                arithmosMitrwouFld.setText(res.getAm() + "");
+                emailFld.setText(res.getEmail());
+                epithetoFld.setText(res.getEpitheto());
+                kwdikosFld.setText(res.getPass());
+                onomaFld.setText(res.getOnoma());
+
+            }
+
+        } else if (epithetoMelousRadioBtn.isSelected()) {
+
+            String input = pliroforiaFld.getText();
+            if (input.trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Παρακαλώ δώσε έγκυρο επίθετο!");
+                return;
+            }
+            
+            
+            Melos res = melhDAO.searchMelosByEpitheto(input);
+            if (res == null) {
+
+                JOptionPane.showMessageDialog(this, "Δεν υπάρχει μέλος με αυτο το επίθετο!");
+
+                arithmosMitrwouFld.setText("");
+                emailFld.setText("");
+                epithetoFld.setText("");
+                kwdikosFld.setText("");
+                onomaFld.setText("");
+                pliroforiaFld.setText("");
+
+            } else {
+
+                arithmosMitrwouFld.setText(res.getAm() + "");
+                emailFld.setText(res.getEmail());
+                epithetoFld.setText(res.getEpitheto());
+                kwdikosFld.setText(res.getPass());
+                onomaFld.setText(res.getOnoma());
+
+            }
+
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ επέλεξε ενα κριτήριο αναζήτησης!");
+        }
+
+
+    }//GEN-LAST:event_anazitisiBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
