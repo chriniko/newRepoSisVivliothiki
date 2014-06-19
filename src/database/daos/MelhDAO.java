@@ -186,9 +186,7 @@ public class MelhDAO {
     }//anaktisiDaneismenwnAntitypwn.
 
     //---------------------------------------------------------------------------------
-    public ArrayList<IstorikoMelous> anaktisiIstorikouDaneismwn(int am) {
-        return null;
-    }
+   
 
     //---------------------------------------------------------------------------------
     public boolean diagrafiMelous(int am) {
