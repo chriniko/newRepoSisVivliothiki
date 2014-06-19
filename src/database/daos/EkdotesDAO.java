@@ -32,7 +32,9 @@ public class EkdotesDAO {
             PreparedStatement ps = con.prepareStatement(sql);            
             ps.setString(1, ekdotis.getName());
                        
-            ps.executeUpdate();            
+            ps.executeUpdate();  
+            ps.close();
+            con.close();
         }
         catch(Exception e)
         {
@@ -41,7 +43,9 @@ public class EkdotesDAO {
     }
 //----------------------------------------------------------------------------------
     public ArrayList<Ekdotis> findAll(){
-         
+        db = new DbConnection();
+        con = db.getConn();
+        
         ArrayList allPublishers = new ArrayList();
         Ekdotis ekdotis;
         try
@@ -58,7 +62,10 @@ public class EkdotesDAO {
                 ekdotis.setName(rs.getString("onoma_ekdoti"));
                                                               
                 allPublishers.add(ekdotis);
-            }            
+            }    
+            s.close();
+            rs.close();
+            con.close();
         }
         catch(Exception e)
         {

@@ -33,7 +33,9 @@ public class SiggrafeisDAO {
             ps.setString(1, siggrafeas.getOnoma());
             ps.setString(2, siggrafeas.getEpitheto());
                        
-            ps.executeUpdate();            
+            ps.executeUpdate();     
+            ps.close();
+            con.close();
         }
         catch(Exception e)
         {
@@ -42,7 +44,9 @@ public class SiggrafeisDAO {
     }
 //----------------------------------------------------------------------------------    
     public ArrayList<Siggrafeas> findAll(){
-         
+        db = new DbConnection();
+        con = db.getConn();
+        
         ArrayList allWriters = new ArrayList();
         Siggrafeas siggrafeas;
         try
@@ -60,7 +64,10 @@ public class SiggrafeisDAO {
                 siggrafeas.setEpitheto(rs.getString("epitheto_siggrafea"));
                                                               
                 allWriters.add(siggrafeas);
-            }            
+            }    
+            s.close();
+            rs.close();
+            con.close();
         }
         catch(Exception e)
         {

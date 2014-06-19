@@ -35,16 +35,21 @@ public class MelhDAO {
             ps.setString(4, melos.getEmail());
             ps.setString(5, melos.getPass());                              
             
-            ps.executeUpdate();            
+            ps.executeUpdate();     
+            ps.close();
+            con.close();
         }
         catch(Exception e)
         {
             System.out.println(e + "     MelhDAO.insertMelos()");
-        }         
+        }
+        
     }
 //----------------------------------------------------------------------------------    
     public Melos searchMelosByAm(int am){
         
+        db = new DbConnection();
+        con = db.getConn();
         Melos melos = new Melos();
         try
         {            
@@ -59,7 +64,10 @@ public class MelhDAO {
                 melos.setEpitheto(rs.getString("epitheto_melous"));
                 melos.setEmail(rs.getString("email_melous"));
                 melos.setPass(rs.getString("pass_melous"));                                                                                          
-            }            
+            }
+            
+            s.close();
+            con.close();
         }
         catch(Exception e)
         {
@@ -71,6 +79,8 @@ public class MelhDAO {
 //----------------------------------------------------------------------------------    
     public Melos searchMelosByEpitheto(String epitheto){
         
+        db = new DbConnection();
+        con = db.getConn();
         Melos melos = new Melos();
         try
         {            
@@ -85,7 +95,9 @@ public class MelhDAO {
                 melos.setEpitheto(rs.getString("epitheto_melous"));
                 melos.setEmail(rs.getString("email_melous"));
                 melos.setPass(rs.getString("pass_melous"));                                                                                          
-            }            
+            }      
+            s.close();
+            con.close();
         }
         catch(Exception e)
         {
@@ -95,6 +107,9 @@ public class MelhDAO {
     }
 //----------------------------------------------------------------------------------    
      public ArrayList<Melos> findAll(){
+         
+        db = new DbConnection();
+        con = db.getConn();
          
         ArrayList allMembers = new ArrayList();
         Melos melos;
@@ -115,7 +130,9 @@ public class MelhDAO {
                 melos.setPass(rs.getString("pass_melous"));
                                               
                 allMembers.add(melos);
-            }            
+            }       
+            s.close();
+            con.close();
         }
         catch(Exception e)
         {
