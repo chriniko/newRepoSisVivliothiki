@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Vivliothikarios implements Serializable {
 
     private int am;
-    private String password;
+    transient private String password;
     private String onoma;
     private String epitheto;
 

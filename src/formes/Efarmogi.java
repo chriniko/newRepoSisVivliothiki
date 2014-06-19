@@ -1,6 +1,8 @@
 package formes;
 
+import database.models.Vivliothikarios;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -359,14 +361,44 @@ public class Efarmogi extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        final SindesiStoSistima sindesi = new SindesiStoSistima();
+        sindesi.setAccessGranted(false);
+        final Efarmogi efarmogi = new Efarmogi();
+
+        /* emfanisi formas gia sindesi sto sistima....*/
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Efarmogi().setVisible(true);
+                sindesi.setVisible(true);
             }
         });
-    }
+
+        //anamoni mexri na ginei epityxhs sindesi.....
+        do {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+            }
+        } while (!sindesi.isAccessGranted());
+
+        //ean ftasame edw shmainei oti h sindesi htan epityxhs....
+        JOptionPane.showMessageDialog(sindesi, "Επιτυχής σύνδεση!");
+
+        //pairnoume ta stoixeia tou sindedemenou vivliothikariou....
+        final Vivliothikarios sindedemenosVivliothikarios = sindesi.getSindedemenosVivliothikarios();
+
+        //emfanizoume thn forma ths efarmogis mas.....
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                efarmogi.setTitle("Σύστημα Βιβλιοθήκης - Συνδεδεμένος Βιβλιοθηκάριος: " + sindedemenosVivliothikarios.getOnoma() + " "
+                        + sindedemenosVivliothikarios.getEpitheto() + " (" + sindedemenosVivliothikarios.getAm() + ")");
+                efarmogi.setVisible(true);
+                sindesi.dispose();
+            }
+        });
+
+    }//main.
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;

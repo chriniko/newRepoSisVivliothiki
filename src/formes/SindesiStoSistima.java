@@ -2,6 +2,7 @@ package formes;
 
 import database.connection.DbConnection;
 import database.daos.VivliothikarioiDAO;
+import database.models.Vivliothikarios;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,7 +11,17 @@ import javax.swing.JOptionPane;
  */
 public class SindesiStoSistima extends javax.swing.JFrame {
 
-    VivliothikarioiDAO vivliothikarioiDAO = new VivliothikarioiDAO(DbConnection.getInstance().getConnection());
+    private final VivliothikarioiDAO vivliothikarioiDAO = new VivliothikarioiDAO(DbConnection.getInstance().getConnection());
+    private boolean accessGranted = false;
+    private Vivliothikarios sindedemenosVivliothikarios;
+
+    public boolean isAccessGranted() {
+        return accessGranted;
+    }
+
+    public void setAccessGranted(boolean accessGranted) {
+        this.accessGranted = accessGranted;
+    }
 
     /**
      * Creates new form SindesiStoSistima
@@ -166,48 +177,39 @@ public class SindesiStoSistima extends javax.swing.JFrame {
 
     private void sindesiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sindesiBtnActionPerformed
 
+        try {
+            String input = amFld.getText();
+            Integer.parseInt(input);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Παρακαλω εισάγετε σωστό ΑΜ!");
+            return;
+        }
+
         if (amFld.getText().trim().equals("") || passFld.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Παρακαλώ συμπλήρωσε τα πεδία!");
             return;
         }
 
-        if (this.logariasmosComboBox.getSelectedIndex() == 1) {
+        Vivliothikarios obj = new Vivliothikarios();
+        obj.setAm(Integer.parseInt(amFld.getText()));
+        obj.setPassword(passFld.getText());
 
-        } else if (logariasmosComboBox.getSelectedIndex() == 0) {
+        if (this.logariasmosComboBox.getSelectedIndex() == 1) {//sindesi vivliothikariou....
 
+            obj = vivliothikarioiDAO.egyrosVivliothikarios(obj);
+            if (obj != null) {
+                accessGranted = true;
+                sindedemenosVivliothikarios = obj;
+            } else {
+                accessGranted = false;
+                JOptionPane.showMessageDialog(this, "Άρνηση πρόσβασης!");
+            }
+
+        } else if (logariasmosComboBox.getSelectedIndex() == 0) {//sindesi user....
+            JOptionPane.showMessageDialog(this, "Δεν υποστηρίζεται η λειτουργια σύνδεσης χρήστη απο το σύστημα,\n παρακαλώ προσπαθήστε αργότερα!");
         }
-
     }//GEN-LAST:event_sindesiBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SindesiStoSistima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new SindesiStoSistima().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amFld;
@@ -221,4 +223,8 @@ public class SindesiStoSistima extends javax.swing.JFrame {
     private javax.swing.JButton sindesiBtn;
     private javax.swing.JLabel welcomeLbl;
     // End of variables declaration//GEN-END:variables
+
+    public Vivliothikarios getSindedemenosVivliothikarios() {
+        return sindedemenosVivliothikarios;
+    }
 }
