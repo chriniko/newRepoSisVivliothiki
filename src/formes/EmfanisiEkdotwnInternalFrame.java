@@ -221,6 +221,8 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
 
         onomaEkdotiFld.setEditable(false);
 
+        ananewsiPinakaBtn.setEnabled(true);
+
         onomaEkdotiFld.setText(ekdotiToUpdate.getName());
 
     }//GEN-LAST:event_akirwsiEnimerwsisBtnActionPerformed
@@ -253,6 +255,8 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
         ekdotesTable.setEnabled(true);
         isUnderUpdate = false;
         onomaEkdotiFld.setEditable(false);
+
+        ananewsiPinakaBtn.setEnabled(true);
 
         ananewsiPinakaBtn.doClick();
 
@@ -302,6 +306,8 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
         ekdotesTable.setEnabled(false);
         isUnderUpdate = true;
 
+        ananewsiPinakaBtn.setEnabled(false);
+
         ekdotiToUpdate.setId(Integer.parseInt(auxwnArithmosFld.getText()));
         ekdotiToUpdate.setName(onomaEkdotiFld.getText());
 
@@ -314,6 +320,8 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
         ekdotesTable.repaint();
         auxwnArithmosFld.setText("");
         onomaEkdotiFld.setText("");
+        diagrafiEkdotiBtn.setEnabled(false);
+        enimerwsiEkdotiBtn.setEnabled(false);
     }//GEN-LAST:event_ananewsiPinakaBtnActionPerformed
 
     private void fortwsi_epilegmenou_onomatos_ekdoti_sto_txt_field() {
