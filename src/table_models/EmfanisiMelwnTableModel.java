@@ -13,8 +13,7 @@ import javax.swing.table.AbstractTableModel;
 public class EmfanisiMelwnTableModel extends AbstractTableModel {
 
     //fields.
-    private final String[] columnNames = {"ΑΜ Μέλους", "Όνομα Μέλους",
-        "Επίθετο Μέλους", "Email Μέλους"};
+    private final String[] columnNames = {"ΑΜ Μέλους", "Όνομα Μέλους", "Επίθετο Μέλους", "Email Μέλους"};
 
     private final ArrayList<Melos> data;
     private final MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());
@@ -50,7 +49,7 @@ public class EmfanisiMelwnTableModel extends AbstractTableModel {
             return melos.getAm();
         } else if (col == 1) {//sthn deuteri stili vazoume to onoma.
             return melos.getOnoma();
-        } else if (col == 3) {//sthn trith stili vazoume to epitheto.
+        } else if (col == 2) {//sthn trith stili vazoume to epitheto.
             return melos.getEpitheto();
         } else {//stin tetarti stili vazoume to email.
             return melos.getEmail();
