@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package formes;
+
+import table_models.EmfanisiSiggrafewnTableModel;
 
 /**
  *
@@ -47,17 +43,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
         setResizable(true);
         setTitle("Εμφάνιση Συγγραφέων");
 
-        ekdotesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        ekdotesTable.setModel(new EmfanisiSiggrafewnTableModel());
         scrollPane.setViewportView(ekdotesTable);
 
         onomaSiggrafeaLbl.setText("Όνομα συγγραφέα:");
@@ -65,6 +51,11 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
         onomaSiggrafeaFld.setEditable(false);
 
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoDialogBtnActionPerformed(evt);
+            }
+        });
 
         diagrafiSiggrafeaBtn.setText("Διαγραφή Συγγραφέα");
         diagrafiSiggrafeaBtn.setEnabled(false);
@@ -140,12 +131,9 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                    .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+                    .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,6 +147,10 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kleisimoDialogBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoDialogBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoDialogBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

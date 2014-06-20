@@ -3,11 +3,14 @@ package database.connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author nikos
  */
+@SuppressWarnings("ThrowableResultIgnored")
 public class DbConnection {
 
     //================================
@@ -38,5 +41,13 @@ public class DbConnection {
 
     public Connection getConnection() {
         return INSTANCE.conn;
+    }
+
+    public void closeConnection() {
+        try {
+            INSTANCE.conn.close();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 }//DbConnection.

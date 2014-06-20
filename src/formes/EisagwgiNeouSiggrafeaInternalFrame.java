@@ -1,10 +1,17 @@
 package formes;
 
+import database.connection.DbConnection;
+import database.daos.SiggrafeisDAO;
+import database.models.Siggrafeas;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nikos
  */
 public class EisagwgiNeouSiggrafeaInternalFrame extends javax.swing.JInternalFrame {
+
+    private final SiggrafeisDAO siggrafeisDao = new SiggrafeisDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form EisagwgiNeouSiggrafeaInternalFrame
@@ -41,8 +48,18 @@ public class EisagwgiNeouSiggrafeaInternalFrame extends javax.swing.JInternalFra
         epithetoSiggrafeaLbl.setText("Επίθετο συγγραφέα:");
 
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
+        kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoParathirouBtnActionPerformed(evt);
+            }
+        });
 
         eisagwgiNeouSiggrafeaBtn.setText("Εισαγωγή νεου συγγραφέα");
+        eisagwgiNeouSiggrafeaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eisagwgiNeouSiggrafeaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -102,6 +119,33 @@ public class EisagwgiNeouSiggrafeaInternalFrame extends javax.swing.JInternalFra
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
+
+    private void eisagwgiNeouSiggrafeaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eisagwgiNeouSiggrafeaBtnActionPerformed
+
+        String onoma = onomaSiggrafeaFld.getText();
+        String epitheto = epithetoSiggrafeaFld.getText();
+
+        if (onoma.trim().equals("") || epitheto.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Δώσε έγκυρα δεδομένα!");
+            return;
+        }//if.
+
+        Siggrafeas neosSiggrafeas = new Siggrafeas();
+        neosSiggrafeas.setOnoma(onoma);
+        neosSiggrafeas.setEpitheto(epitheto);
+
+        siggrafeisDao.insertSiggrafea(neosSiggrafeas);
+
+        JOptionPane.showMessageDialog(this, "Η εισαγωγή του νέου συγγραφέα στη ΒΔ ήταν επιτυχής!");
+
+        onomaSiggrafeaFld.setText("");
+        epithetoSiggrafeaFld.setText("");
+
+    }//GEN-LAST:event_eisagwgiNeouSiggrafeaBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

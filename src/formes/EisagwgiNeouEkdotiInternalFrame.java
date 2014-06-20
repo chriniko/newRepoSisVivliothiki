@@ -129,7 +129,9 @@ public class EisagwgiNeouEkdotiInternalFrame extends javax.swing.JInternalFrame 
         ekdotesDao.insertEkdoti(neosEkdotis);
 
         JOptionPane.showMessageDialog(this, "Η εισαγωγή του νέου εκδότη στην ΒΔ έγινε επιτυχώς!");
-        this.dispose();
+
+        onomaEkdotiFld.setText("");
+
 
     }//GEN-LAST:event_eisagwgiEkdotiBtnActionPerformed
 
