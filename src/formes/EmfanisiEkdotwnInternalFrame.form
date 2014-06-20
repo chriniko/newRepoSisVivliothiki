@@ -99,6 +99,8 @@
                       <Component id="auxwnArithmosFld" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="ananewsiPinakaBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,8 +111,9 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="auxwnArithmosLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="auxwnArithmosFld" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ananewsiPinakaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="onomaEkdotiLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="onomaEkdotiFld" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -192,6 +195,14 @@
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="ananewsiPinakaBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3bd;&#x3ad;&#x3c9;&#x3c3;&#x3b7; &#x3c0;&#x3af;&#x3bd;&#x3b1;&#x3ba;&#x3b1;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ananewsiPinakaBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
