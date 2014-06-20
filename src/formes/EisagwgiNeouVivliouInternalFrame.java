@@ -175,6 +175,11 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         );
 
         kleisimoParathirouBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoParathirouBtnActionPerformed(evt);
+            }
+        });
 
         eisagwgiVivliouBtn.setText("Εισαγωγή βιβλίου");
 
@@ -233,6 +238,10 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -315,7 +315,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
         if (onoma.trim().equals("") || epitheto.trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Δώσε έγκυρα δεδομένα στα πεδία!");
             return;
-        }
+        }//if.
 
         Siggrafeas siggrafeas = new Siggrafeas();
         siggrafeas.setId(id);
