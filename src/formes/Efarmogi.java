@@ -42,10 +42,6 @@ public class Efarmogi extends javax.swing.JFrame {
         eisagwgiNeouMelousItem = new javax.swing.JMenuItem();
         anazitisiMelousItem = new javax.swing.JMenuItem();
         emfanishMelwnItem = new javax.swing.JMenuItem();
-        diaxeirisiVivliwnMenu = new javax.swing.JMenu();
-        eisagwgiNeouVivliouItem = new javax.swing.JMenuItem();
-        anazitisiVivliouItem = new javax.swing.JMenuItem();
-        emfanisiVivliwnItem = new javax.swing.JMenuItem();
         diaxeirisiEkdotwnMenu = new javax.swing.JMenu();
         eisagwgiNeouEkdotiItem = new javax.swing.JMenuItem();
         emfanisiEkdotwnItem = new javax.swing.JMenuItem();
@@ -99,19 +95,6 @@ public class Efarmogi extends javax.swing.JFrame {
         diaxeirisiMelwnMenu.add(emfanishMelwnItem);
 
         menuBar.add(diaxeirisiMelwnMenu);
-
-        diaxeirisiVivliwnMenu.setText("Διαχείριση Βιβλίων");
-
-        eisagwgiNeouVivliouItem.setText("Εισαγωγή νέου βιβλίου");
-        diaxeirisiVivliwnMenu.add(eisagwgiNeouVivliouItem);
-
-        anazitisiVivliouItem.setText("Αναζήτηση βιβλίου");
-        diaxeirisiVivliwnMenu.add(anazitisiVivliouItem);
-
-        emfanisiVivliwnItem.setText("Εμφάνιση βιβλίων");
-        diaxeirisiVivliwnMenu.add(emfanisiVivliwnItem);
-
-        menuBar.add(diaxeirisiVivliwnMenu);
 
         diaxeirisiEkdotwnMenu.setText("Διαχείριση Εκδοτών");
 
@@ -403,7 +386,6 @@ public class Efarmogi extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JMenuItem anazitisiMelousItem;
-    private javax.swing.JMenuItem anazitisiVivliouItem;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu diaxeirishAntitypwnVivliwnItem;
     private javax.swing.JMenu diaxeirishDaneismwnMenu;
@@ -411,18 +393,15 @@ public class Efarmogi extends javax.swing.JFrame {
     private javax.swing.JMenu diaxeirisiEkdotwnMenu;
     private javax.swing.JMenu diaxeirisiMelwnMenu;
     private javax.swing.JMenu diaxeirisiSiggrafewnMenu;
-    private javax.swing.JMenu diaxeirisiVivliwnMenu;
     private javax.swing.JMenuItem eisagwgiNeouEkdotiItem;
     private javax.swing.JMenuItem eisagwgiNeouMelousItem;
     private javax.swing.JMenuItem eisagwgiNeouSiggrafeaItem;
-    private javax.swing.JMenuItem eisagwgiNeouVivliouItem;
     private javax.swing.JMenuItem eisagwgiVivliouItem;
     private javax.swing.JMenuItem emfanishMelwnItem;
     private javax.swing.JMenuItem emfanisiBooksItem;
     private javax.swing.JMenuItem emfanisiDaneismenwnAntitypwnItem;
     private javax.swing.JMenuItem emfanisiEkdotwnItem;
     private javax.swing.JMenuItem emfanisiSiggrafewnItem;
-    private javax.swing.JMenuItem emfanisiVivliwnItem;
     private javax.swing.JMenuItem kleisimoEfarmogisItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem neosDaneismosAntitypouVivliouItem;
