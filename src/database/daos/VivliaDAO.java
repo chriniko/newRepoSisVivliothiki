@@ -1,12 +1,12 @@
 package database.daos;
 
-import database.connection.DbConnection;
 import database.models.Siggrafeas;
 import database.models.Vivlio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -32,6 +32,35 @@ public class VivliaDAO {
     }
 
 //----------------------------------------------------------------------------------    
+    public ArrayList<Vivlio> findAll(){
+    
+        ArrayList allBooks = new ArrayList();
+        Vivlio book;
+        try {
+            String sql = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia ORDER BY 2";
+            try (Statement s = con.createStatement()) {
+                rs = s.executeQuery(sql);
+
+                while (rs.next()) {
+                    book = new Vivlio();
+                    
+                    book.setIsbn(rs.getString("isbn_vivliou"));
+                    book.setTitlos(rs.getString("titlos_vivliou"));
+                    book.setId_ekdoti(rs.getInt("ekdotes_id_ekdoti"));
+                    book.setPerigrafi_vivliou(rs.getString("perigrafi_vivliou"));
+                    book.setUrl_exwfilou_vivliou(rs.getString("url_exwfilou_vivliou"));
+                    
+                    allBooks.add(book);
+                }
+            }
+        } catch (NumberFormatException | SQLException e) {
+            System.out.println(e + "       VivliaDAO.findAll()");
+        }
+
+        return allBooks;      
+    }
+          
+//----------------------------------------------------------------------------------        
     public void insertSuggrafeisVivliou(String isbnVivliou, ArrayList<Siggrafeas> siggrafeis) {
 
         for (Siggrafeas writer : siggrafeis) {
