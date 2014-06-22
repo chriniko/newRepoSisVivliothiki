@@ -26,40 +26,53 @@ public class VivliaDAO {
     private static final String SEARCH_VIVLIO_BY_TITLO = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia WHERE titlos_vivliou = ?";
     private static final String ANAKTISI_SIGGRAFEIS_VIVLIOU = "SELECT id_siggrafea, onoma_siggrafea, epitheto_siggrafea"
             + " FROM siggrafeis, vivlia_has_siggrafeis WHERE id_siggrafea = siggrafeis_id_siggrafea AND vivlia_isbn_vivliou = ?";
-    
+    private static final String ANAKTISI_VIVLIWN = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia ORDER BY 2";
+
     public VivliaDAO(Connection con) {
         this.con = con;
     }
 
 //----------------------------------------------------------------------------------    
-    public ArrayList<Vivlio> findAll(){
-    
+    public ArrayList<Vivlio> findAll() {
+
         ArrayList allBooks = new ArrayList();
         Vivlio book;
-        try {
-            String sql = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia ORDER BY 2";
-            try (Statement s = con.createStatement()) {
-                rs = s.executeQuery(sql);
+        try (Statement s = con.createStatement()) {
+            pStat = con.prepareStatement("ANAKTISI_VIVLIWN");
+            rs = pStat.executeQuery();
 
-                while (rs.next()) {
-                    book = new Vivlio();
-                    
-                    book.setIsbn(rs.getString("isbn_vivliou"));
-                    book.setTitlos(rs.getString("titlos_vivliou"));
-                    book.setId_ekdoti(rs.getInt("ekdotes_id_ekdoti"));
-                    book.setPerigrafi_vivliou(rs.getString("perigrafi_vivliou"));
-                    book.setUrl_exwfilou_vivliou(rs.getString("url_exwfilou_vivliou"));
-                    
-                    allBooks.add(book);
-                }
-            }
+            while (rs.next()) {
+                book = new Vivlio();
+
+                book.setIsbn(rs.getString("isbn_vivliou"));
+                book.setTitlos(rs.getString("titlos_vivliou"));
+                book.setId_ekdoti(rs.getInt("ekdotes_id_ekdoti"));
+                book.setPerigrafi_vivliou(rs.getString("perigrafi_vivliou"));
+                book.setUrl_exwfilou_vivliou(rs.getString("url_exwfilou_vivliou"));
+
+                allBooks.add(book);
+            }            
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + "       VivliaDAO.findAll()");
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+                if (!rs.isClosed()) {
+                    rs.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                while ((ex = ex.getNextException()) != null) {
+                    System.err.println(ex.getSQLState() + " - " + ex.getErrorCode());
+                }//while.
+            }
         }
 
-        return allBooks;      
+        return allBooks;
     }
-          
+
 //----------------------------------------------------------------------------------        
     public void insertSuggrafeisVivliou(String isbnVivliou, ArrayList<Siggrafeas> siggrafeis) {
 
@@ -96,7 +109,7 @@ public class VivliaDAO {
                 if (!pStat.isClosed()) {
                     pStat.close();
                 }
-                
+
             } catch (SQLException ex) {
                 System.err.println(ex.getMessage());
                 while ((ex = ex.getNextException()) != null) {
@@ -106,8 +119,8 @@ public class VivliaDAO {
         }//finally.
     }
 //----------------------------------------------------------------------------------        
-    
-    public Vivlio searchVivlioByISBN (String isbn){
+
+    public Vivlio searchVivlioByISBN(String isbn) {
 
         Vivlio book = new Vivlio();
         try {
@@ -121,13 +134,13 @@ public class VivliaDAO {
                 book.setUrl_exwfilou_vivliou(rs.getString("url_exwfilou_vivliou"));
                 book.setPerigrafi_vivliou(rs.getString("perigrafi_vivliou"));
                 book.setId_ekdoti(rs.getInt("ekdotes_id_ekdoti"));
-                                                               
+
                 rs.close();
                 return book;
             } else {
                 rs.close();
                 return null;
-            }            
+            }
 
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + "     VivliaDAO.searchVivlioByISBN()");
@@ -136,7 +149,8 @@ public class VivliaDAO {
 
     }
 //----------------------------------------------------------------------------------        
-    public Vivlio searchVivlioByTitlo (String title){
+
+    public Vivlio searchVivlioByTitlo(String title) {
 
         Vivlio book = new Vivlio();
         try {
@@ -150,13 +164,13 @@ public class VivliaDAO {
                 book.setUrl_exwfilou_vivliou(rs.getString("url_exwfilou_vivliou"));
                 book.setPerigrafi_vivliou(rs.getString("perigrafi_vivliou"));
                 book.setId_ekdoti(rs.getInt("ekdotes_id_ekdoti"));
-                                                               
+
                 rs.close();
                 return book;
             } else {
                 rs.close();
                 return null;
-            }            
+            }
 
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + "     VivliaDAO.searchVivlioByTitlo()");
@@ -165,7 +179,7 @@ public class VivliaDAO {
 
     }
 //----------------------------------------------------------------------------------            
-    
+
     public ArrayList<Siggrafeas> anaktisiSiggrafeisVivliou(String isbn) {
         try {
             pStat = con.prepareStatement(ANAKTISI_SIGGRAFEIS_VIVLIOU);
@@ -179,11 +193,11 @@ public class VivliaDAO {
             while (rs.next()) {
 
                 temp = new Siggrafeas();
-                
+
                 temp.setId(rs.getInt("id_siggrafea"));
                 temp.setOnoma(rs.getString("onoma_siggrafea"));
                 temp.setEpitheto(rs.getString("epitheto_siggrafea"));
-                
+
                 writers.add(temp);
 
             }//while.
@@ -212,11 +226,10 @@ public class VivliaDAO {
         return null;
     }//anaktisiSiggrafeisVivliou.
 //----------------------------------------------------------------------------------    
-    
-    
-/*    
-    public static void main(String[] args)
-    {
+
+    /*    
+     public static void main(String[] args)
+     {
         
      DbConnection con = DbConnection.getInstance(); 
     
@@ -234,6 +247,5 @@ public class VivliaDAO {
      
      }
     
- */   
-     
+     */
 } //VivliaDAO.

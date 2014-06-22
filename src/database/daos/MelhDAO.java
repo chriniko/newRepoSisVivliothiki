@@ -109,22 +109,21 @@ public class MelhDAO {
 
         ArrayList allMembers = new ArrayList();
         Melos melos;
-        try {
-            String sql = "SELECT * FROM sistima_vivliothikis_ergasia.melh ORDER BY 1";
-            try (Statement s = con.createStatement()) {
-                rs = s.executeQuery(sql);
 
-                while (rs.next()) {
-                    melos = new Melos();
+        String sql = "SELECT * FROM sistima_vivliothikis_ergasia.melh ORDER BY 1";
+        try (Statement s = con.createStatement()) {
+            rs = s.executeQuery(sql);
 
-                    melos.setAm(rs.getInt("am_melous"));
-                    melos.setOnoma(rs.getString("onoma_melous"));
-                    melos.setEpitheto(rs.getString("epitheto_melous"));
-                    melos.setEmail(rs.getString("email_melous"));
-                    melos.setPass(rs.getString("pass_melous"));
+            while (rs.next()) {
+                melos = new Melos();
 
-                    allMembers.add(melos);
-                }
+                melos.setAm(rs.getInt("am_melous"));
+                melos.setOnoma(rs.getString("onoma_melous"));
+                melos.setEpitheto(rs.getString("epitheto_melous"));
+                melos.setEmail(rs.getString("email_melous"));
+                melos.setPass(rs.getString("pass_melous"));
+
+                allMembers.add(melos);
             }
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + "       MelhDAO.findAll()");
