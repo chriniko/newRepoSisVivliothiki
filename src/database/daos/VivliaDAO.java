@@ -1,5 +1,6 @@
 package database.daos;
 
+import database.connection.DbConnection;
 import database.models.Siggrafeas;
 import database.models.Vivlio;
 import java.sql.Connection;
@@ -61,7 +62,19 @@ public class VivliaDAO {
 
         } catch (SQLException e) {
             System.out.println(e + "     VivliaDAO.insertVivlio()");
-        }
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+                
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                while ((ex = ex.getNextException()) != null) {
+                    System.err.println(ex.getSQLState() + " - " + ex.getErrorCode());
+                }//while.
+            }
+        }//finally.
     }
 //----------------------------------------------------------------------------------        
     
@@ -170,5 +183,28 @@ public class VivliaDAO {
         return null;
     }//anaktisiSiggrafeisVivliou.
 //----------------------------------------------------------------------------------    
+    
+    
+/*    
+    public static void main(String[] args)
+    {
+        
+     DbConnection con = DbConnection.getInstance(); 
+    
+     EkdotesDAO edao = new EkdotesDAO(con.getConnection());
+     VivliaDAO vdao = new VivliaDAO(con.getConnection());
+     
+     
+     Vivlio v = new Vivlio();
+     v.setIsbn("789-456-123"); v.setTitlos("Enterprise JavaBeans 3.1");
+     v.setPerigrafi_vivliou("Developing"); v.setUrl_exwfilou_vivliou("C://Users/");
+     v.setId_ekdoti(edao.searchEkdotiByName("Kleidarithmos").getId());
+     
+     vdao.insertVivlio(v);
+     
+     
+     }
+    
+ */   
      
 } //VivliaDAO.
