@@ -22,6 +22,7 @@ public class EkdotesDAO {
     private static final String ANAKTISI_VIVLIWN_EKDOTI = "SELECT * FROM vivlia WHERE ekdotes_id_ekdoti = ? ORDER BY 1";
     private static final String DIAGRAFI_EKDOTI = "DELETE FROM ekdotes WHERE id_ekdoti = ?";
     private static final String ENIMERWSI_EKDOTI = "UPDATE ekdotes SET onoma_ekdoti = ? WHERE id_ekdoti = ?";
+    private static final String ANAKTISI_ID_EKDOTI_QUERY = "SELECT id_ekdoti FROM ekdotes WHERE onoma_ekdoti = ?";
 
     public EkdotesDAO(Connection conn) {
         this.con = conn;
@@ -178,5 +179,32 @@ public class EkdotesDAO {
         }
         return false;
     }//enimerwsiEkdoti.
+
+//-----------------------------------------------------------------------------------    
+    public Ekdotis searchEkdotiByName(String name) {
+
+        Ekdotis ekdotis = new Ekdotis();
+        try {
+            pStat = con.prepareStatement(ANAKTISI_ID_EKDOTI_QUERY);
+            pStat.setString(1, name);
+            rs = pStat.executeQuery();
+
+            if (rs.first()) {
+                ekdotis.setId(rs.getInt("id_ekdoti"));
+                ekdotis.setName(rs.getString("onoma_eksoti"));
+                                
+                rs.close();
+                return ekdotis;
+            } else {
+                rs.close();
+                return null;
+            }            
+
+        } catch (NumberFormatException | SQLException e) {
+            System.out.println(e + "     EkdotesDAO.searchEkdotiByName()");
+        }
+        return null;
+    }
+//----------------------------------------------------------------------------------    
 
 }//EkdotesDAO.
