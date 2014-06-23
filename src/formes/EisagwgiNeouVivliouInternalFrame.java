@@ -6,17 +6,25 @@
 
 package formes;
 
+import database.connection.DbConnection;
+import database.daos.EkdotesDAO;
+import database.daos.VivliaDAO;
+import database.models.Ekdotis;
+import database.models.Siggrafeas;
+import java.util.ArrayList;
+import table_models.EmfanisiSiggrafewnTableModel;
+
 /**
  *
  * @author nikos
  */
 public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form EisagwgiNeouVivliouInternalFrame
-     */
+    private final VivliaDAO vivliaDAO = new VivliaDAO(DbConnection.getInstance().getConnection());
+    
     public EisagwgiNeouVivliouInternalFrame() {
         initComponents();
+        fillComboEkdotes();
     }
 
     /**
@@ -63,25 +71,18 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
 
         ekdotisLbl.setText("Επιλογή εκδότη:");
 
-        ekdotisComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Εκδοτης1", "Εκδοτης2", "Εκδοτης3" }));
-
         eikonaLbl.setText("Επιλογή εικόνας:");
 
         fortwsiEikonasBtn.setText("Φόρτωση εικόνας...");
 
         siggrafeisLbl.setText("Επιλογή συγγραφέων:");
 
-        siggrafeisTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        siggrafeisTable.setModel(new EmfanisiSiggrafewnTableModel());
+        siggrafeisTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                siggrafeisTableMouseClicked(evt);
             }
-        ));
+        });
         siggrafeisTableScroller.setViewportView(siggrafeisTable);
 
         perigrafiVivliouLbl.setText("Εισαγωγή περιγραφής βιβλίου:");
@@ -243,6 +244,18 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         this.dispose();
     }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
 
+    private void siggrafeisTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siggrafeisTableMouseClicked
+        // TODO add your handling code here:        
+    }//GEN-LAST:event_siggrafeisTableMouseClicked
+
+    private void fillComboEkdotes(){            
+        EkdotesDAO dao = new EkdotesDAO(DbConnection.getInstance().getConnection());
+        ArrayList<Ekdotis> ekdotes = dao.findAll();
+        
+        for(Ekdotis e : ekdotes){
+            ekdotisComboBox.addItem(e.getName());        
+        }        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel eikonaLbl;
