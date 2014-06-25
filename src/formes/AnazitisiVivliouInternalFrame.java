@@ -9,6 +9,10 @@ import database.models.Ekdotis;
 import database.models.Siggrafeas;
 import database.models.Vivlio;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -179,6 +183,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         siggrafeasLbl.setText("Συγγραφέας/Συγγραφείς βιβλίου:");
 
         siggrafeisList.setModel(this.listaModelou);
+        siggrafeisList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         scrollerSiggrafeisList.setViewportView(siggrafeisList);
 
         ekdoseisVivliouFld.setEditable(false);
@@ -556,6 +561,26 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         fortwseExwfylloVivliouBtn.setEnabled(true);
 
+        //===================================================
+        //vazoume listeners gia na anoixoume to internal frame epiloghs siggrafea/siggrafewn kai ekdoti.
+        ekdoseisVivliouLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame iframe = new EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame();
+                AnazitisiVivliouInternalFrame.this.getDesktopPane().add(iframe);
+                iframe.show();
+            }
+        });
+
+        siggrafeasLbl.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame iframe = new EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame();
+                AnazitisiVivliouInternalFrame.this.getDesktopPane().add(iframe);
+                iframe.show();
+            }
+        });
+
     }//GEN-LAST:event_enimerwsiVivliouBtnActionPerformed
 
     private void fortwseExwfylloVivliouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fortwseExwfylloVivliouBtnActionPerformed
@@ -583,7 +608,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         ekdoseisVivliouFld.setText(loadedEkdotis.getName());
         lblToLoadBookCoverIcon.setIcon(new ImageIcon(urlExwfyllou));
         //=======================================================
-        
+
         kleisimoParathirouBtn.setEnabled(true);
         katharismosPediwnBtn.setEnabled(true);
         this.setClosable(true);
