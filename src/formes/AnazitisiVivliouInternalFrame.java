@@ -8,9 +8,11 @@ import database.models.Antitypo;
 import database.models.Ekdotis;
 import database.models.Siggrafeas;
 import database.models.Vivlio;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +26,13 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     private final AntitypaDAO antitypaDAO = new AntitypaDAO(DbConnection.getInstance().getConnection());
     private final DefaultListModel listaModelou = new DefaultListModel();
     private boolean isBookShowed = false;
+    //=================================================================
+    private String urlExwfyllou;
+    //=================================================================
+    private Vivlio loadedVivlio = new Vivlio();
+    private ArrayList<Siggrafeas> loadedSiggrafeis;
+    private Ekdotis loadedEkdotis;
+    //=================================================================
 
     /**
      * Creates new form AnazitisiVivliouInternalFrame
@@ -65,7 +74,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         scrollerPerigrafiVivliouTxtPane = new javax.swing.JScrollPane();
         perigrafiVivliouTxtPane = new javax.swing.JTextArea();
         bookCoverIconPane = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        exwfiloVivliouLbl = new javax.swing.JLabel();
         lblToLoadBookCoverIcon = new javax.swing.JLabel();
         fortwseExwfylloVivliouBtn = new javax.swing.JButton();
         actionsPane = new javax.swing.JPanel();
@@ -239,12 +248,17 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         bookCoverIconPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Book's Cover Icon", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
 
-        jLabel7.setText("Εξώφυλλο βιβλίου:");
+        exwfiloVivliouLbl.setText("Εξώφυλλο βιβλίου:");
 
         lblToLoadBookCoverIcon.setText("εδώ φορτώνεται η εικόνα...");
 
         fortwseExwfylloVivliouBtn.setText("Φόρτωσε εξώφυλλο");
         fortwseExwfylloVivliouBtn.setEnabled(false);
+        fortwseExwfylloVivliouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fortwseExwfylloVivliouBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bookCoverIconPaneLayout = new javax.swing.GroupLayout(bookCoverIconPane);
         bookCoverIconPane.setLayout(bookCoverIconPaneLayout);
@@ -255,7 +269,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
                 .addGroup(bookCoverIconPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblToLoadBookCoverIcon)
                     .addGroup(bookCoverIconPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(exwfiloVivliouLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(fortwseExwfylloVivliouBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -265,7 +279,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(bookCoverIconPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(bookCoverIconPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
+                    .addComponent(exwfiloVivliouLbl)
                     .addComponent(fortwseExwfylloVivliouBtn))
                 .addGap(18, 18, 18)
                 .addComponent(lblToLoadBookCoverIcon)
@@ -276,12 +290,27 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         enimerwsiVivliouBtn.setText("Ενημέρωση Βιβλίου");
         enimerwsiVivliouBtn.setEnabled(false);
+        enimerwsiVivliouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enimerwsiVivliouBtnActionPerformed(evt);
+            }
+        });
 
         akirwsiEnimerwsisBtn.setText("Ακύρωση Ενημέρωσης");
         akirwsiEnimerwsisBtn.setEnabled(false);
+        akirwsiEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                akirwsiEnimerwsisBtnActionPerformed(evt);
+            }
+        });
 
         epivevaiwshEnimerwsisBtn.setText("Επιβεβαίωση Ενημέρωσης");
         epivevaiwshEnimerwsisBtn.setEnabled(false);
+        epivevaiwshEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                epivevaiwshEnimerwsisBtnActionPerformed(evt);
+            }
+        });
 
         diagrafiVivliouBtn.setText("Διαγραφή Βιβλίου");
         diagrafiVivliouBtn.setEnabled(false);
@@ -408,10 +437,17 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         //anaktoume thn epwnymia tou ekdoti...
         Ekdotis ekdotisVivliou = ekdotesDAO.searchEkdotiByID(vivlioToShow.getId_ekdoti());
 
+        //swzoume tis plirofories....
+        loadedVivlio = vivlioToShow;//swzoume tis plirofories tou vivliou.
+        loadedSiggrafeis = siggrafeisVivliou;//swzoume tous siggrafeis.
+        loadedEkdotis = ekdotisVivliou;//swzoume ton ekdoti.
+
+        //====================================
         //topothetoume tis plirofories sta text fields...
         isbnFld.setText(vivlioToShow.getIsbn());
         titlosVivliouFld.setText(vivlioToShow.getTitlos());
         ekdoseisVivliouFld.setText(ekdotisVivliou.getName());
+        //====================================
 
         listaModelou.clear();
         for (Siggrafeas temp : siggrafeisVivliou) {
@@ -419,14 +455,18 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         }
 
         perigrafiVivliouTxtPane.setText(vivlioToShow.getPerigrafi_vivliou());
+        urlExwfyllou = vivlioToShow.getUrl_exwfilou_vivliou();
         lblToLoadBookCoverIcon.setIcon(new ImageIcon(vivlioToShow.getUrl_exwfilou_vivliou()));
         lblToLoadBookCoverIcon.setText("");
 
         isBookShowed = true;
+        pliroforiaFld.setEditable(false);
         anazitisiBtn.setEnabled(false);
         enimerwsiVivliouBtn.setEnabled(true);
         diagrafiVivliouBtn.setEnabled(true);
 
+        isbnRadioBtn.setEnabled(false);
+        titloVivliouRadioBtn.setEnabled(false);
 
     }//GEN-LAST:event_anazitisiBtnActionPerformed
 
@@ -437,6 +477,9 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             anazitisiBtn.setEnabled(true);
             enimerwsiVivliouBtn.setEnabled(false);
             diagrafiVivliouBtn.setEnabled(false);
+            pliroforiaFld.setEditable(true);
+            isbnRadioBtn.setEnabled(true);
+            titloVivliouRadioBtn.setEnabled(true);
         }//if.
 
         isbnFld.setText("");
@@ -461,6 +504,11 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             return;
         }//if.
 
+        int res = JOptionPane.showConfirmDialog(this, "Είστε σίγουρος?");
+        if (res != JOptionPane.YES_OPTION) {
+            return;
+        }
+
         //elegxoume ean to vivlio exei antitypa.....
         ArrayList<Antitypo> antitypaVivliou = antitypaDAO.anaktisiAntitypwnVivliou(isbnFld.getText());
 
@@ -471,9 +519,95 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         }//if.
 
         //ean ftasame edw shmainei oti mporoume na to diagrapsoume...
-        
+        boolean vivlioDiegrafei = vivliaDAO.diagrafiVivliou(isbnFld.getText());
+
+        //ean den htan epityxes to delete tote emfanizoume minima...
+        if (!vivlioDiegrafei) {
+            JOptionPane.showMessageDialog(this, "Κάτι πήγε στραβά με τη ΒΔ, κοιτάξτε την για να λύσετε το πρόβλημα!");
+            return;
+        }//if.
+
+        //an ola phgan kala emfanizoume minima...
+        JOptionPane.showMessageDialog(this, "Το βιβλίο διαγράφτηκε επιτυχώς!");
+        katharismosPediwnBtn.doClick();
 
     }//GEN-LAST:event_diagrafiVivliouBtnActionPerformed
+
+    private void enimerwsiVivliouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enimerwsiVivliouBtnActionPerformed
+
+        kleisimoParathirouBtn.setEnabled(false);
+        katharismosPediwnBtn.setEnabled(false);
+        this.setClosable(false);
+        enimerwsiVivliouBtn.setEnabled(false);
+        diagrafiVivliouBtn.setEnabled(false);
+
+        akirwsiEnimerwsisBtn.setEnabled(true);
+        epivevaiwshEnimerwsisBtn.setEnabled(true);
+
+        titlosVivliouLbl.setForeground(Color.blue);
+        perigrafiVivliouLbl.setForeground(Color.blue);
+        exwfiloVivliouLbl.setForeground(Color.blue);
+        ekdoseisVivliouLbl.setForeground(Color.blue);
+        siggrafeasLbl.setForeground(Color.blue);
+
+        titlosVivliouFld.setEditable(true);
+        perigrafiVivliouTxtPane.setEditable(true);
+        titlosVivliouFld.requestFocus();
+
+        fortwseExwfylloVivliouBtn.setEnabled(true);
+
+    }//GEN-LAST:event_enimerwsiVivliouBtnActionPerformed
+
+    private void fortwseExwfylloVivliouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fortwseExwfylloVivliouBtnActionPerformed
+
+        JFileChooser fc = new JFileChooser();
+        int res = fc.showOpenDialog(AnazitisiVivliouInternalFrame.this);
+        if (res == JFileChooser.APPROVE_OPTION) {
+            urlExwfyllou = fc.getSelectedFile().getPath();
+            lblToLoadBookCoverIcon.setIcon(new ImageIcon(urlExwfyllou));
+        }//if.
+
+    }//GEN-LAST:event_fortwseExwfylloVivliouBtnActionPerformed
+
+    private void akirwsiEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_akirwsiEnimerwsisBtnActionPerformed
+
+        //======================================================
+        //xanavazoume sta text fields tis plirofories pou htan kai prin.......
+        titlosVivliouFld.setText(loadedVivlio.getTitlos());
+        perigrafiVivliouTxtPane.setText(loadedVivlio.getPerigrafi_vivliou());
+        urlExwfyllou = loadedVivlio.getUrl_exwfilou_vivliou();
+        listaModelou.clear();
+        for (Siggrafeas temp : loadedSiggrafeis) {
+            listaModelou.addElement(temp.getOnoma() + " " + temp.getEpitheto());
+        }
+        ekdoseisVivliouFld.setText(loadedEkdotis.getName());
+        lblToLoadBookCoverIcon.setIcon(new ImageIcon(urlExwfyllou));
+        //=======================================================
+        
+        kleisimoParathirouBtn.setEnabled(true);
+        katharismosPediwnBtn.setEnabled(true);
+        this.setClosable(true);
+        enimerwsiVivliouBtn.setEnabled(true);
+        diagrafiVivliouBtn.setEnabled(true);
+
+        akirwsiEnimerwsisBtn.setEnabled(false);
+        epivevaiwshEnimerwsisBtn.setEnabled(false);
+
+        titlosVivliouLbl.setForeground(Color.black);
+        perigrafiVivliouLbl.setForeground(Color.black);
+        exwfiloVivliouLbl.setForeground(Color.black);
+        ekdoseisVivliouLbl.setForeground(Color.black);
+        siggrafeasLbl.setForeground(Color.black);
+
+        titlosVivliouFld.setEditable(false);
+        perigrafiVivliouTxtPane.setEditable(false);
+
+        fortwseExwfylloVivliouBtn.setEnabled(false);
+    }//GEN-LAST:event_akirwsiEnimerwsisBtnActionPerformed
+
+    private void epivevaiwshEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epivevaiwshEnimerwsisBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_epivevaiwshEnimerwsisBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -490,11 +624,11 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel ekdoseisVivliouLbl;
     private javax.swing.JButton enimerwsiVivliouBtn;
     private javax.swing.JButton epivevaiwshEnimerwsisBtn;
+    private javax.swing.JLabel exwfiloVivliouLbl;
     private javax.swing.JButton fortwseExwfylloVivliouBtn;
     private javax.swing.JTextField isbnFld;
     private javax.swing.JLabel isbnLbl;
     private javax.swing.JRadioButton isbnRadioBtn;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton katharismosPediwnBtn;
     private javax.swing.JButton kleisimoParathirouBtn;
     private javax.swing.JLabel lblToLoadBookCoverIcon;

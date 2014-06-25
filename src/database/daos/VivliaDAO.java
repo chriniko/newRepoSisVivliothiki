@@ -2,12 +2,14 @@ package database.daos;
 
 import database.models.Siggrafeas;
 import database.models.Vivlio;
+import database.models.VivlioHasSiggrafeis;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import utils.Utils;
 
 /**
  *
@@ -33,9 +35,63 @@ public class VivliaDAO {
     private static final String DIAGRAFI_VIVLIOU_QUERY_NO_2 = "DELETE FROM vivlia WHERE isbn_vivliou = ?";
     //==================================================================================
 
+    //=======================QUERIES GIA ENIMERWSI VIVLIOU=======================================
+    private static final String ENIMERWSI_VIVLIOU_QUERY_NO_1 = "DELETE FROM vivlia_has_siggrafeis WHERE vivlia_isbn_vivliou = ?";
+    private static final String ENIMERWSI_VIVLIOU_QUERY_NO_2 = "UPDATE vivlia SET titlos_vivliou = ?, url_exwfilou_vivliou = ?, perigrafi_vivliou = ?, ekdotes_id_ekdoti = ? WHERE isbn_vivliou = ?";
+    private static final String ENIMERWSI_VIVLIOU_QUERY_NO_3 = "INSERT INTO vivlia_has_siggrafeis(vivlia_isbn_vivliou,siggrafeis_id_siggrafea) VALUES(?, ?)";
+    //=================================================================================
+
     public VivliaDAO(Connection con) {
         this.con = con;
-    }
+    }//ctor.
+
+    //----------------------------------------------------------------------------------
+    public boolean enimerwsiVivliou(Vivlio updatedBook) {
+        try {
+
+            //prwta ekteloume to prwto query....
+            pStat = con.prepareStatement(ENIMERWSI_VIVLIOU_QUERY_NO_1);
+            pStat.setString(1, updatedBook.getIsbn());
+            int result_1 = pStat.executeUpdate();
+
+            //meta ekteloume to deutero query....
+            pStat = con.prepareStatement(ENIMERWSI_VIVLIOU_QUERY_NO_2);
+            pStat.setString(1, updatedBook.getTitlos());
+            pStat.setString(2, updatedBook.getUrl_exwfilou_vivliou());
+            pStat.setString(3, updatedBook.getPerigrafi_vivliou());
+            pStat.setInt(4, updatedBook.getId_ekdoti());
+            pStat.setString(5, updatedBook.getIsbn());
+            int result_2 = pStat.executeUpdate();
+
+            //telos ekteloume to trito query gia kathe siggrafea....
+            pStat = con.prepareStatement(ENIMERWSI_VIVLIOU_QUERY_NO_3);
+
+            int result_3[] = new int[updatedBook.getSiggrafeis().size()];
+            int idx = 0;
+
+            for (VivlioHasSiggrafeis temp : updatedBook.getSiggrafeis()) {
+                pStat.setString(1, temp.getIsbnVivliou());
+                pStat.setInt(1, temp.getIdSiggrafea());
+                result_3[idx++] = pStat.executeUpdate();
+            }//for.
+
+            int res3 = Utils.findSum(result_3);
+
+            return result_1 >= 1 && result_2 == 1 && res3 == updatedBook.getSiggrafeis().size();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage() + " === " + ex.getSQLState() + " === " + ex.getErrorCode());
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage() + " === " + ex.getSQLState() + " === " + ex.getErrorCode());
+            }
+        }
+        return false;
+    }//enimerwsiVivliou.
 
 //----------------------------------------------------------------------------------    
     public ArrayList<Vivlio> findAll() {
@@ -236,6 +292,7 @@ public class VivliaDAO {
     }//anaktisiSiggrafeisVivliou.
 //----------------------------------------------------------------------------------    
 
+    //WORKS.
     public boolean diagrafiVivliou(String isbn) {
         try {
 
@@ -251,7 +308,7 @@ public class VivliaDAO {
 
             int result_2 = pStat.executeUpdate();
 
-            return result_1 == 1 && result_2 == 1;
+            return result_1 >= 1 && result_2 >= 1;
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage() + " === " + ex.getSQLState() + " === " + ex.getErrorCode());

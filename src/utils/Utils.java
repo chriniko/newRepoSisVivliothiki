@@ -15,6 +15,14 @@ public class Utils {
             }
         }
         return OK; //ean ola exoun simplirwthei swsta epestrepse -1.
-    }
+    }//elegxosSimplirwmenwnPediwn.
+
+    public static int findSum(int[] matrix) {
+        int sum = 0;
+        for (int i = 0; i < matrix.length; i++) {
+            sum += matrix[i];
+        }
+        return sum;
+    }//findSum.
 
 }//Utils.

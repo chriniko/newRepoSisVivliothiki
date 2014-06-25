@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author nikos
  */
-class VivlioHasSiggrafeis implements Serializable {
+public class VivlioHasSiggrafeis implements Serializable {
 
     private String isbnVivliou;
     private int idSiggrafea;
