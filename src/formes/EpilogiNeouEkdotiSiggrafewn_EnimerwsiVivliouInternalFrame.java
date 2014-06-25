@@ -1,5 +1,14 @@
 package formes;
 
+import database.models.Ekdotis;
+import database.models.Siggrafeas;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JInternalFrame;
+import table_models.EmfanisiEkdotwn_StiliEpilogisTableModel;
+import table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel;
+import utils.ApothikeutisEnimerwmenwnSiggrafewnEkdoti;
+
 /**
  *
  * @author nikos
@@ -33,6 +42,7 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
         siggrafeisScrollPane = new javax.swing.JScrollPane();
         siggrafeisTable = new javax.swing.JTable();
 
+        setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
@@ -40,17 +50,8 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
 
         epilogiEkdotiLbl.setText("Επιλογή εκδότη:");
 
-        ekdotesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        ekdotesTable.setModel(new EmfanisiEkdotwn_StiliEpilogisTableModel
+            ());
         ekdotesScrollPane.setViewportView(ekdotesTable);
 
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
@@ -69,17 +70,8 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
 
         epilogiSiggrafeaLbl.setText("Επιλογή συγγραφέα/συγγραφέων:");
 
-        siggrafeisTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        siggrafeisTable.setModel(new table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel
+            ());
         siggrafeisScrollPane.setViewportView(siggrafeisTable);
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
@@ -151,7 +143,33 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
     }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
 
     private void apothikeusiEpilogwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apothikeusiEpilogwnBtnActionPerformed
-        // TODO add your handling code here:
+
+        //anaktisi tou epilegmenou ekdoti....
+        ArrayList<Ekdotis> ekdotes = ((EmfanisiEkdotwn_StiliEpilogisTableModel) ekdotesTable.getModel()).getData();
+        Ekdotis epilegmenosEkdotis = null;
+        for (Ekdotis temp : ekdotes) {
+            if (temp.isSelected()) {
+                epilegmenosEkdotis = temp;
+                break;
+            }
+        }
+
+        //anaktisi twn epilegmenwn siggrafewn...
+        ArrayList<Siggrafeas> siggrafeis = ((EmfanisiSiggrafewn_StiliEpilogisTableModel) siggrafeisTable.getModel()).getData();
+        ArrayList<Siggrafeas> epilegmenoiSiggrafeis = new ArrayList<>();
+        for (Siggrafeas temp : siggrafeis) {
+            if (temp.isIsSelected()) {
+                epilegmenoiSiggrafeis.add(temp);
+            }
+        }
+
+//        System.out.println(epilegmenosEkdotis);
+//        for (Siggrafeas temp : epilegmenoiSiggrafeis) {
+//            System.out.println(temp);
+//        }
+        
+
+
     }//GEN-LAST:event_apothikeusiEpilogwnBtnActionPerformed
 
 

@@ -7,6 +7,7 @@ import database.models.Vivlio;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiSiggrafewnTableModel;
+import table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel;
 
 /**
  *
@@ -56,7 +57,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
         setResizable(true);
         setTitle("Εμφάνιση Συγγραφέων");
 
-        siggrafeisTable.setModel(new EmfanisiSiggrafewnTableModel());
+        siggrafeisTable.setModel(new table_models.EmfanisiSiggrafewnTableModel());
         siggrafeisTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 siggrafeisTableMouseClicked(evt);
@@ -149,7 +150,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
                         .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(mainPaneLayout.createSequentialGroup()
                                 .addComponent(epithetoSiggrafeaLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                                 .addComponent(epithetoSiggrafeaFld, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(mainPaneLayout.createSequentialGroup()
                                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

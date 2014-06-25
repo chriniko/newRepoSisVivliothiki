@@ -25,7 +25,7 @@ public class VivliaDAO {
     private static final String EISAGWGI_VIVLIOU = "INSERT INTO sistima_vivliothikis_ergasia.vivlia (isbn_vivliou, titlos_vivliou, url_exwfilou_vivliou, perigrafi_vivliou, ekdotes_id_ekdoti) VALUES (?,?,?,?,?)";
     private static final String EISAGWGI_SIGGRAFEIS_VIVLIOU = "INSERT INTO sistima_vivliothikis_ergasia.vivlia_has_siggrafeis (vivlia_isbn_vivliou, siggrafeis_id_siggrafea) VALUES (?,?)";
     private static final String SEARCH_VIVLIO_BY_ISBN = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia WHERE isbn_vivliou = ?";
-    private static final String SEARCH_VIVLIO_BY_TITLO = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia WHERE titlos_vivliou = ?";
+    private static final String SEARCH_VIVLIO_BY_TITLO = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia WHERE titlos_vivliou LIKE ?";
     private static final String ANAKTISI_SIGGRAFEIS_VIVLIOU = "SELECT id_siggrafea, onoma_siggrafea, epitheto_siggrafea"
             + " FROM siggrafeis, vivlia_has_siggrafeis WHERE id_siggrafea = siggrafeis_id_siggrafea AND vivlia_isbn_vivliou = ?";
     private static final String ANAKTISI_VIVLIWN = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia ORDER BY 2";
@@ -219,7 +219,7 @@ public class VivliaDAO {
         Vivlio book = new Vivlio();
         try {
             pStat = con.prepareStatement(SEARCH_VIVLIO_BY_TITLO);
-            pStat.setString(1, title);
+            pStat.setString(1, title + "%");
             rs = pStat.executeQuery();
 
             if (rs.first()) {

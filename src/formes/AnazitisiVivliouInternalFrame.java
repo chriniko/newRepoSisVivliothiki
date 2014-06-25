@@ -9,15 +9,17 @@ import database.models.Ekdotis;
 import database.models.Siggrafeas;
 import database.models.Vivlio;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import utils.ApothikeutisEnimerwmenwnSiggrafewnEkdoti;
+import utils.ApothikeutisEnimerwmenwnSiggrafewnEkdoti.OnomataArxeiwn;
 
 /**
  *
@@ -37,6 +39,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     private ArrayList<Siggrafeas> loadedSiggrafeis;
     private Ekdotis loadedEkdotis;
     //=================================================================
+    private Listener_Gia_Emfanisi_EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame l = new Listener_Gia_Emfanisi_EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame();
 
     /**
      * Creates new form AnazitisiVivliouInternalFrame
@@ -92,6 +95,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Αναζήτηση Βιβλίου");
+        setName("AnazitisiVivliouInternalFrame"); // NOI18N
 
         searchPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Search", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
 
@@ -184,6 +188,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         siggrafeisList.setModel(this.listaModelou);
         siggrafeisList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        siggrafeisList.setName("AnazitisiVivliouInternalFrame"); // NOI18N
         scrollerSiggrafeisList.setViewportView(siggrafeisList);
 
         ekdoseisVivliouFld.setEditable(false);
@@ -563,23 +568,13 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         //===================================================
         //vazoume listeners gia na anoixoume to internal frame epiloghs siggrafea/siggrafewn kai ekdoti.
-        ekdoseisVivliouLbl.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame iframe = new EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame();
-                AnazitisiVivliouInternalFrame.this.getDesktopPane().add(iframe);
-                iframe.show();
-            }
-        });
+        ekdoseisVivliouLbl.addMouseListener(l);
+        siggrafeasLbl.addMouseListener(l);
 
-        siggrafeasLbl.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame iframe = new EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame();
-                AnazitisiVivliouInternalFrame.this.getDesktopPane().add(iframe);
-                iframe.show();
-            }
-        });
+        //apothikeuoume ton ekdotis kai tous siggrafeis tou vivliou se arxeio seiriopoihmena....
+        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.swseStoixeiaEkdoti(loadedEkdotis, OnomataArxeiwn.ARXEIO_EKDOTIS.getOnomaArxeiou());
+        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.swseArrayListSiggrafewn(loadedSiggrafeis, OnomataArxeiwn.ARXEIO_SIGGRAFEWN.getOnomaArxeiou());
+
 
     }//GEN-LAST:event_enimerwsiVivliouBtnActionPerformed
 
@@ -595,6 +590,10 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fortwseExwfylloVivliouBtnActionPerformed
 
     private void akirwsiEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_akirwsiEnimerwsisBtnActionPerformed
+
+        //akyrwnoume tous listeners.....
+        ekdoseisVivliouLbl.removeMouseListener(l);
+        siggrafeasLbl.removeMouseListener(l);
 
         //======================================================
         //xanavazoume sta text fields tis plirofories pou htan kai prin.......
@@ -633,6 +632,26 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     private void epivevaiwshEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epivevaiwshEnimerwsisBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_epivevaiwshEnimerwsisBtnActionPerformed
+
+    //================================================================================================
+    class Listener_Gia_Emfanisi_EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame iframe = new EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame();
+            AnazitisiVivliouInternalFrame.this.getDesktopPane().add(iframe);
+            iframe.show();
+        }
+    }
+    //=================================================================================================
+
+    public JTextField getEkdoseisVivliouFld() {
+        return ekdoseisVivliouFld;
+    }
+
+    public JList getSiggrafeisList() {
+        return siggrafeisList;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

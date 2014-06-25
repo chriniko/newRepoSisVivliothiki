@@ -12,18 +12,14 @@ public class Ekdotis implements Serializable {
     private int id;
     private String name;
     private ArrayList<Vivlio> vivlia;
+    private boolean selected;
 
     public Ekdotis() {
     }
 
-    public Ekdotis(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     @Override
     public String toString() {
-        return "Ekdotis{" + "id=" + id + ", name=" + name + ", vivlia=" + vivlia + '}';
+        return "Ekdotis{" + "id=" + id + ", name=" + name + ", vivlia=" + vivlia + ", isSelected=" + selected + '}';
     }
 
     public String getName() {
@@ -48,5 +44,13 @@ public class Ekdotis implements Serializable {
 
     public void setVivlia(ArrayList<Vivlio> vivlia) {
         this.vivlia = vivlia;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean isSelected) {
+        this.selected = isSelected;
     }
 }

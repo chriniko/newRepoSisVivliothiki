@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import table_models.EmfanisiSiggrafewnTableModel;
+import table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel;
 
 /**
  *
@@ -84,7 +84,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
 
         siggrafeisLbl.setText("Επιλογή συγγραφέων:");
 
-        siggrafeisTable.setModel(new EmfanisiSiggrafewnTableModel());
+        siggrafeisTable.setModel(new EmfanisiSiggrafewn_StiliEpilogisTableModel());
         siggrafeisTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 siggrafeisTableMouseClicked(evt);
@@ -343,7 +343,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
 
         //anaktisi twn epilegmenwn siggrafewn....
         ArrayList<Siggrafeas> in_epilegmenoiSiggrafeis = new ArrayList<>();
-        ArrayList<Siggrafeas> siggrafeis = ((EmfanisiSiggrafewnTableModel) siggrafeisTable.getModel()).getData();
+        ArrayList<Siggrafeas> siggrafeis = ((EmfanisiSiggrafewn_StiliEpilogisTableModel) siggrafeisTable.getModel()).getData();
         for (Siggrafeas temp : siggrafeis) {
             if (temp.isIsSelected()) {
                 in_epilegmenoiSiggrafeis.add(temp);
@@ -377,7 +377,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
     }//GEN-LAST:event_eisagwgiVivliouBtnActionPerformed
 
     private void ananewsiPinakaSiggrafewn() {
-        siggrafeisTable.setModel(new EmfanisiSiggrafewnTableModel());
+        siggrafeisTable.setModel(new EmfanisiSiggrafewn_StiliEpilogisTableModel());
     }
 
     private void fillComboEkdotes() {

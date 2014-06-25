@@ -10,16 +10,16 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author nikos
  */
-public class EmfanisiSiggrafewnTableModel extends AbstractTableModel {
+public class EmfanisiSiggrafewn_StiliEpilogisTableModel extends AbstractTableModel {
 
     //fields.
-    private final String[] columnNames = {"Αύξων Αριθμός Συγγραφέα", "Όνομα Συγγραφέα", "Επίθετο Συγγραφέα"};
+    private final String[] columnNames = {"Αύξων Αριθμός Συγγραφέα", "Όνομα Συγγραφέα", "Επίθετο Συγγραφέα", "Επιλογή"};
 
     private final ArrayList<Siggrafeas> data;
     private final SiggrafeisDAO melhDAO = new SiggrafeisDAO(DbConnection.getInstance().getConnection());
 
     //methods.
-    public EmfanisiSiggrafewnTableModel() {
+    public EmfanisiSiggrafewn_StiliEpilogisTableModel() {
         //anaktoume oles tis eggrafes twn siggrafewn.
         data = melhDAO.findAll();
     }//ctor.
@@ -49,8 +49,10 @@ public class EmfanisiSiggrafewnTableModel extends AbstractTableModel {
             return siggrafeas.getId();
         } else if (col == 1) {
             return siggrafeas.getOnoma();
-        } else {
+        } else if (col == 2) {
             return siggrafeas.getEpitheto();
+        } else {
+            return siggrafeas.isIsSelected();
         }
 
     }//getValueAt.
@@ -72,7 +74,22 @@ public class EmfanisiSiggrafewnTableModel extends AbstractTableModel {
      */
     @Override
     public boolean isCellEditable(int row, int col) {
-        return false;
+        return col == 3;
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        super.setValueAt(aValue, rowIndex, columnIndex);
+
+        if (columnIndex == 3) {//ean o xristis pathse panw sto checkbox tote....
+
+            if (!data.get(rowIndex).isIsSelected()) {//ean den einai epilegmeno tote...
+                data.get(rowIndex).setIsSelected(true);//to epilegoume.
+            } else {//ean einai epilegmeno tote...
+                data.get(rowIndex).setIsSelected(false);//to xemarkaroume.
+            }
+        }//if.
+
     }
 
     public ArrayList<Siggrafeas> getData() {
@@ -80,4 +97,3 @@ public class EmfanisiSiggrafewnTableModel extends AbstractTableModel {
     }
 
 }//EmfanisiSiggrafewnTableModel.
-
