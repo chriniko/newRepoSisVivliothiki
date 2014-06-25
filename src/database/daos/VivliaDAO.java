@@ -28,6 +28,11 @@ public class VivliaDAO {
             + " FROM siggrafeis, vivlia_has_siggrafeis WHERE id_siggrafea = siggrafeis_id_siggrafea AND vivlia_isbn_vivliou = ?";
     private static final String ANAKTISI_VIVLIWN = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia ORDER BY 2";
 
+    //=======================QUERIES GIA DIAGRAFI VIVLIOU========================================
+    private static final String DIAGRAFI_VIVLIOU_QUERY_NO_1 = "DELETE FROM vivlia_has_siggrafeis WHERE vivlia_isbn_vivliou = ?";
+    private static final String DIAGRAFI_VIVLIOU_QUERY_NO_2 = "DELETE FROM vivlia WHERE isbn_vivliou = ?";
+    //==================================================================================
+
     public VivliaDAO(Connection con) {
         this.con = con;
     }
@@ -38,7 +43,7 @@ public class VivliaDAO {
         ArrayList allBooks = new ArrayList();
         Vivlio book;
         try (Statement s = con.createStatement()) {
-            pStat = con.prepareStatement("ANAKTISI_VIVLIWN");
+            pStat = con.prepareStatement(ANAKTISI_VIVLIWN);
             rs = pStat.executeQuery();
 
             while (rs.next()) {
@@ -122,6 +127,7 @@ public class VivliaDAO {
     }
 //----------------------------------------------------------------------------------        
 
+    //WORKS.
     public Vivlio searchVivlioByISBN(String isbn) {
 
         Vivlio book = new Vivlio();
@@ -148,10 +154,10 @@ public class VivliaDAO {
             System.out.println(e + "     VivliaDAO.searchVivlioByISBN()");
         }
         return null;
-
     }
 //----------------------------------------------------------------------------------        
 
+    //WORKS.
     public Vivlio searchVivlioByTitlo(String title) {
 
         Vivlio book = new Vivlio();
@@ -182,6 +188,7 @@ public class VivliaDAO {
     }
 //----------------------------------------------------------------------------------            
 
+    //WORKS.
     public ArrayList<Siggrafeas> anaktisiSiggrafeisVivliou(String isbn) {
         try {
             pStat = con.prepareStatement(ANAKTISI_SIGGRAFEIS_VIVLIOU);
@@ -228,6 +235,40 @@ public class VivliaDAO {
         return null;
     }//anaktisiSiggrafeisVivliou.
 //----------------------------------------------------------------------------------    
+
+    public boolean diagrafiVivliou(String isbn) {
+        try {
+
+            //ektelesi tou prwtou query diladi katharisma tis eggrafis tou vivliou pou einai sto juction table: vivlia_has_siggrafeis.
+            pStat = con.prepareStatement(DIAGRAFI_VIVLIOU_QUERY_NO_1);
+            pStat.setString(1, isbn);
+
+            int result_1 = pStat.executeUpdate();
+
+            //ektelesi tou deuteri query pou diagrafei thn eggrafi tou vivliou ston pinaka: vivlia.
+            pStat = con.prepareStatement(DIAGRAFI_VIVLIOU_QUERY_NO_2);
+            pStat.setString(1, isbn);
+
+            int result_2 = pStat.executeUpdate();
+
+            return result_1 == 1 && result_2 == 1;
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage() + " === " + ex.getSQLState() + " === " + ex.getErrorCode());
+        } finally {
+
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage() + " === " + ex.getSQLState() + " === " + ex.getErrorCode());
+            }
+
+        }
+        return false;
+    }//diagrafiVivliou.
+//----------------------------------------------------------------------------------
 
     /*    
      public static void main(String[] args)

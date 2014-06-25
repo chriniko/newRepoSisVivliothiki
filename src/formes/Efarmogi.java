@@ -48,14 +48,14 @@ public class Efarmogi extends javax.swing.JFrame {
         diaxeirisiSiggrafewnMenu = new javax.swing.JMenu();
         eisagwgiNeouSiggrafeaItem = new javax.swing.JMenuItem();
         emfanisiSiggrafewnItem = new javax.swing.JMenuItem();
-        diaxeirishDaneismwnMenu = new javax.swing.JMenu();
-        neosDaneismosAntitypouVivliouItem = new javax.swing.JMenuItem();
-        emfanisiDaneismenwnAntitypwnItem = new javax.swing.JMenuItem();
         diaxeirishVivliwnMenu = new javax.swing.JMenu();
         eisagwgiVivliouItem = new javax.swing.JMenuItem();
         emfanisiBooksItem = new javax.swing.JMenuItem();
         searchBookItem = new javax.swing.JMenuItem();
         diaxeirishAntitypwnVivliwnItem = new javax.swing.JMenu();
+        diaxeirishDaneismwnMenu = new javax.swing.JMenu();
+        neosDaneismosAntitypouVivliouItem = new javax.swing.JMenuItem();
+        emfanisiDaneismenwnAntitypwnItem = new javax.swing.JMenuItem();
         aboutMenu = new javax.swing.JMenu();
         kleisimoEfarmogisItem = new javax.swing.JMenuItem();
 
@@ -136,26 +136,6 @@ public class Efarmogi extends javax.swing.JFrame {
 
         menuBar.add(diaxeirisiSiggrafewnMenu);
 
-        diaxeirishDaneismwnMenu.setText("Διαχείριση δανεισμών");
-
-        neosDaneismosAntitypouVivliouItem.setText("Νέος δανεισμός αντίτυπου βιβλίου");
-        neosDaneismosAntitypouVivliouItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                neosDaneismosAntitypouVivliouItemActionPerformed(evt);
-            }
-        });
-        diaxeirishDaneismwnMenu.add(neosDaneismosAntitypouVivliouItem);
-
-        emfanisiDaneismenwnAntitypwnItem.setText("Εμφάνιση δανεισμένων αντίτυπων βιβλίων μέλους");
-        emfanisiDaneismenwnAntitypwnItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emfanisiDaneismenwnAntitypwnItemActionPerformed(evt);
-            }
-        });
-        diaxeirishDaneismwnMenu.add(emfanisiDaneismenwnAntitypwnItem);
-
-        menuBar.add(diaxeirishDaneismwnMenu);
-
         diaxeirishVivliwnMenu.setText("Διαχείριση βιβλίων");
 
         eisagwgiVivliouItem.setText("Εισαγωγή νέου βιβλίου");
@@ -192,6 +172,26 @@ public class Efarmogi extends javax.swing.JFrame {
         });
         menuBar.add(diaxeirishAntitypwnVivliwnItem);
 
+        diaxeirishDaneismwnMenu.setText("Διαχείριση δανεισμών");
+
+        neosDaneismosAntitypouVivliouItem.setText("Νέος δανεισμός αντίτυπου βιβλίου");
+        neosDaneismosAntitypouVivliouItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                neosDaneismosAntitypouVivliouItemActionPerformed(evt);
+            }
+        });
+        diaxeirishDaneismwnMenu.add(neosDaneismosAntitypouVivliouItem);
+
+        emfanisiDaneismenwnAntitypwnItem.setText("Εμφάνιση δανεισμένων αντίτυπων βιβλίων μέλους");
+        emfanisiDaneismenwnAntitypwnItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emfanisiDaneismenwnAntitypwnItemActionPerformed(evt);
+            }
+        });
+        diaxeirishDaneismwnMenu.add(emfanisiDaneismenwnAntitypwnItem);
+
+        menuBar.add(diaxeirishDaneismwnMenu);
+
         aboutMenu.setText("Σχετικά...");
         aboutMenu.setToolTipText("");
 
@@ -218,7 +218,7 @@ public class Efarmogi extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

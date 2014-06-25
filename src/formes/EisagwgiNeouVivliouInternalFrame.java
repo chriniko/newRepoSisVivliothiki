@@ -50,7 +50,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         siggrafeisTable = new javax.swing.JTable();
         perigrafiVivliouLbl = new javax.swing.JLabel();
         perigrafiVivliouTxtPaneScroller = new javax.swing.JScrollPane();
-        perigrafiVivliouTxtPane = new javax.swing.JTextPane();
+        perigrafiVivliouTxtPane = new javax.swing.JTextArea();
         ananewsiListasEkdotwnBtn = new javax.swing.JButton();
         ananewsiPinakaSiggrafewnBtn = new javax.swing.JButton();
         secondPane = new javax.swing.JPanel();
@@ -94,6 +94,10 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
 
         perigrafiVivliouLbl.setText("Εισαγωγή περιγραφής βιβλίου:");
 
+        perigrafiVivliouTxtPane.setColumns(20);
+        perigrafiVivliouTxtPane.setLineWrap(true);
+        perigrafiVivliouTxtPane.setRows(5);
+        perigrafiVivliouTxtPane.setWrapStyleWord(true);
         perigrafiVivliouTxtPaneScroller.setViewportView(perigrafiVivliouTxtPane);
 
         ananewsiListasEkdotwnBtn.setText("Ανανέωση Λίστας Εκδοτών");
@@ -402,7 +406,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
     private javax.swing.JButton kleisimoParathirouBtn;
     private javax.swing.JLabel labelToLoadUserSelectedIcon;
     private javax.swing.JLabel perigrafiVivliouLbl;
-    private javax.swing.JTextPane perigrafiVivliouTxtPane;
+    private javax.swing.JTextArea perigrafiVivliouTxtPane;
     private javax.swing.JScrollPane perigrafiVivliouTxtPaneScroller;
     private javax.swing.JPanel secondPane;
     private javax.swing.JLabel siggrafeisLbl;

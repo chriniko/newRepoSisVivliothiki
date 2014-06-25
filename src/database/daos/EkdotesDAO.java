@@ -23,6 +23,7 @@ public class EkdotesDAO {
     private static final String DIAGRAFI_EKDOTI = "DELETE FROM ekdotes WHERE id_ekdoti = ?";
     private static final String ENIMERWSI_EKDOTI = "UPDATE ekdotes SET onoma_ekdoti = ? WHERE id_ekdoti = ?";
     private static final String ANAKTISI_ID_EKDOTI_QUERY = "SELECT * FROM ekdotes WHERE onoma_ekdoti = ?";
+    private static final String ANAKTISI_EKDOTI_BY_ID = "SELECT * FROM ekdotes WHERE id_ekdoti = ?";
 
     public EkdotesDAO(Connection conn) {
         this.con = conn;
@@ -180,11 +181,11 @@ public class EkdotesDAO {
         return false;
     }//enimerwsiEkdoti.
 
-//-----------------------------------------------------------------------------------    
+    //-----------------------------------------------------------------------------------    
     public Ekdotis searchEkdotiByName(String name) {
 
         Ekdotis ekdotis = new Ekdotis();
-        
+
         try {
             pStat = con.prepareStatement(ANAKTISI_ID_EKDOTI_QUERY);
             pStat.setString(1, name);
@@ -193,19 +194,56 @@ public class EkdotesDAO {
             if (rs.first()) {
                 ekdotis.setId(rs.getInt("id_ekdoti"));
                 ekdotis.setName(rs.getString("onoma_ekdoti"));
-                                
+
                 rs.close();
                 return ekdotis;
             } else {
                 rs.close();
                 return null;
-            }            
+            }
 
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + "     EkdotesDAO.searchEkdotiByName()");
         }
         return null;
     }
-//----------------------------------------------------------------------------------    
+    //----------------------------------------------------------------------------------    
+
+    public Ekdotis searchEkdotiByID(int id) {
+        try {
+
+            pStat = con.prepareStatement(ANAKTISI_EKDOTI_BY_ID);
+            pStat.setInt(1, id);
+
+            rs = pStat.executeQuery();
+
+            if (rs.first()) {
+
+                Ekdotis temp = new Ekdotis();
+                temp.setId(id);
+                temp.setName(rs.getString("onoma_ekdoti"));
+                return temp;
+
+            } else {
+                return null;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage() + " --- " + ex.getSQLState() + " --- " + ex.getErrorCode());
+        } finally {
+            try {
+                if (!rs.isClosed()) {
+                    rs.close();
+                }
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage() + " --- " + ex.getSQLState() + " --- " + ex.getErrorCode());
+
+            }
+        }
+        return null;
+    }
 
 }//EkdotesDAO.

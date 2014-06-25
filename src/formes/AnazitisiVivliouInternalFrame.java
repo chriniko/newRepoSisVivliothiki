@@ -1,15 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.AntitypaDAO;
+import database.daos.EkdotesDAO;
+import database.daos.VivliaDAO;
+import database.models.Antitypo;
+import database.models.Ekdotis;
+import database.models.Siggrafeas;
+import database.models.Vivlio;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author nikos
  */
 public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
+
+    private final VivliaDAO vivliaDAO = new VivliaDAO(DbConnection.getInstance().getConnection());
+    private final EkdotesDAO ekdotesDAO = new EkdotesDAO(DbConnection.getInstance().getConnection());
+    private final AntitypaDAO antitypaDAO = new AntitypaDAO(DbConnection.getInstance().getConnection());
+    private final DefaultListModel listaModelou = new DefaultListModel();
+    private boolean isBookShowed = false;
 
     /**
      * Creates new form AnazitisiVivliouInternalFrame
@@ -49,7 +63,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         isbnFld = new javax.swing.JTextField();
         perigrafiVivliouLbl = new javax.swing.JLabel();
         scrollerPerigrafiVivliouTxtPane = new javax.swing.JScrollPane();
-        perigrafiVivliouTxtPane = new javax.swing.JTextPane();
+        perigrafiVivliouTxtPane = new javax.swing.JTextArea();
         bookCoverIconPane = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         lblToLoadBookCoverIcon = new javax.swing.JLabel();
@@ -77,10 +91,25 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         dwsePliroforiaLbl.setText("Δώσε πληροφορία:");
 
         anazitisiBtn.setText("Αναζήτηση");
+        anazitisiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anazitisiBtnActionPerformed(evt);
+            }
+        });
 
         katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
+        katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katharismosPediwnBtnActionPerformed(evt);
+            }
+        });
 
         kleisimoParathirouBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoParathirouBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchPaneLayout = new javax.swing.GroupLayout(searchPane);
         searchPane.setLayout(searchPaneLayout);
@@ -140,6 +169,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         siggrafeasLbl.setText("Συγγραφέας/Συγγραφείς βιβλίου:");
 
+        siggrafeisList.setModel(this.listaModelou);
         scrollerSiggrafeisList.setViewportView(siggrafeisList);
 
         ekdoseisVivliouFld.setEditable(false);
@@ -151,6 +181,10 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         perigrafiVivliouLbl.setText("Περιγραφή βιβλίου:");
 
         perigrafiVivliouTxtPane.setEditable(false);
+        perigrafiVivliouTxtPane.setColumns(20);
+        perigrafiVivliouTxtPane.setLineWrap(true);
+        perigrafiVivliouTxtPane.setRows(5);
+        perigrafiVivliouTxtPane.setWrapStyleWord(true);
         scrollerPerigrafiVivliouTxtPane.setViewportView(perigrafiVivliouTxtPane);
 
         javax.swing.GroupLayout bookInfoPaneLayout = new javax.swing.GroupLayout(bookInfoPane);
@@ -218,12 +252,12 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             bookCoverIconPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookCoverIconPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(bookCoverIconPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(bookCoverIconPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblToLoadBookCoverIcon)
                     .addGroup(bookCoverIconPaneLayout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fortwseExwfylloVivliouBtn))
-                    .addComponent(lblToLoadBookCoverIcon))
+                        .addComponent(fortwseExwfylloVivliouBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         bookCoverIconPaneLayout.setVerticalGroup(
@@ -251,6 +285,11 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         diagrafiVivliouBtn.setText("Διαγραφή Βιβλίου");
         diagrafiVivliouBtn.setEnabled(false);
+        diagrafiVivliouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diagrafiVivliouBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout actionsPaneLayout = new javax.swing.GroupLayout(actionsPane);
         actionsPane.setLayout(actionsPaneLayout);
@@ -315,6 +354,127 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
+
+    private void anazitisiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anazitisiBtnActionPerformed
+
+        boolean isbnSearch = isbnRadioBtn.isSelected();
+        boolean titleSearch = titloVivliouRadioBtn.isSelected();
+        String pliroforia = pliroforiaFld.getText();
+
+        //elegxos ean exei epilegei krithrio anazitisis....
+        if (isbnSearch == false && titleSearch == false) {
+            JOptionPane.showMessageDialog(this, "Επέλεξε κριτήριο αναζήτησης!");
+            return;
+        }//if.
+
+        //elegxos ean exei dwthei to isbn h o titlos vivlio analoga me to krithrio...
+        if (pliroforia.trim().equals("")) {
+            String msg = "";
+            if (isbnSearch) {
+                msg = "Δώσε ISBN βιβλίου για αναζήτηση!";
+            } else if (titleSearch) {
+                msg = "Δώσε τίτλο βιβλίου για αναζήτηση!";
+            }
+            JOptionPane.showMessageDialog(this, msg);
+            return;
+        }//if.
+
+        //afou ftasame edw twra fortwnoume tis plirofories tou vivliou....
+        Vivlio vivlioToShow = null;
+        if (isbnSearch) {
+            vivlioToShow = vivliaDAO.searchVivlioByISBN(pliroforia);
+        } else if (titleSearch) {
+            vivlioToShow = vivliaDAO.searchVivlioByTitlo(pliroforia);
+        }
+
+        //ean den yparxei vivlio me tetoio isbn 'h titlo tote emfanizoume minima....
+        if (vivlioToShow == null) {
+            String msg = "";
+            if (isbnSearch) {
+                msg = "Δεν υπάρχει βιβλίο με τέτοιο ISBN!";
+            } else if (titleSearch) {
+                msg = "Δεν υπάρχει βιβλίο με τέτοιο τίτλο!";
+            }
+            JOptionPane.showMessageDialog(this, msg);
+            return;
+        }
+
+        //anaktoume tous siggrafeis tou vivliou...
+        ArrayList<Siggrafeas> siggrafeisVivliou = vivliaDAO.anaktisiSiggrafeisVivliou(vivlioToShow.getIsbn());
+
+        //anaktoume thn epwnymia tou ekdoti...
+        Ekdotis ekdotisVivliou = ekdotesDAO.searchEkdotiByID(vivlioToShow.getId_ekdoti());
+
+        //topothetoume tis plirofories sta text fields...
+        isbnFld.setText(vivlioToShow.getIsbn());
+        titlosVivliouFld.setText(vivlioToShow.getTitlos());
+        ekdoseisVivliouFld.setText(ekdotisVivliou.getName());
+
+        listaModelou.clear();
+        for (Siggrafeas temp : siggrafeisVivliou) {
+            listaModelou.addElement(temp.getOnoma() + " " + temp.getEpitheto());
+        }
+
+        perigrafiVivliouTxtPane.setText(vivlioToShow.getPerigrafi_vivliou());
+        lblToLoadBookCoverIcon.setIcon(new ImageIcon(vivlioToShow.getUrl_exwfilou_vivliou()));
+        lblToLoadBookCoverIcon.setText("");
+
+        isBookShowed = true;
+        anazitisiBtn.setEnabled(false);
+        enimerwsiVivliouBtn.setEnabled(true);
+        diagrafiVivliouBtn.setEnabled(true);
+
+
+    }//GEN-LAST:event_anazitisiBtnActionPerformed
+
+    private void katharismosPediwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katharismosPediwnBtnActionPerformed
+
+        if (isBookShowed == true) {
+            isBookShowed = false;
+            anazitisiBtn.setEnabled(true);
+            enimerwsiVivliouBtn.setEnabled(false);
+            diagrafiVivliouBtn.setEnabled(false);
+        }//if.
+
+        isbnFld.setText("");
+        titlosVivliouFld.setText("");
+        ekdoseisVivliouFld.setText("");
+        listaModelou.clear();
+        perigrafiVivliouTxtPane.setText("");
+        lblToLoadBookCoverIcon.setIcon(null);
+        lblToLoadBookCoverIcon.setText("εδώ φορτώνεται η εικόνα...");
+        pliroforiaFld.setText("");
+        if (isbnRadioBtn.isSelected()) {
+            isbnRadioBtn.setSelected(false);
+        } else {
+            titloVivliouRadioBtn.setSelected(false);
+        }
+
+    }//GEN-LAST:event_katharismosPediwnBtnActionPerformed
+
+    private void diagrafiVivliouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagrafiVivliouBtnActionPerformed
+
+        if (!isBookShowed) {
+            return;
+        }//if.
+
+        //elegxoume ean to vivlio exei antitypa.....
+        ArrayList<Antitypo> antitypaVivliou = antitypaDAO.anaktisiAntitypwnVivliou(isbnFld.getText());
+
+        //ean to vivio auto exei antitypa tote den mporoume na to diagrapsoume....
+        if (antitypaVivliou != null && !antitypaVivliou.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Το βιβλίο που προσπαθείτε να διαγράψετε εχει αντίτυπα, διαγράψτε πρώτα τα αντίτυπα και ξαναπροσπαθήστε!");
+            return;
+        }//if.
+
+        //ean ftasame edw shmainei oti mporoume na to diagrapsoume...
+        
+
+    }//GEN-LAST:event_diagrafiVivliouBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionsPane;
@@ -339,7 +499,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JButton kleisimoParathirouBtn;
     private javax.swing.JLabel lblToLoadBookCoverIcon;
     private javax.swing.JLabel perigrafiVivliouLbl;
-    private javax.swing.JTextPane perigrafiVivliouTxtPane;
+    private javax.swing.JTextArea perigrafiVivliouTxtPane;
     private javax.swing.JTextField pliroforiaFld;
     private javax.swing.JScrollPane scrollerPerigrafiVivliouTxtPane;
     private javax.swing.JScrollPane scrollerSiggrafeisList;
