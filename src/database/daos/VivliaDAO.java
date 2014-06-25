@@ -73,7 +73,8 @@ public class VivliaDAO {
         return allBooks;
     }
 
-//----------------------------------------------------------------------------------        
+//----------------------------------------------------------------------------------
+    //WORKS.
     public void insertSuggrafeisVivliou(String isbnVivliou, ArrayList<Siggrafeas> siggrafeis) {
 
         for (Siggrafeas writer : siggrafeis) {
@@ -91,6 +92,7 @@ public class VivliaDAO {
     }
 //----------------------------------------------------------------------------------        
 
+    //WORKS.
     public void insertVivlio(Vivlio book) {
 
         try {

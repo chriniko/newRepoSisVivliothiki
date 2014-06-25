@@ -144,7 +144,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
                                 .addComponent(ananewsiPinakaSiggrafewnBtn))
                             .addComponent(perigrafiVivliouLbl))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(siggrafeisTableScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE))
+                    .addComponent(siggrafeisTableScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE))
                 .addContainerGap())
         );
         firstPaneLayout.setVerticalGroup(
@@ -231,7 +231,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         thirdPaneLayout.setHorizontalGroup(
             thirdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(thirdPaneLayout.createSequentialGroup()
-                .addContainerGap(206, Short.MAX_VALUE)
+                .addContainerGap(263, Short.MAX_VALUE)
                 .addGroup(thirdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kleisimoParathirouBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(eisagwgiVivliouBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -257,7 +257,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(firstPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(thirdPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -293,10 +293,10 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         JFileChooser fc = new JFileChooser();
         int res = fc.showOpenDialog(EisagwgiNeouVivliouInternalFrame.this);
         if (res == JFileChooser.APPROVE_OPTION) {
-            this.labelToLoadUserSelectedIcon.setIcon(new ImageIcon(fc.getSelectedFile().getAbsolutePath()));
+            this.labelToLoadUserSelectedIcon.setIcon(new ImageIcon(fc.getSelectedFile().getPath()));
             this.labelToLoadUserSelectedIcon.setText("");
             this.isBookCoverLoaded = true;
-            this.bookCoverIcon = fc.getSelectedFile().getAbsolutePath();
+            this.bookCoverIcon = fc.getSelectedFile().getPath();
         }
     }//GEN-LAST:event_fortwsiEikonasBtnActionPerformed
 
