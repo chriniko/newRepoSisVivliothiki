@@ -21,7 +21,7 @@ public class VivliaDAO {
     private ResultSet rs;
 
     private static final String EISAGWGI_VIVLIOU = "INSERT INTO sistima_vivliothikis_ergasia.vivlia (isbn_vivliou, titlos_vivliou, url_exwfilou_vivliou, perigrafi_vivliou, ekdotes_id_ekdoti) VALUES (?,?,?,?,?)";
-    private static final String EISAGWGI_SIGGRAFEIS_VIVLIOU = "INSERT INTO sistima_vivliothikis_ergasia.vivlia_has_suggrafeis (vivlia_isbn_vivliou, siggrafeis_id_siggrafea) VALUES (?,?)";
+    private static final String EISAGWGI_SIGGRAFEIS_VIVLIOU = "INSERT INTO sistima_vivliothikis_ergasia.vivlia_has_siggrafeis (vivlia_isbn_vivliou, siggrafeis_id_siggrafea) VALUES (?,?)";
     private static final String SEARCH_VIVLIO_BY_ISBN = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia WHERE isbn_vivliou = ?";
     private static final String SEARCH_VIVLIO_BY_TITLO = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia WHERE titlos_vivliou = ?";
     private static final String ANAKTISI_SIGGRAFEIS_VIVLIOU = "SELECT id_siggrafea, onoma_siggrafea, epitheto_siggrafea"
@@ -51,7 +51,7 @@ public class VivliaDAO {
                 book.setUrl_exwfilou_vivliou(rs.getString("url_exwfilou_vivliou"));
 
                 allBooks.add(book);
-            }            
+            }
         } catch (NumberFormatException | SQLException e) {
             System.out.println(e + "       VivliaDAO.findAll()");
         } finally {

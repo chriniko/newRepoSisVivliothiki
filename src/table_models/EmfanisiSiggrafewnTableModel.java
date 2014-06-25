@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
 public class EmfanisiSiggrafewnTableModel extends AbstractTableModel {
 
     //fields.
-    private final String[] columnNames = {"Αύξων Αριθμός Συγγραφέα", "Όνομα Συγγραφέα", "Επίθετο Συγγραφέα"};
+    private final String[] columnNames = {"Αύξων Αριθμός Συγγραφέα", "Όνομα Συγγραφέα", "Επίθετο Συγγραφέα", "Επιλογή"};
 
     private final ArrayList<Siggrafeas> data;
     private final SiggrafeisDAO melhDAO = new SiggrafeisDAO(DbConnection.getInstance().getConnection());
@@ -42,15 +42,17 @@ public class EmfanisiSiggrafewnTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int col) {
 
-        //anaktoume thn katallili eggrafi writer.
+        //anaktoume thn katallili eggrafi siggrafea.
         Siggrafeas siggrafeas = data.get(row);
 
         if (col == 0) {
             return siggrafeas.getId();
         } else if (col == 1) {
             return siggrafeas.getOnoma();
-        } else {
+        } else if (col == 2) {
             return siggrafeas.getEpitheto();
+        } else {
+            return siggrafeas.isIsSelected();
         }
 
     }//getValueAt.
@@ -70,10 +72,26 @@ public class EmfanisiSiggrafewnTableModel extends AbstractTableModel {
      * Don't need to implement this method unless your table's
      * editable.
      */
-    /*@Override
-     public boolean isCellEditable(int row, int col) {
-     return col >= 1; //apo poio kai meta column epitrepoume na ginei edit.
-     }*/
+    @Override
+    public boolean isCellEditable(int row, int col) {
+        return col == 3;
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        super.setValueAt(aValue, rowIndex, columnIndex);
+
+        if (columnIndex == 3) {//ean o xristis pathse panw sto checkbox tote....
+
+            if (!data.get(rowIndex).isIsSelected()) {//ean den einai epilegmeno tote...
+                data.get(rowIndex).setIsSelected(true);//to epilegoume.
+            } else {//ean einai epilegmeno tote...
+                data.get(rowIndex).setIsSelected(false);//to xemarkaroume.
+            }
+        }//if.
+
+    }
+
     public ArrayList<Siggrafeas> getData() {
         return data;
     }

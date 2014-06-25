@@ -13,13 +13,14 @@ public class Siggrafeas implements Serializable {
     private String onoma;
     private String epitheto;
     private ArrayList<VivlioHasSiggrafeis> vivlia;
+    private boolean isSelected = false;
 
     public Siggrafeas() {
     }
 
     @Override
     public String toString() {
-        return "Siggrafeas{" + "id=" + id + ", onoma=" + onoma + ", epitheto=" + epitheto + ", vivlia=" + vivlia + '}';
+        return "Siggrafeas{" + "id=" + id + ", onoma=" + onoma + ", epitheto=" + epitheto + ", vivlia=" + vivlia + ", isSelected=" + isSelected + '}';
     }
 
     public int getId() {
@@ -52,6 +53,14 @@ public class Siggrafeas implements Serializable {
 
     public void setVivlia(ArrayList<VivlioHasSiggrafeis> vivlia) {
         this.vivlia = vivlia;
+    }
+
+    public boolean isIsSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(boolean isSelected) {
+        this.isSelected = isSelected;
     }
 
 }//Siggrafeas.

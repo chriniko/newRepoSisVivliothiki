@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package formes;
 
 import database.connection.DbConnection;
@@ -11,7 +5,11 @@ import database.daos.EkdotesDAO;
 import database.daos.VivliaDAO;
 import database.models.Ekdotis;
 import database.models.Siggrafeas;
+import database.models.Vivlio;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import table_models.EmfanisiSiggrafewnTableModel;
 
 /**
@@ -21,7 +19,9 @@ import table_models.EmfanisiSiggrafewnTableModel;
 public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame {
 
     private final VivliaDAO vivliaDAO = new VivliaDAO(DbConnection.getInstance().getConnection());
-    
+    private boolean isBookCoverLoaded = false;
+    private String bookCoverIcon;
+
     public EisagwgiNeouVivliouInternalFrame() {
         initComponents();
         fillComboEkdotes();
@@ -51,6 +51,8 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         perigrafiVivliouLbl = new javax.swing.JLabel();
         perigrafiVivliouTxtPaneScroller = new javax.swing.JScrollPane();
         perigrafiVivliouTxtPane = new javax.swing.JTextPane();
+        ananewsiListasEkdotwnBtn = new javax.swing.JButton();
+        ananewsiPinakaSiggrafewnBtn = new javax.swing.JButton();
         secondPane = new javax.swing.JPanel();
         epilegmeniEikonaLbl = new javax.swing.JLabel();
         labelToLoadUserSelectedIcon = new javax.swing.JLabel();
@@ -74,6 +76,11 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         eikonaLbl.setText("Επιλογή εικόνας:");
 
         fortwsiEikonasBtn.setText("Φόρτωση εικόνας...");
+        fortwsiEikonasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fortwsiEikonasBtnActionPerformed(evt);
+            }
+        });
 
         siggrafeisLbl.setText("Επιλογή συγγραφέων:");
 
@@ -88,6 +95,20 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         perigrafiVivliouLbl.setText("Εισαγωγή περιγραφής βιβλίου:");
 
         perigrafiVivliouTxtPaneScroller.setViewportView(perigrafiVivliouTxtPane);
+
+        ananewsiListasEkdotwnBtn.setText("Ανανέωση Λίστας Εκδοτών");
+        ananewsiListasEkdotwnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ananewsiListasEkdotwnBtnActionPerformed(evt);
+            }
+        });
+
+        ananewsiPinakaSiggrafewnBtn.setText("Ανανέωση πίνακα");
+        ananewsiPinakaSiggrafewnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ananewsiPinakaSiggrafewnBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout firstPaneLayout = new javax.swing.GroupLayout(firstPane);
         firstPane.setLayout(firstPaneLayout);
@@ -112,12 +133,18 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
                                     .addGroup(firstPaneLayout.createSequentialGroup()
                                         .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(fortwsiEikonasBtn)
-                                            .addComponent(ekdotisComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(firstPaneLayout.createSequentialGroup()
+                                                .addComponent(ekdotisComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(ananewsiListasEkdotwnBtn)))
                                         .addGap(0, 210, Short.MAX_VALUE))))
-                            .addComponent(siggrafeisLbl)
+                            .addGroup(firstPaneLayout.createSequentialGroup()
+                                .addComponent(siggrafeisLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ananewsiPinakaSiggrafewnBtn))
                             .addComponent(perigrafiVivliouLbl))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(siggrafeisTableScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE))
+                    .addComponent(siggrafeisTableScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE))
                 .addContainerGap())
         );
         firstPaneLayout.setVerticalGroup(
@@ -134,19 +161,22 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ekdotisLbl)
-                    .addComponent(ekdotisComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ekdotisComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ananewsiListasEkdotwnBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eikonaLbl)
                     .addComponent(fortwsiEikonasBtn))
-                .addGap(17, 17, 17)
-                .addComponent(siggrafeisLbl)
+                .addGap(12, 12, 12)
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(siggrafeisLbl)
+                    .addComponent(ananewsiPinakaSiggrafewnBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(siggrafeisTableScroller, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(perigrafiVivliouLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(perigrafiVivliouTxtPaneScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                .addComponent(perigrafiVivliouTxtPaneScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -163,7 +193,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
                 .addGroup(secondPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(epilegmeniEikonaLbl)
                     .addComponent(labelToLoadUserSelectedIcon))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         secondPaneLayout.setVerticalGroup(
             secondPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,15 +213,25 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         });
 
         eisagwgiVivliouBtn.setText("Εισαγωγή βιβλίου");
+        eisagwgiVivliouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eisagwgiVivliouBtnActionPerformed(evt);
+            }
+        });
 
         katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
+        katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katharismosPediwnBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout thirdPaneLayout = new javax.swing.GroupLayout(thirdPane);
         thirdPane.setLayout(thirdPaneLayout);
         thirdPaneLayout.setHorizontalGroup(
             thirdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(thirdPaneLayout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
+                .addContainerGap(206, Short.MAX_VALUE)
                 .addGroup(thirdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kleisimoParathirouBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(eisagwgiVivliouBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -216,12 +256,12 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(firstPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(firstPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(thirdPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(thirdPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(24, 24, 24))
                     .addComponent(secondPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -248,16 +288,107 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         // TODO add your handling code here:        
     }//GEN-LAST:event_siggrafeisTableMouseClicked
 
-    private void fillComboEkdotes(){            
+    private void fortwsiEikonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fortwsiEikonasBtnActionPerformed
+
+        JFileChooser fc = new JFileChooser();
+        int res = fc.showOpenDialog(EisagwgiNeouVivliouInternalFrame.this);
+        if (res == JFileChooser.APPROVE_OPTION) {
+            this.labelToLoadUserSelectedIcon.setIcon(new ImageIcon(fc.getSelectedFile().getAbsolutePath()));
+            this.labelToLoadUserSelectedIcon.setText("");
+            this.isBookCoverLoaded = true;
+            this.bookCoverIcon = fc.getSelectedFile().getAbsolutePath();
+        }
+    }//GEN-LAST:event_fortwsiEikonasBtnActionPerformed
+
+    private void ananewsiListasEkdotwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ananewsiListasEkdotwnBtnActionPerformed
+        fillComboEkdotes();
+    }//GEN-LAST:event_ananewsiListasEkdotwnBtnActionPerformed
+
+    private void ananewsiPinakaSiggrafewnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ananewsiPinakaSiggrafewnBtnActionPerformed
+        ananewsiPinakaSiggrafewn();
+    }//GEN-LAST:event_ananewsiPinakaSiggrafewnBtnActionPerformed
+
+    private void katharismosPediwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katharismosPediwnBtnActionPerformed
+        isbnFld.setText("");
+        titlosFld.setText("");
+        ekdotisComboBox.setSelectedIndex(0);
+        labelToLoadUserSelectedIcon.setIcon(null);
+        labelToLoadUserSelectedIcon.setText("εδώ φορτώνεται η εικόνα...");
+        ananewsiPinakaSiggrafewnBtn.doClick();
+        ananewsiListasEkdotwnBtn.doClick();
+        perigrafiVivliouTxtPane.setText("");
+    }//GEN-LAST:event_katharismosPediwnBtnActionPerformed
+
+    private void eisagwgiVivliouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eisagwgiVivliouBtnActionPerformed
+
+        //anaktisi twn pediwn.....
+        String in_isbn = isbnFld.getText();
+        String in_title = titlosFld.getText();
+        String in_description = perigrafiVivliouTxtPane.getText();
+
+        //anaktisi pliroforiwn gia ton ekdoti...
+        String in_ekdotis = (String) ekdotisComboBox.getSelectedItem();
+        String[] infos = in_ekdotis.split("-");
+        String in_idEkdoti = infos[0];
+
+        //anaktisi tou url tou book cover....
+        String in_bookCoverUrl = "";
+        if (isBookCoverLoaded) {
+            in_bookCoverUrl = bookCoverIcon;
+        }//if.
+
+        //anaktisi twn epilegmenwn siggrafewn....
+        ArrayList<Siggrafeas> in_epilegmenoiSiggrafeis = new ArrayList<>();
+        ArrayList<Siggrafeas> siggrafeis = ((EmfanisiSiggrafewnTableModel) siggrafeisTable.getModel()).getData();
+        for (Siggrafeas temp : siggrafeis) {
+            if (temp.isIsSelected()) {
+                in_epilegmenoiSiggrafeis.add(temp);
+            }
+        }//for.
+
+        //elegxos ean exoun simplirwthei ola ta pedia....
+        if (in_isbn.trim().equals("") | in_title.trim().equals("") | in_description.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε τα πεδία!");
+            return;
+        }//if.
+
+        if (in_epilegmenoiSiggrafeis.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ επιλέξτε το συγγραφέα/συγγραφείς του βιβλίου!");
+            return;
+        }//if.
+
+        //ean ftasame edw shmainei oti exoume ola ta stoixeia tou vivliou ara auto twra pou mas menei einai na simplirwsoume ton pinaka: vivlia kai vivlia_has_siggrafeis.
+        Vivlio vivlioToBeInserted = new Vivlio();
+        vivlioToBeInserted.setIsbn(in_isbn);
+        vivlioToBeInserted.setTitlos(in_title);
+        vivlioToBeInserted.setUrl_exwfilou_vivliou(in_bookCoverUrl);
+        vivlioToBeInserted.setPerigrafi_vivliou(in_description);
+        vivlioToBeInserted.setId_ekdoti(Integer.parseInt(in_idEkdoti));
+
+        vivliaDAO.insertVivlio(vivlioToBeInserted);
+        vivliaDAO.insertSuggrafeisVivliou(vivlioToBeInserted.getIsbn(), in_epilegmenoiSiggrafeis);
+
+        JOptionPane.showMessageDialog(this, "Η εισαγωγή του βιβλίου στην ΒΔ ήταν επιτυχής!");
+        this.dispose();
+    }//GEN-LAST:event_eisagwgiVivliouBtnActionPerformed
+
+    private void ananewsiPinakaSiggrafewn() {
+        siggrafeisTable.setModel(new EmfanisiSiggrafewnTableModel());
+    }
+
+    private void fillComboEkdotes() {
         EkdotesDAO dao = new EkdotesDAO(DbConnection.getInstance().getConnection());
         ArrayList<Ekdotis> ekdotes = dao.findAll();
-        
-        for(Ekdotis e : ekdotes){
-            ekdotisComboBox.addItem(e.getName());        
-        }        
+
+        ekdotisComboBox.removeAllItems();
+        for (Ekdotis e : ekdotes) {
+            ekdotisComboBox.addItem(e.getId() + "-" + e.getName());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ananewsiListasEkdotwnBtn;
+    private javax.swing.JButton ananewsiPinakaSiggrafewnBtn;
     private javax.swing.JLabel eikonaLbl;
     private javax.swing.JButton eisagwgiVivliouBtn;
     private javax.swing.JComboBox ekdotisComboBox;
