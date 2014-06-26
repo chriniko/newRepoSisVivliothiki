@@ -6,4 +6,6 @@ package database.daos;
  */
 public class DaneismoiDAO {
 
+    //TODO add code.....
+    
 }//DaneismoiDAO.

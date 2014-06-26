@@ -1,15 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.AntitypaDAO;
+import database.daos.VivliaDAO;
+import database.models.Antitypo;
+import database.models.Vivlio;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import table_models.EmfanisiAntitypwnTableModel;
 
 /**
  *
  * @author nikos
  */
 public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JInternalFrame {
+
+    private final VivliaDAO vivliaDao = new VivliaDAO(DbConnection.getInstance().getConnection());
+    private final AntitypaDAO antitypaDao = new AntitypaDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form DiaxeirisiAntitypwnVivliwnInternalFrame
@@ -31,16 +38,18 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         isbnLbl = new javax.swing.JLabel();
         isbnFld = new javax.swing.JTextField();
         anazitisiBtn = new javax.swing.JButton();
-        katahrismosPediwnBtn = new javax.swing.JButton();
+        katharismosPediwnBtn = new javax.swing.JButton();
         scrollerForAntitypa = new javax.swing.JScrollPane();
         antitypaTable = new javax.swing.JTable();
         utilsPane = new javax.swing.JPanel();
         deletePane = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        diagrafiAntitypouBtn = new javax.swing.JButton();
         insertBookCopyPane = new javax.swing.JPanel();
         katastasiLbl = new javax.swing.JLabel();
         katastasiComboBox = new javax.swing.JComboBox();
         eisagwgiAntitypouBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        enimerwsiPinakaBtn = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -53,8 +62,18 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         isbnLbl.setText("Δώσε ISBN:");
 
         anazitisiBtn.setText("Αναζήτηση");
+        anazitisiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anazitisiBtnActionPerformed(evt);
+            }
+        });
 
-        katahrismosPediwnBtn.setText("Καθαρισμός πεδίων");
+        katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
+        katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katharismosPediwnBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout searchPaneLayout = new javax.swing.GroupLayout(searchPane);
         searchPane.setLayout(searchPaneLayout);
@@ -70,8 +89,8 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                     .addGroup(searchPaneLayout.createSequentialGroup()
                         .addComponent(anazitisiBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(katahrismosPediwnBtn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(katharismosPediwnBtn)))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         searchPaneLayout.setVerticalGroup(
             searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,29 +102,36 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                 .addGap(18, 18, 18)
                 .addGroup(searchPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(anazitisiBtn)
-                    .addComponent(katahrismosPediwnBtn))
+                    .addComponent(katharismosPediwnBtn))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
         antitypaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ISBN", "Αύξων αριθμός αντιτύπου", "Κατάσταση αντιτύπου", "ΑΜ Δανειζόμενου Μέλους", "Ημερομηνία Δανεισμού"
             }
         ));
+        antitypaTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                antitypaTableMouseClicked(evt);
+            }
+        });
         scrollerForAntitypa.setViewportView(antitypaTable);
 
         utilsPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selected Book Copy Actions", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
 
         deletePane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Delete Book Copy", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
 
-        jButton3.setText("Διαγραφή Αντίτυπου");
-        jButton3.setEnabled(false);
+        diagrafiAntitypouBtn.setText("Διαγραφή Αντίτυπου");
+        diagrafiAntitypouBtn.setEnabled(false);
+        diagrafiAntitypouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diagrafiAntitypouBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout deletePaneLayout = new javax.swing.GroupLayout(deletePane);
         deletePane.setLayout(deletePaneLayout);
@@ -113,14 +139,14 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
             deletePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deletePaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(diagrafiAntitypouBtn)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         deletePaneLayout.setVerticalGroup(
             deletePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(deletePaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
+                .addComponent(diagrafiAntitypouBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -129,10 +155,16 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         katastasiLbl.setText("Επίλεξε κατάσταση αντίτυπου:");
 
         katastasiComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Κακιά", "Μέτρια", "Καλή", "Άριστη" }));
+        katastasiComboBox.setEnabled(false);
 
         eisagwgiAntitypouBtn.setText("Εισαγωγή αντίτυπου");
         eisagwgiAntitypouBtn.setToolTipText("");
         eisagwgiAntitypouBtn.setEnabled(false);
+        eisagwgiAntitypouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eisagwgiAntitypouBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout insertBookCopyPaneLayout = new javax.swing.GroupLayout(insertBookCopyPane);
         insertBookCopyPane.setLayout(insertBookCopyPaneLayout);
@@ -142,8 +174,8 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                 .addContainerGap()
                 .addGroup(insertBookCopyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(katastasiLbl)
-                    .addComponent(katastasiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eisagwgiAntitypouBtn))
+                    .addComponent(eisagwgiAntitypouBtn)
+                    .addComponent(katastasiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(115, Short.MAX_VALUE))
         );
         insertBookCopyPaneLayout.setVerticalGroup(
@@ -155,7 +187,20 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                 .addComponent(katastasiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(eisagwgiAntitypouBtn)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Update Book Copy", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout utilsPaneLayout = new javax.swing.GroupLayout(utilsPane);
@@ -164,20 +209,34 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
             utilsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(utilsPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(utilsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(deletePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(insertBookCopyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(utilsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(utilsPaneLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(utilsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(insertBookCopyPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deletePane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         utilsPaneLayout.setVerticalGroup(
             utilsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(utilsPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(deletePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(insertBookCopyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(deletePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(insertBookCopyPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        enimerwsiPinakaBtn.setText("Ενημέρωση Πίνακα");
+        enimerwsiPinakaBtn.setEnabled(false);
+        enimerwsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enimerwsiPinakaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,11 +244,15 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(scrollerForAntitypa, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
-                    .addComponent(searchPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(utilsPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollerForAntitypa)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(searchPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(enimerwsiPinakaBtn))
+                        .addGap(0, 88, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(utilsPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -200,27 +263,131 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                     .addComponent(utilsPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(searchPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addComponent(enimerwsiPinakaBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(scrollerForAntitypa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(scrollerForAntitypa, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void anazitisiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anazitisiBtnActionPerformed
+
+        if (isbnFld.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ δώστε έγκυρο ISBN!");
+            return;
+        }
+
+        //elegxos ean yparxei to isbn...
+        Vivlio v = vivliaDao.searchVivlioByISBN(isbnFld.getText());
+        if (v == null) {
+            JOptionPane.showMessageDialog(this, "Δεν υπάρχει βιβλίο με αυτο το ISBN!");
+            return;
+        }
+
+        //ean ftasame edw fortwnoume ta antitypa sto jtable....
+        antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
+
+        isbnFld.setEditable(false);
+        anazitisiBtn.setEnabled(false);
+        katastasiComboBox.setEnabled(true);
+        eisagwgiAntitypouBtn.setEnabled(true);
+        enimerwsiPinakaBtn.setEnabled(true);
+
+    }//GEN-LAST:event_anazitisiBtnActionPerformed
+
+    private void katharismosPediwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katharismosPediwnBtnActionPerformed
+        isbnFld.setEditable(true);
+        isbnFld.setText("");
+        anazitisiBtn.setEnabled(true);
+        diagrafiAntitypouBtn.setEnabled(false);
+        katastasiComboBox.setEnabled(false);
+        eisagwgiAntitypouBtn.setEnabled(false);
+        enimerwsiPinakaBtn.setEnabled(false);
+
+        antitypaTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "ISBN", "Αύξων αριθμός αντιτύπου", "Κατάσταση αντιτύπου", "ΑΜ Δανειζόμενου Μέλους", "Ημερομηνία Δανεισμού"
+                }
+        ));
+
+    }//GEN-LAST:event_katharismosPediwnBtnActionPerformed
+
+    private void antitypaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_antitypaTableMouseClicked
+        int selectedRow = antitypaTable.getSelectedRow();
+        if (selectedRow < 0) {
+            diagrafiAntitypouBtn.setEnabled(false);
+        } else {
+            diagrafiAntitypouBtn.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_antitypaTableMouseClicked
+
+    private void eisagwgiAntitypouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eisagwgiAntitypouBtnActionPerformed
+
+        //prwta prepei na vroume poio einai to megalytero id antitypou....
+        ArrayList<Antitypo> antitypa = ((EmfanisiAntitypwnTableModel) antitypaTable.getModel()).getData();
+        Antitypo ant = antitypa.get(antitypa.size() - 1);//anaktisi tou antitypou me to megalytero id....
+
+        int new_next_id = ant.getIdAntitypou() + 1;
+
+        //anaktisi isbn kai katastasis antitypou....
+        String new_katastasi_antitypou = (String) katastasiComboBox.getSelectedItem();
+        String new_isbn_antitypou = isbnFld.getText();
+
+        //eisagwgi tou antitypou sth vasi dedomenwn...
+        Antitypo neoAntitypo = new Antitypo();
+        neoAntitypo.setIsbnVivliou(new_isbn_antitypou);
+        neoAntitypo.setIdAntitypou(new_next_id);
+        neoAntitypo.setKatastasiAntitypou(new_katastasi_antitypou);
+
+        boolean inserted = antitypaDao.eisagwgiNeouAntitypou(neoAntitypo);
+        if (!inserted) {
+            JOptionPane.showMessageDialog(this, "Η εισαγωγή του αντίτυπου ΔΕΝ ήταν επιτυχής!");
+            return;
+        }//if.
+
+        JOptionPane.showMessageDialog(this, "Η εισαγωγή του αντίτυπου ήταν επιτυχής!");
+
+        //ananewnoume to model tou jtable...
+        antitypaTable.setModel(new EmfanisiAntitypwnTableModel(new_isbn_antitypou));
+    }//GEN-LAST:event_eisagwgiAntitypouBtnActionPerformed
+
+    private void diagrafiAntitypouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagrafiAntitypouBtnActionPerformed
+
+        int res = JOptionPane.showConfirmDialog(this, "Είστε σίγουρος?");
+        if (res == JOptionPane.YES_OPTION) {
+
+            
+            
+        }//if.
+
+    }//GEN-LAST:event_diagrafiAntitypouBtnActionPerformed
+
+    private void enimerwsiPinakaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enimerwsiPinakaBtnActionPerformed
+        //ananewnoume to model tou jtable...
+        antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
+        diagrafiAntitypouBtn.setEnabled(false);
+    }//GEN-LAST:event_enimerwsiPinakaBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton anazitisiBtn;
     private javax.swing.JTable antitypaTable;
     private javax.swing.JPanel deletePane;
+    private javax.swing.JButton diagrafiAntitypouBtn;
     private javax.swing.JButton eisagwgiAntitypouBtn;
+    private javax.swing.JButton enimerwsiPinakaBtn;
     private javax.swing.JPanel insertBookCopyPane;
     private javax.swing.JTextField isbnFld;
     private javax.swing.JLabel isbnLbl;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton katahrismosPediwnBtn;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox katastasiComboBox;
     private javax.swing.JLabel katastasiLbl;
+    private javax.swing.JButton katharismosPediwnBtn;
     private javax.swing.JScrollPane scrollerForAntitypa;
     private javax.swing.JPanel searchPane;
     private javax.swing.JPanel utilsPane;

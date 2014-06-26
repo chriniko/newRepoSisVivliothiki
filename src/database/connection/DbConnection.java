@@ -12,7 +12,8 @@ import java.sql.SQLException;
 public class DbConnection {
 
     //================================
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/sistima_vivliothikis_ergasia?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=utf8&amp;connectionCollation=utf8_general_ci";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/sistima_vivliothikis_ergasia?zeroDateTimeBehavior=convertToNull&"
+            + "autoReconnect=true&amp;useUnicode=true&characterEncoding=utf-8&characterSetResults=utf8&connectionCollation=utf8_general_ci";
     private static final String DB_USER = "root";
     private static final String DB_PASS = "nikos";
     //================================

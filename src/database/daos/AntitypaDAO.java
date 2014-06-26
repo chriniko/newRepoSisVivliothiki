@@ -284,4 +284,84 @@ public class AntitypaDAO {
         return null;
     }//anaktisiAntitypwnMelous.
 
+    //========================================================================================================
+    private static final String DIAGRAFI_ANTITYPOU = "DELETE FROM antitypa WHERE vivlia_isbn_vivliou=? AND id_antitypou = ?";
+
+    public boolean diagrafiAntitypou(String isbn, int id) {
+        boolean res = false;
+        try {
+            pStat = conn.prepareStatement(DIAGRAFI_ANTITYPOU);
+            pStat.setString(1, isbn);
+            pStat.setInt(2, id);
+
+            int count = pStat.executeUpdate();
+
+            res = (count == 1);
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+        return res;
+    }//diagrafiAntitypou.
+
+    private static final String EISAGWGI_NEOU_ANTITYPOU = "INSERT INTO antitypa(vivlia_isbn_vivliou, id_antitypou, katastasi_antitypou) VALUES(?, ?, ?)";
+
+    public boolean eisagwgiNeouAntitypou(Antitypo neoAntitypo) {
+        boolean res = false;
+        try {
+            pStat = conn.prepareStatement(EISAGWGI_NEOU_ANTITYPOU);
+            pStat.setString(1, neoAntitypo.getIsbnVivliou());
+            pStat.setInt(2, neoAntitypo.getIdAntitypou());
+            pStat.setString(3, neoAntitypo.getKatastasiAntitypou());
+
+            int count = pStat.executeUpdate();
+            res = (count == 1);
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+        return res;
+    }//eisagwgiNeouAntitypou.
+
+    private static final String ENIMERWSI_ANTITYPOU = "UPDATE antitypa SET katastasi_antitypou = ? WHERE vivlia_isbn_vivliou = ? AND id_antitypou = ?";
+
+    public boolean enimerwsiAntitypou(Antitypo input) {//to mono pou epistrepetai na enimerwthei einai h katastasi antitypou....
+        boolean res = false;
+        try {
+            pStat = conn.prepareStatement(ENIMERWSI_ANTITYPOU);
+            pStat.setString(1, input.getKatastasiAntitypou());
+            pStat.setString(1, input.getIsbnVivliou());
+            pStat.setInt(1, input.getIdAntitypou());
+
+            int count = pStat.executeUpdate();
+            res = (count == 1);
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+
+        return res;
+    }//enimerwsiAntitypou.
+
 }//AntitypaDAO.
