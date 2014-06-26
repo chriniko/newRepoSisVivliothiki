@@ -84,12 +84,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
 
         siggrafeisLbl.setText("Επιλογή συγγραφέων:");
 
-        siggrafeisTable.setModel(new EmfanisiSiggrafewn_StiliEpilogisTableModel());
-        siggrafeisTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                siggrafeisTableMouseClicked(evt);
-            }
-        });
+        siggrafeisTable.setModel(new table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel());
         siggrafeisTableScroller.setViewportView(siggrafeisTable);
 
         perigrafiVivliouLbl.setText("Εισαγωγή περιγραφής βιβλίου:");
@@ -287,10 +282,6 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
     private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
-
-    private void siggrafeisTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_siggrafeisTableMouseClicked
-        // TODO add your handling code here:        
-    }//GEN-LAST:event_siggrafeisTableMouseClicked
 
     private void fortwsiEikonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fortwsiEikonasBtnActionPerformed
 

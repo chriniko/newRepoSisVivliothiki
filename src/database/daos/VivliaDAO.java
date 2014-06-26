@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import utils.Utils;
 
@@ -28,7 +27,10 @@ public class VivliaDAO {
     private static final String SEARCH_VIVLIO_BY_TITLO = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia WHERE titlos_vivliou LIKE ?";
     private static final String ANAKTISI_SIGGRAFEIS_VIVLIOU = "SELECT id_siggrafea, onoma_siggrafea, epitheto_siggrafea"
             + " FROM siggrafeis, vivlia_has_siggrafeis WHERE id_siggrafea = siggrafeis_id_siggrafea AND vivlia_isbn_vivliou = ?";
-    private static final String ANAKTISI_VIVLIWN = "SELECT * FROM sistima_vivliothikis_ergasia.vivlia ORDER BY 2";
+    private static final String ANAKTISI_VIVLIWN = "SELECT isbn_vivliou, titlos_vivliou, url_exwfilou_vivliou, perigrafi_vivliou, id_ekdoti, onoma_ekdoti "
+            + "FROM vivlia, ekdotes "
+            + " WHERE ekdotes_id_ekdoti = id_ekdoti "
+            + " ORDER BY 2";
 
     //=======================QUERIES GIA DIAGRAFI VIVLIOU========================================
     private static final String DIAGRAFI_VIVLIOU_QUERY_NO_1 = "DELETE FROM vivlia_has_siggrafeis WHERE vivlia_isbn_vivliou = ?";
@@ -46,6 +48,7 @@ public class VivliaDAO {
     }//ctor.
 
     //----------------------------------------------------------------------------------
+    //WORKS.
     public boolean enimerwsiVivliou(Vivlio updatedBook) {
         try {
 
@@ -71,7 +74,7 @@ public class VivliaDAO {
 
             for (VivlioHasSiggrafeis temp : updatedBook.getSiggrafeis()) {
                 pStat.setString(1, temp.getIsbnVivliou());
-                pStat.setInt(1, temp.getIdSiggrafea());
+                pStat.setInt(2, temp.getIdSiggrafea());
                 result_3[idx++] = pStat.executeUpdate();
             }//for.
 
@@ -94,45 +97,46 @@ public class VivliaDAO {
     }//enimerwsiVivliou.
 
 //----------------------------------------------------------------------------------    
+    //WORKS.
     public ArrayList<Vivlio> findAll() {
-
-        ArrayList allBooks = new ArrayList();
-        Vivlio book;
-        try (Statement s = con.createStatement()) {
+        try {
             pStat = con.prepareStatement(ANAKTISI_VIVLIWN);
             rs = pStat.executeQuery();
 
+            ArrayList<Vivlio> vivlia = new ArrayList<>();
+            Vivlio temp;
+
             while (rs.next()) {
-                book = new Vivlio();
 
-                book.setIsbn(rs.getString("isbn_vivliou"));
-                book.setTitlos(rs.getString("titlos_vivliou"));
-                book.setId_ekdoti(rs.getInt("ekdotes_id_ekdoti"));
-                book.setPerigrafi_vivliou(rs.getString("perigrafi_vivliou"));
-                book.setUrl_exwfilou_vivliou(rs.getString("url_exwfilou_vivliou"));
+                temp = new Vivlio();
 
-                allBooks.add(book);
-            }
-        } catch (NumberFormatException | SQLException e) {
-            System.out.println(e + "       VivliaDAO.findAll()");
+                temp.setIsbn(rs.getString("isbn_vivliou"));
+                temp.setTitlos(rs.getString("titlos_vivliou"));
+                temp.setUrl_exwfilou_vivliou(rs.getString("url_exwfilou_vivliou"));
+                temp.setPerigrafi_vivliou(rs.getString("perigrafi_vivliou"));
+                temp.setId_ekdoti(rs.getInt("id_ekdoti"));
+                temp.setOnoma_ekdoti(rs.getString("onoma_ekdoti"));
+
+                vivlia.add(temp);
+            }//while.
+
+            return vivlia;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage() + " === " + ex.getSQLState() + " === " + ex.getErrorCode());
         } finally {
             try {
-                if (!pStat.isClosed()) {
-                    pStat.close();
-                }
                 if (!rs.isClosed()) {
                     rs.close();
                 }
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
             } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
-                while ((ex = ex.getNextException()) != null) {
-                    System.err.println(ex.getSQLState() + " - " + ex.getErrorCode());
-                }//while.
+                System.err.println(ex.getMessage() + " === " + ex.getSQLState() + " === " + ex.getErrorCode());
             }
         }
-
-        return allBooks;
-    }
+        return null;
+    }//findAll.
 
 //----------------------------------------------------------------------------------
     //WORKS.
@@ -327,25 +331,25 @@ public class VivliaDAO {
     }//diagrafiVivliou.
 //----------------------------------------------------------------------------------
 
-    /*    
-     public static void main(String[] args)
-     {
-        
-     DbConnection con = DbConnection.getInstance(); 
-    
-     EkdotesDAO edao = new EkdotesDAO(con.getConnection());
+    /* public static void main(String[] args) {
+
+     DbConnection con = DbConnection.getInstance();
+     //    
+     //     EkdotesDAO edao = new EkdotesDAO(con.getConnection());
      VivliaDAO vdao = new VivliaDAO(con.getConnection());
-     
-     
-     Vivlio v = new Vivlio();
-     v.setIsbn("789-456-123"); v.setTitlos("Enterprise JavaBeans 3.1");
-     v.setPerigrafi_vivliou("Developing"); v.setUrl_exwfilou_vivliou("C://Users/");
-     v.setId_ekdoti(edao.searchEkdotiByName("Kleidarithmos").getId());
-     
-     vdao.insertVivlio(v);
-     
-     
+     //     
+     //     
+     //     Vivlio v = new Vivlio();
+     //     v.setIsbn("789-456-123"); v.setTitlos("Enterprise JavaBeans 3.1");
+     //     v.setPerigrafi_vivliou("Developing"); v.setUrl_exwfilou_vivliou("C://Users/");
+     //     v.setId_ekdoti(edao.searchEkdotiByName("Kleidarithmos").getId());
+     //     
+     //     vdao.insertVivlio(v);
+
+     ArrayList list = vdao.findAll();
+     for (Object o : list) {
+     System.out.println(o);
      }
-    
-     */
+
+     }*/
 } //VivliaDAO.

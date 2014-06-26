@@ -203,9 +203,6 @@
                   <Connection code="new table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel()" type="code"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="siggrafeisTableMouseClicked"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -5,6 +5,7 @@ import database.models.Siggrafeas;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import table_models.EmfanisiEkdotwn_StiliEpilogisTableModel;
 import table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel;
 import utils.ApothikeutisEnimerwmenwnSiggrafewnEkdoti;
@@ -152,7 +153,7 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
                 epilegmenosEkdotis = temp;
                 break;
             }
-        }
+        }//for.
 
         //anaktisi twn epilegmenwn siggrafewn...
         ArrayList<Siggrafeas> siggrafeis = ((EmfanisiSiggrafewn_StiliEpilogisTableModel) siggrafeisTable.getModel()).getData();
@@ -161,15 +162,26 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
             if (temp.isIsSelected()) {
                 epilegmenoiSiggrafeis.add(temp);
             }
+        }//for.
+
+        //elegxos ean exei kanei epiloges o xristis...
+        if (epilegmenosEkdotis == null || epilegmenoiSiggrafeis.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ επιλέξτε έναν εκδότη και έναν ή περισσότερους συγγραφείς!");
+            return;
         }
 
-//        System.out.println(epilegmenosEkdotis);
-//        for (Siggrafeas temp : epilegmenoiSiggrafeis) {
-//            System.out.println(temp);
-//        }
-        
+        //apothikeuoumai tous epilegmenous siggrafeis kai ton ekdoti....
+        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.swseStoixeiaEkdoti(epilegmenosEkdotis, ApothikeutisEnimerwmenwnSiggrafewnEkdoti.OnomataArxeiwn.ARXEIO_EKDOTIS.getOnomaArxeiou());
+        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.swseArrayListSiggrafewn(epilegmenoiSiggrafeis, ApothikeutisEnimerwmenwnSiggrafewnEkdoti.OnomataArxeiwn.ARXEIO_SIGGRAFEWN.getOnomaArxeiou());
 
+        //shkwnoume flag oti o xristis epelexe nees rithmiseis....
+        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.NEA_ARXEIA = true;
 
+        //emfanizoume minima epivevaiwsis....
+        JOptionPane.showMessageDialog(this, "Οι επιλογές σας αποθηκεύτηκαν επιτυχως! Πατήστε το κουμπί [Ενημέρωση Επιλογών] για να εφαρμοστούν!");
+
+        //kleinoume to internal frame...
+        this.dispose();
     }//GEN-LAST:event_apothikeusiEpilogwnBtnActionPerformed
 
 

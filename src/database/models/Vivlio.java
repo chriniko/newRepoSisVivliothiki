@@ -14,6 +14,7 @@ public class Vivlio implements Serializable {
     private String url_exwfilou_vivliou;
     private String perigrafi_vivliou;
     private int id_ekdoti;
+    private String onoma_ekdoti;
     private ArrayList<VivlioHasSiggrafeis> siggrafeis;
     private ArrayList<Antitypo> antitypaVivliou;
 
@@ -22,7 +23,7 @@ public class Vivlio implements Serializable {
 
     @Override
     public String toString() {
-        return "Vivlio{" + "isbn=" + isbn + ", titlos=" + titlos + ", url_exwfilou_vivliou=" + url_exwfilou_vivliou + ", perigrafi_vivliou=" + perigrafi_vivliou + ", id_ekdoti=" + id_ekdoti + ", siggrafeis=" + siggrafeis + ", antitypaVivliou=" + antitypaVivliou + '}';
+        return "Vivlio{" + "isbn=" + isbn + ", titlos=" + titlos + ", url_exwfilou_vivliou=" + url_exwfilou_vivliou + ", perigrafi_vivliou=" + perigrafi_vivliou + ", id_ekdoti=" + id_ekdoti + ", onoma_ekdoti=" + onoma_ekdoti + ", siggrafeis=" + siggrafeis + ", antitypaVivliou=" + antitypaVivliou + '}';
     }
 
     public String getIsbn() {
@@ -79,6 +80,14 @@ public class Vivlio implements Serializable {
 
     public void setAntitypaVivliou(ArrayList<Antitypo> antitypaVivliou) {
         this.antitypaVivliou = antitypaVivliou;
+    }
+
+    public String getOnoma_ekdoti() {
+        return onoma_ekdoti;
+    }
+
+    public void setOnoma_ekdoti(String onoma_ekdoti) {
+        this.onoma_ekdoti = onoma_ekdoti;
     }
 
 }

@@ -43,6 +43,7 @@ public class SiggrafeisDAO {
             System.out.println(e + "     SiggrafeisDAO.insertSiggrafea()");
         }
     }
+
     //--------------------------------------------------------------------------------------    
     public ArrayList<Siggrafeas> findAll() {
 
@@ -70,6 +71,7 @@ public class SiggrafeisDAO {
 
         return allWriters;
     }
+
     //--------------------------------------------------------------------------------------
     public boolean diagrafiSiggrafea(int idSiggrafea) {
         try {
@@ -101,6 +103,7 @@ public class SiggrafeisDAO {
         return false;
     }//diagrafiSiggrafea.
     //--------------------------------------------------------------------------------------
+
     public boolean enimerwsiSiggrafea(Siggrafeas input) {
 
         try {
@@ -132,6 +135,7 @@ public class SiggrafeisDAO {
         return false;
     }//enimerwsiSiggrafea.
     //---------------------------------------------------------------------------------------
+
     public ArrayList<Vivlio> anaktisiVivliwnSiggrafea(int idSiggrafea) {
         try {
             pStat = con.prepareStatement(ANAKTISI_VIVLIWN_SIGGRAFEA);
@@ -180,5 +184,5 @@ public class SiggrafeisDAO {
         return null;
     }//anaktisiVivliwnSIggrafea.
     //----------------------------------------------------------------------------------------
-    
+
 }//SIggrafeisDAO.

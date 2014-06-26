@@ -19,7 +19,9 @@ public class ApothikeutisEnimerwmenwnSiggrafewnEkdoti {
     public static enum OnomataArxeiwn {
 
         ARXEIO_SIGGRAFEWN("siggrafeis_serial.dat"),
-        ARXEIO_EKDOTIS("ekdotis_serial.dat");
+        ARXEIO_SIGGRAFEWN_BACKUP("siggrafeis_serial_bu.dat"),//backup arxeio, an akyrwsei thn enimerwsi na epistrepsoume se auth thn epilogh....
+        ARXEIO_EKDOTIS("ekdotis_serial.dat"),
+        ARXEIO_EKDOTIS_BACKUP("ekdotis_serial_bu.dat");//backup arxeio, an akyrwsei thn enimerwsi na epistrepsoume se auth thn epilogh....
 
         private final String onomaArxeiou;
 
@@ -33,6 +35,16 @@ public class ApothikeutisEnimerwmenwnSiggrafewnEkdoti {
 
     }//OnomataArxeiwn.
     //========================================
+
+    public static boolean NEA_ARXEIA = false;//ean epilexe nees rithmiseis, diladi exoun dimiourgithei nea seiriopoihmena arxeia me ton neo ekdoti kai tous neous siggrafeis/siggrafea....
+
+    //=========================================
+    public static void katestrepseArxeia(String[] onomataArxeiwn) {
+        for (String temp : onomataArxeiwn) {
+            File file = new File(temp);
+            file.delete();
+        }
+    }//katestrepseArxeia.
 
     public static boolean yparxeiToArxeio(String onomaArxeiou) {
         File selectedFile = new File(onomaArxeiou);

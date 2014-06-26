@@ -8,10 +8,12 @@ import database.models.Antitypo;
 import database.models.Ekdotis;
 import database.models.Siggrafeas;
 import database.models.Vivlio;
+import database.models.VivlioHasSiggrafeis;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -39,7 +41,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     private ArrayList<Siggrafeas> loadedSiggrafeis;
     private Ekdotis loadedEkdotis;
     //=================================================================
-    private Listener_Gia_Emfanisi_EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame l = new Listener_Gia_Emfanisi_EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame();
+    private final Listener_Gia_Emfanisi_EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame l = new Listener_Gia_Emfanisi_EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame();
 
     /**
      * Creates new form AnazitisiVivliouInternalFrame
@@ -80,6 +82,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         perigrafiVivliouLbl = new javax.swing.JLabel();
         scrollerPerigrafiVivliouTxtPane = new javax.swing.JScrollPane();
         perigrafiVivliouTxtPane = new javax.swing.JTextArea();
+        enimerwsiEpilogwnBtn = new javax.swing.JButton();
         bookCoverIconPane = new javax.swing.JPanel();
         exwfiloVivliouLbl = new javax.swing.JLabel();
         lblToLoadBookCoverIcon = new javax.swing.JLabel();
@@ -206,6 +209,14 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         perigrafiVivliouTxtPane.setWrapStyleWord(true);
         scrollerPerigrafiVivliouTxtPane.setViewportView(perigrafiVivliouTxtPane);
 
+        enimerwsiEpilogwnBtn.setText("Ενημέρωση Επιλογών");
+        enimerwsiEpilogwnBtn.setEnabled(false);
+        enimerwsiEpilogwnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enimerwsiEpilogwnBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bookInfoPaneLayout = new javax.swing.GroupLayout(bookInfoPane);
         bookInfoPane.setLayout(bookInfoPaneLayout);
         bookInfoPaneLayout.setHorizontalGroup(
@@ -220,7 +231,8 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
                                 .addComponent(siggrafeasLbl)
                                 .addComponent(ekdoseisVivliouLbl)
                                 .addComponent(titlosVivliouLbl)
-                                .addComponent(isbnLbl))
+                                .addComponent(isbnLbl)
+                                .addComponent(enimerwsiEpilogwnBtn))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(bookInfoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(isbnFld)
@@ -246,8 +258,11 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(ekdoseisVivliouLbl)
                     .addComponent(ekdoseisVivliouFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bookInfoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(siggrafeasLbl)
+                .addGroup(bookInfoPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(bookInfoPaneLayout.createSequentialGroup()
+                        .addComponent(siggrafeasLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(enimerwsiEpilogwnBtn))
                     .addComponent(scrollerSiggrafeisList, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(perigrafiVivliouLbl)
@@ -545,6 +560,8 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
     private void enimerwsiVivliouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enimerwsiVivliouBtnActionPerformed
 
+        enimerwsiEpilogwnBtn.setEnabled(true);
+
         kleisimoParathirouBtn.setEnabled(false);
         katharismosPediwnBtn.setEnabled(false);
         this.setClosable(false);
@@ -571,9 +588,10 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         ekdoseisVivliouLbl.addMouseListener(l);
         siggrafeasLbl.addMouseListener(l);
 
-        //apothikeuoume ton ekdotis kai tous siggrafeis tou vivliou se arxeio seiriopoihmena....
-        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.swseStoixeiaEkdoti(loadedEkdotis, OnomataArxeiwn.ARXEIO_EKDOTIS.getOnomaArxeiou());
-        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.swseArrayListSiggrafewn(loadedSiggrafeis, OnomataArxeiwn.ARXEIO_SIGGRAFEWN.getOnomaArxeiou());
+        //apothikeuoume ton ekdotis kai tous siggrafeis tou vivliou se arxeio seiriopoihmena, se backup wste an o xristis kanei akirwsi enimerwsis na xanaepanelthoume
+        //stous hdh epilegmenous siggrafeis kai ekdoti.
+        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.swseStoixeiaEkdoti(loadedEkdotis, OnomataArxeiwn.ARXEIO_EKDOTIS_BACKUP.getOnomaArxeiou());
+        ApothikeutisEnimerwmenwnSiggrafewnEkdoti.swseArrayListSiggrafewn(loadedSiggrafeis, OnomataArxeiwn.ARXEIO_SIGGRAFEWN_BACKUP.getOnomaArxeiou());
 
 
     }//GEN-LAST:event_enimerwsiVivliouBtnActionPerformed
@@ -590,6 +608,18 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_fortwseExwfylloVivliouBtnActionPerformed
 
     private void akirwsiEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_akirwsiEnimerwsisBtnActionPerformed
+
+        //katastrefoume ta apothikeumenous siggrafeis kai ekdoti pou isws exei epilexei o xristis...
+        if (ApothikeutisEnimerwmenwnSiggrafewnEkdoti.NEA_ARXEIA == true) {
+
+            //katastrefoume ta arxeia....
+            ApothikeutisEnimerwmenwnSiggrafewnEkdoti.katestrepseArxeia(new String[]{OnomataArxeiwn.ARXEIO_EKDOTIS.getOnomaArxeiou(),
+                OnomataArxeiwn.ARXEIO_SIGGRAFEWN.getOnomaArxeiou(), OnomataArxeiwn.ARXEIO_EKDOTIS_BACKUP.getOnomaArxeiou(),
+                OnomataArxeiwn.ARXEIO_SIGGRAFEWN_BACKUP.getOnomaArxeiou()});
+
+            //katevazoume to flag.....
+            ApothikeutisEnimerwmenwnSiggrafewnEkdoti.NEA_ARXEIA = false;
+        }//if.
 
         //akyrwnoume tous listeners.....
         ekdoseisVivliouLbl.removeMouseListener(l);
@@ -608,6 +638,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         lblToLoadBookCoverIcon.setIcon(new ImageIcon(urlExwfyllou));
         //=======================================================
 
+        enimerwsiEpilogwnBtn.setEnabled(false);
         kleisimoParathirouBtn.setEnabled(true);
         katharismosPediwnBtn.setEnabled(true);
         this.setClosable(true);
@@ -630,8 +661,140 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_akirwsiEnimerwsisBtnActionPerformed
 
     private void epivevaiwshEnimerwsisBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epivevaiwshEnimerwsisBtnActionPerformed
-        // TODO add your handling code here:
+
+        String fileToLoadEkdoti;
+        String fileToLoadSiggrafeis;
+        if (ApothikeutisEnimerwmenwnSiggrafewnEkdoti.NEA_ARXEIA == false) {
+            fileToLoadEkdoti = OnomataArxeiwn.ARXEIO_EKDOTIS_BACKUP.getOnomaArxeiou();
+            fileToLoadSiggrafeis = OnomataArxeiwn.ARXEIO_SIGGRAFEWN_BACKUP.getOnomaArxeiou();
+        } else {
+            fileToLoadEkdoti = OnomataArxeiwn.ARXEIO_EKDOTIS.getOnomaArxeiou();
+            fileToLoadSiggrafeis = OnomataArxeiwn.ARXEIO_SIGGRAFEWN.getOnomaArxeiou();
+        }
+
+        //anaktisi twn newn pliroforiwn....
+        String isbn = isbnFld.getText();
+        String new_title = titlosVivliouFld.getText();
+
+        //anaktoume ton epilegmeno ekdoti....
+        Ekdotis neosEkdotis = ApothikeutisEnimerwmenwnSiggrafewnEkdoti.anaktiseStoixeiaEkdoti(fileToLoadEkdoti);
+
+        String nea_perigrafi = perigrafiVivliouTxtPane.getText();
+        String neo_url_exwfyllou = urlExwfyllou;
+
+        //elegxos ean exoun dwthei egyra stoixeia....
+        if (new_title.trim().equals("") | nea_perigrafi.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε τα πεδία με έγκυρα δεδομένα!");
+            return;
+        }//if.
+
+        //ean ftasame edw shmainei oti einai egyra ta stoixeia ara auto pou mas menei einai na enhmerwsoume thn vasi...
+        Vivlio enimerwmenoVivlio = new Vivlio();
+        enimerwmenoVivlio.setIsbn(isbn);
+        enimerwmenoVivlio.setTitlos(new_title);
+        enimerwmenoVivlio.setUrl_exwfilou_vivliou(neo_url_exwfyllou);
+        enimerwmenoVivlio.setPerigrafi_vivliou(nea_perigrafi);
+        enimerwmenoVivlio.setId_ekdoti(neosEkdotis.getId());
+
+        //anaktoume tous epilegmenous siggrafeis...
+        ArrayList<Siggrafeas> neoiSiggrafeis = ApothikeutisEnimerwmenwnSiggrafewnEkdoti.anaktiseArrayListSiggrafewn(fileToLoadSiggrafeis);
+
+        //anaktoume ta id twn siggrafewn....
+        VivlioHasSiggrafeis[] vivlioHasSiggrafeis = new VivlioHasSiggrafeis[neoiSiggrafeis.size()];
+        for (int i = 0; i < neoiSiggrafeis.size(); i++) {
+            vivlioHasSiggrafeis[i] = new VivlioHasSiggrafeis(isbn, neoiSiggrafeis.get(i).getId());
+        }//for.
+        enimerwmenoVivlio.setSiggrafeis(new ArrayList<>(Arrays.asList(vivlioHasSiggrafeis)));
+
+        //afou ta settarame ola twra kanoume update sta katallila tables...
+        boolean enimerwthike = vivliaDAO.enimerwsiVivliou(enimerwmenoVivlio);
+
+        //ean kati phge strava tote emfanizoume minima....
+        if (!enimerwthike) {
+            JOptionPane.showMessageDialog(this, "Η ενημέρωση του βιβλίου ΔΕΝ ήταν επιτυχής!");
+            return;
+        }//if.
+
+        JOptionPane.showMessageDialog(this, "Το βιβλίο ενημερώθηκε επιτυχώς!");
+
+        //swzoume ta nea stoixeia wste na douleuei to GUI mas swsta....
+        loadedVivlio = enimerwmenoVivlio;
+        loadedEkdotis = neosEkdotis;
+        loadedSiggrafeis = vivliaDAO.anaktisiSiggrafeisVivliou(isbn);
+
+        //=============ALLAZOUME KATALLILA TA COMPONENTS TOU GUI MAS==================
+        //katastrefoume ta apothikeumenous siggrafeis kai ekdoti(kai ta back up tous).....
+        if (ApothikeutisEnimerwmenwnSiggrafewnEkdoti.NEA_ARXEIA == true) {
+
+            //katastrefoume ta arxeia....
+            ApothikeutisEnimerwmenwnSiggrafewnEkdoti.katestrepseArxeia(new String[]{OnomataArxeiwn.ARXEIO_EKDOTIS.getOnomaArxeiou(),
+                OnomataArxeiwn.ARXEIO_SIGGRAFEWN.getOnomaArxeiou(), OnomataArxeiwn.ARXEIO_EKDOTIS_BACKUP.getOnomaArxeiou(),
+                OnomataArxeiwn.ARXEIO_SIGGRAFEWN_BACKUP.getOnomaArxeiou()});
+
+            //katevazoume to flag.....
+            ApothikeutisEnimerwmenwnSiggrafewnEkdoti.NEA_ARXEIA = false;
+        }//if.
+
+        //akyrwnoume tous listeners.....
+        ekdoseisVivliouLbl.removeMouseListener(l);
+        siggrafeasLbl.removeMouseListener(l);
+
+        //======================================================
+        //ta fortwnoume apo ta loaded, auto to tmima kwdika mporei kai na paralifthei....
+        titlosVivliouFld.setText(loadedVivlio.getTitlos());
+        perigrafiVivliouTxtPane.setText(loadedVivlio.getPerigrafi_vivliou());
+        urlExwfyllou = loadedVivlio.getUrl_exwfilou_vivliou();
+        listaModelou.clear();
+        for (Siggrafeas temp : loadedSiggrafeis) {
+            listaModelou.addElement(temp.getOnoma() + " " + temp.getEpitheto());
+        }
+        ekdoseisVivliouFld.setText(loadedEkdotis.getName());
+        lblToLoadBookCoverIcon.setIcon(new ImageIcon(urlExwfyllou));
+        //=======================================================
+
+        enimerwsiEpilogwnBtn.setEnabled(false);
+        kleisimoParathirouBtn.setEnabled(true);
+        katharismosPediwnBtn.setEnabled(true);
+        this.setClosable(true);
+        enimerwsiVivliouBtn.setEnabled(true);
+        diagrafiVivliouBtn.setEnabled(true);
+
+        akirwsiEnimerwsisBtn.setEnabled(false);
+        epivevaiwshEnimerwsisBtn.setEnabled(false);
+
+        titlosVivliouLbl.setForeground(Color.black);
+        perigrafiVivliouLbl.setForeground(Color.black);
+        exwfiloVivliouLbl.setForeground(Color.black);
+        ekdoseisVivliouLbl.setForeground(Color.black);
+        siggrafeasLbl.setForeground(Color.black);
+
+        titlosVivliouFld.setEditable(false);
+        perigrafiVivliouTxtPane.setEditable(false);
+
+        fortwseExwfylloVivliouBtn.setEnabled(false);
+
     }//GEN-LAST:event_epivevaiwshEnimerwsisBtnActionPerformed
+
+    private void enimerwsiEpilogwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enimerwsiEpilogwnBtnActionPerformed
+
+        //ean o xristis den exei apothikeusei nees allages tote feugoume.....
+        if (ApothikeutisEnimerwmenwnSiggrafewnEkdoti.NEA_ARXEIA == false) {
+            return;
+        }
+
+        //alliws anaktoume tous siggrafeis....
+        ArrayList<Siggrafeas> siggrafeis = ApothikeutisEnimerwmenwnSiggrafewnEkdoti.anaktiseArrayListSiggrafewn(OnomataArxeiwn.ARXEIO_SIGGRAFEWN.getOnomaArxeiou());
+        listaModelou.clear();
+        //kai tous topothetoume sto jlist.....
+        for (Siggrafeas temp : siggrafeis) {
+            listaModelou.addElement(temp.getOnoma() + " " + temp.getEpitheto());
+        }
+
+        //anaktoume ton ekdoti kai topothetoume tis plirofories tou sto txt fld.....
+        Ekdotis ekdotis = ApothikeutisEnimerwmenwnSiggrafewnEkdoti.anaktiseStoixeiaEkdoti(OnomataArxeiwn.ARXEIO_EKDOTIS.getOnomaArxeiou());
+        ekdoseisVivliouFld.setText(ekdotis.getName());
+
+    }//GEN-LAST:event_enimerwsiEpilogwnBtnActionPerformed
 
     //================================================================================================
     class Listener_Gia_Emfanisi_EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends MouseAdapter {
@@ -666,6 +829,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel dwsePliroforiaLbl;
     private javax.swing.JTextField ekdoseisVivliouFld;
     private javax.swing.JLabel ekdoseisVivliouLbl;
+    private javax.swing.JButton enimerwsiEpilogwnBtn;
     private javax.swing.JButton enimerwsiVivliouBtn;
     private javax.swing.JButton epivevaiwshEnimerwsisBtn;
     private javax.swing.JLabel exwfiloVivliouLbl;
