@@ -23,6 +23,7 @@ public class Efarmogi extends javax.swing.JFrame {
     EmfanisiVivliwnInternalFrame emfanisiVivliwnInternalFrame;
     AnazitisiVivliouInternalFrame anazitisiVivliouInternalFrame;
     DiaxeirisiAntitypwnVivliouInternalFrame diaxeirisiAntitypwnVivliouInternalFrame;
+    EmfanisiIstorikouMelousInternalFrame emfanisiIstorikouMelousInternalFrame;
 
     /**
      * Creates new form Efarmogi
@@ -42,6 +43,7 @@ public class Efarmogi extends javax.swing.JFrame {
         eisagwgiNeouMelousItem = new javax.swing.JMenuItem();
         anazitisiMelousItem = new javax.swing.JMenuItem();
         emfanishMelwnItem = new javax.swing.JMenuItem();
+        emfanisiIstorikouMelousItem = new javax.swing.JMenuItem();
         diaxeirisiEkdotwnMenu = new javax.swing.JMenu();
         eisagwgiNeouEkdotiItem = new javax.swing.JMenuItem();
         emfanisiEkdotwnItem = new javax.swing.JMenuItem();
@@ -93,6 +95,14 @@ public class Efarmogi extends javax.swing.JFrame {
             }
         });
         diaxeirisiMelwnMenu.add(emfanishMelwnItem);
+
+        emfanisiIstorikouMelousItem.setText("Εμφάνιση Ιστορικού Μέλους");
+        emfanisiIstorikouMelousItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emfanisiIstorikouMelousItemActionPerformed(evt);
+            }
+        });
+        diaxeirisiMelwnMenu.add(emfanisiIstorikouMelousItem);
 
         menuBar.add(diaxeirisiMelwnMenu);
 
@@ -323,6 +333,12 @@ public class Efarmogi extends javax.swing.JFrame {
         diaxeirisiAntitypwnVivliouInternalFrame.show();
     }//GEN-LAST:event_diaxeirishAntitypwnVivliwnItemMouseClicked
 
+    private void emfanisiIstorikouMelousItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emfanisiIstorikouMelousItemActionPerformed
+        emfanisiIstorikouMelousInternalFrame = new EmfanisiIstorikouMelousInternalFrame();
+        desktopPane.add(emfanisiIstorikouMelousInternalFrame);
+        emfanisiIstorikouMelousInternalFrame.show();
+    }//GEN-LAST:event_emfanisiIstorikouMelousItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -401,6 +417,7 @@ public class Efarmogi extends javax.swing.JFrame {
     private javax.swing.JMenuItem emfanisiBooksItem;
     private javax.swing.JMenuItem emfanisiDaneismenwnAntitypwnItem;
     private javax.swing.JMenuItem emfanisiEkdotwnItem;
+    private javax.swing.JMenuItem emfanisiIstorikouMelousItem;
     private javax.swing.JMenuItem emfanisiSiggrafewnItem;
     private javax.swing.JMenuItem kleisimoEfarmogisItem;
     private javax.swing.JMenuBar menuBar;

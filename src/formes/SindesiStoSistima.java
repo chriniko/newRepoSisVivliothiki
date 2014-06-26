@@ -45,11 +45,11 @@ public class SindesiStoSistima extends javax.swing.JFrame {
         passLbl = new javax.swing.JLabel();
         amFld = new javax.swing.JTextField();
         passFld = new javax.swing.JPasswordField();
-        logariasmosLbl = new javax.swing.JLabel();
-        logariasmosComboBox = new javax.swing.JComboBox();
+        ipiresiesLbl = new javax.swing.JLabel();
         kleisimoEfarmogisBtn = new javax.swing.JButton();
         sindesiBtn = new javax.swing.JButton();
         welcomeLbl = new javax.swing.JLabel();
+        ipiresiesBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Σύνδεση στο σύστημα βιβλιοθήκης");
@@ -63,9 +63,7 @@ public class SindesiStoSistima extends javax.swing.JFrame {
 
         passLbl.setText("Κωδικός:");
 
-        logariasmosLbl.setText("Τύπος λογαριασμού:");
-
-        logariasmosComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Χρήστης", "Βιβλιοθηκάριος" }));
+        ipiresiesLbl.setText("Υπηρεσίες Βιβλιοθήκης:");
 
         kleisimoEfarmogisBtn.setText("Κλείσιμο εφαρμογής");
         kleisimoEfarmogisBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +80,13 @@ public class SindesiStoSistima extends javax.swing.JFrame {
         });
 
         welcomeLbl.setText("Καλώς ήρθατε! Παρακαλώ συνδεθείτε για να συνεχίσετε.");
+
+        ipiresiesBtn.setText("Υπηρεσίες");
+        ipiresiesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ipiresiesBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -100,22 +105,16 @@ public class SindesiStoSistima extends javax.swing.JFrame {
                         .addGap(0, 125, Short.MAX_VALUE))
                     .addGroup(mainPaneLayout.createSequentialGroup()
                         .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
-                                    .addComponent(passLbl)
-                                    .addGap(72, 72, 72))
-                                .addGroup(mainPaneLayout.createSequentialGroup()
-                                    .addComponent(logariasmosLbl)
-                                    .addGap(7, 7, 7)))
-                            .addGroup(mainPaneLayout.createSequentialGroup()
-                                .addComponent(amLbl)
-                                .addGap(18, 18, 18)))
+                            .addComponent(ipiresiesLbl)
+                            .addComponent(amLbl)
+                            .addComponent(passLbl))
+                        .addGap(7, 7, 7)
                         .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(amFld)
+                            .addComponent(passFld)
                             .addGroup(mainPaneLayout.createSequentialGroup()
-                                .addComponent(logariasmosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(passFld))))
+                                .addComponent(ipiresiesBtn)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         mainPaneLayout.setVerticalGroup(
@@ -132,10 +131,10 @@ public class SindesiStoSistima extends javax.swing.JFrame {
                     .addComponent(passLbl)
                     .addComponent(passFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logariasmosLbl)
-                    .addComponent(logariasmosComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ipiresiesLbl)
+                    .addComponent(ipiresiesBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sindesiBtn)
                     .addComponent(kleisimoEfarmogisBtn))
@@ -194,29 +193,29 @@ public class SindesiStoSistima extends javax.swing.JFrame {
         obj.setAm(Integer.parseInt(amFld.getText()));
         obj.setPassword(passFld.getText());
 
-        if (this.logariasmosComboBox.getSelectedIndex() == 1) {//sindesi vivliothikariou....
-
-            obj = vivliothikarioiDAO.egyrosVivliothikarios(obj);
-            if (obj != null) {
-                accessGranted = true;
-                sindedemenosVivliothikarios = obj;
-            } else {
-                accessGranted = false;
-                JOptionPane.showMessageDialog(this, "Άρνηση πρόσβασης!");
-            }
-
-        } else if (logariasmosComboBox.getSelectedIndex() == 0) {//sindesi user....
-            JOptionPane.showMessageDialog(this, "Δεν υποστηρίζεται η λειτουργια σύνδεσης χρήστη απο το σύστημα,\n παρακαλώ προσπαθήστε αργότερα!");
+        obj = vivliothikarioiDAO.egyrosVivliothikarios(obj);
+        if (obj != null) {
+            accessGranted = true;
+            sindedemenosVivliothikarios = obj;
+        } else {
+            accessGranted = false;
+            JOptionPane.showMessageDialog(this, "Άρνηση πρόσβασης!");
         }
+
+
     }//GEN-LAST:event_sindesiBtnActionPerformed
+
+    private void ipiresiesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipiresiesBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ipiresiesBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amFld;
     private javax.swing.JLabel amLbl;
+    private javax.swing.JButton ipiresiesBtn;
+    private javax.swing.JLabel ipiresiesLbl;
     private javax.swing.JButton kleisimoEfarmogisBtn;
-    private javax.swing.JComboBox logariasmosComboBox;
-    private javax.swing.JLabel logariasmosLbl;
     private javax.swing.JPanel mainPane;
     private javax.swing.JPasswordField passFld;
     private javax.swing.JLabel passLbl;

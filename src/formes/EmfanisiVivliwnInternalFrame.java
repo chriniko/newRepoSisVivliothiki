@@ -1,16 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.VivliaDAO;
+import database.models.Siggrafeas;
+import database.models.Vivlio;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import table_models.EmfanisiVivliwnTableModel;
 
 /**
  *
  * @author nikos
  */
 public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
+
+    private VivliaDAO vivliaDao = new VivliaDAO(DbConnection.getInstance().getConnection());
+    DefaultListModel listaModelou = new DefaultListModel();
 
     /**
      * Creates new form EmfanisiVivliwnInternalFrame
@@ -43,7 +48,8 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
         siggrafeisList = new javax.swing.JList();
         perigrafiLbl = new javax.swing.JLabel();
         scrollerPerigrafiTxtPane = new javax.swing.JScrollPane();
-        perigrafiTxtPane = new javax.swing.JTextPane();
+        perigrafiVivliouTxtPane = new javax.swing.JTextArea();
+        ananewsiPinakaBtn = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -51,17 +57,20 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Εμφάνιση Βιβλίων");
 
-        booksTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        booksTable.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        booksTable.setModel(new EmfanisiVivliwnTableModel
+            ());
+        booksTable.setRowHeight(250);
+        booksTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                booksTableMouseClicked(evt);
             }
-        ));
+        });
+        booksTable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                booksTableKeyReleased(evt);
+            }
+        });
         scrollerBooksTable.setViewportView(booksTable);
 
         isbnLbl.setText("ISBN βιβλίου:");
@@ -71,6 +80,11 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
         ekdoseisLbl.setText("Εκδόσεις βιβλίου:");
 
         kleisimoParathirouBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoParathirouBtnActionPerformed(evt);
+            }
+        });
 
         ekdoseisFld.setEditable(false);
 
@@ -80,12 +94,17 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
 
         siggrafeasLbl.setText("Συγγραφέας/Συγγραφείς βιβλίου:");
 
+        siggrafeisList.setModel(listaModelou);
         scrollerSiggrafeisList.setViewportView(siggrafeisList);
 
         perigrafiLbl.setText("Περιγραφή βιβλίου:");
 
-        perigrafiTxtPane.setEditable(false);
-        scrollerPerigrafiTxtPane.setViewportView(perigrafiTxtPane);
+        perigrafiVivliouTxtPane.setEditable(false);
+        perigrafiVivliouTxtPane.setColumns(20);
+        perigrafiVivliouTxtPane.setLineWrap(true);
+        perigrafiVivliouTxtPane.setRows(5);
+        perigrafiVivliouTxtPane.setWrapStyleWord(true);
+        scrollerPerigrafiTxtPane.setViewportView(perigrafiVivliouTxtPane);
 
         javax.swing.GroupLayout firstPaneLayout = new javax.swing.GroupLayout(firstPane);
         firstPane.setLayout(firstPaneLayout);
@@ -94,31 +113,25 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(firstPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, firstPaneLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(kleisimoParathirouBtn))
+                    .addComponent(ekdoseisLbl)
+                    .addComponent(titleLbl)
+                    .addComponent(isbnLbl)
+                    .addComponent(siggrafeasLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(isbnFld, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                    .addComponent(titleFld)
+                    .addComponent(ekdoseisFld)
+                    .addComponent(scrollerSiggrafeisList, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrollerPerigrafiTxtPane)
                     .addGroup(firstPaneLayout.createSequentialGroup()
-                        .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(firstPaneLayout.createSequentialGroup()
-                                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ekdoseisLbl)
-                                    .addComponent(titleLbl)
-                                    .addComponent(isbnLbl))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(isbnFld)
-                                    .addComponent(titleFld)
-                                    .addComponent(ekdoseisFld)))
-                            .addGroup(firstPaneLayout.createSequentialGroup()
-                                .addComponent(siggrafeasLbl)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollerSiggrafeisList, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollerPerigrafiTxtPane)
-                            .addGroup(firstPaneLayout.createSequentialGroup()
-                                .addComponent(perigrafiLbl)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addComponent(perigrafiLbl)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, firstPaneLayout.createSequentialGroup()
+                        .addGap(342, 342, 342)
+                        .addComponent(kleisimoParathirouBtn)))
                 .addContainerGap())
         );
         firstPaneLayout.setVerticalGroup(
@@ -131,6 +144,11 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(perigrafiLbl))
                 .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(firstPaneLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(scrollerPerigrafiTxtPane)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(kleisimoParathirouBtn))
+                    .addGroup(firstPaneLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(titleLbl)
@@ -141,15 +159,17 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
                             .addComponent(ekdoseisFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollerSiggrafeisList, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(siggrafeasLbl)))
-                    .addGroup(firstPaneLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(scrollerPerigrafiTxtPane)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kleisimoParathirouBtn)
-                .addContainerGap())
+                            .addComponent(siggrafeasLbl)
+                            .addComponent(scrollerSiggrafeisList, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
+
+        ananewsiPinakaBtn.setText("Ανανέωση Πίνακα");
+        ananewsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ananewsiPinakaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,25 +178,85 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollerBooksTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
-                    .addComponent(firstPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(scrollerBooksTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1142, Short.MAX_VALUE)
+                    .addComponent(firstPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ananewsiPinakaBtn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollerBooksTable, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ananewsiPinakaBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollerBooksTable, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(firstPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18))
+                .addComponent(firstPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
+
+    private void booksTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTableMouseClicked
+        fortwsi_epilegmenis_eggrafis_sta_text_fields();
+    }//GEN-LAST:event_booksTableMouseClicked
+
+    private void booksTableKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_booksTableKeyReleased
+        fortwsi_epilegmenis_eggrafis_sta_text_fields();
+    }//GEN-LAST:event_booksTableKeyReleased
+
+    private void ananewsiPinakaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ananewsiPinakaBtnActionPerformed
+
+        isbnFld.setText("");
+        titleFld.setText("");
+        ekdoseisFld.setText("");
+        listaModelou.clear();
+        perigrafiVivliouTxtPane.setText("");
+        
+        booksTable.setModel(new EmfanisiVivliwnTableModel());
+
+    }//GEN-LAST:event_ananewsiPinakaBtnActionPerformed
+
+    private void fortwsi_epilegmenis_eggrafis_sta_text_fields() {
+
+        int selectedRow = booksTable.getSelectedRow();
+        if (selectedRow < 0) {
+            isbnFld.setText("");
+            titleFld.setText("");
+            ekdoseisFld.setText("");
+            listaModelou.clear();
+            perigrafiVivliouTxtPane.setText("");
+            return;
+        }//if.
+
+        ArrayList<Vivlio> data = ((EmfanisiVivliwnTableModel) booksTable.getModel()).getData();
+        Vivlio epilegmenoVivlio = data.get(selectedRow);
+
+        isbnFld.setText(epilegmenoVivlio.getIsbn());
+        titleFld.setText(epilegmenoVivlio.getTitlos());
+        ekdoseisFld.setText(epilegmenoVivlio.getOnoma_ekdoti());
+
+        //anaktisi siggrafewn vivlio kai topothetisi tou sth lista.....
+        ArrayList<Siggrafeas> siggrafeis = vivliaDao.anaktisiSiggrafeisVivliou(epilegmenoVivlio.getIsbn());
+        listaModelou.clear();
+        for (Siggrafeas siggrafeas : siggrafeis) {
+            listaModelou.addElement(siggrafeas.getOnoma() + " " + siggrafeas.getEpitheto());
+        }
+
+        perigrafiVivliouTxtPane.setText(epilegmenoVivlio.getPerigrafi_vivliou());
+
+    }//fortwsi_epilegmenis_eggrafis_sta_text_fields.
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ananewsiPinakaBtn;
     private javax.swing.JTable booksTable;
     private javax.swing.JTextField ekdoseisFld;
     private javax.swing.JLabel ekdoseisLbl;
@@ -185,7 +265,7 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JLabel isbnLbl;
     private javax.swing.JButton kleisimoParathirouBtn;
     private javax.swing.JLabel perigrafiLbl;
-    private javax.swing.JTextPane perigrafiTxtPane;
+    private javax.swing.JTextArea perigrafiVivliouTxtPane;
     private javax.swing.JScrollPane scrollerBooksTable;
     private javax.swing.JScrollPane scrollerPerigrafiTxtPane;
     private javax.swing.JScrollPane scrollerSiggrafeisList;
