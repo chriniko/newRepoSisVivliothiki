@@ -344,8 +344,8 @@ public class AntitypaDAO {
         try {
             pStat = conn.prepareStatement(ENIMERWSI_ANTITYPOU);
             pStat.setString(1, input.getKatastasiAntitypou());
-            pStat.setString(1, input.getIsbnVivliou());
-            pStat.setInt(1, input.getIdAntitypou());
+            pStat.setString(2, input.getIsbnVivliou());
+            pStat.setInt(3, input.getIdAntitypou());
 
             int count = pStat.executeUpdate();
             res = (count == 1);

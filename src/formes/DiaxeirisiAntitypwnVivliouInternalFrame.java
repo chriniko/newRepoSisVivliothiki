@@ -443,6 +443,24 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         ArrayList<Antitypo> antitypa = ((EmfanisiAntitypwnTableModel) antitypaTable.getModel()).getData();
         Antitypo ant = antitypa.get(selectedRow);
 
+        //swzoume thn nea katastasi sto antikeimeno.......
+        ant.setKatastasiAntitypou((String) neaKatastasiComboBox.getSelectedItem());
+
+        //to apothikeuoumai sti vasi dedomenwn...
+        boolean updated = antitypaDao.enimerwsiAntitypou(ant);
+        if (!updated) {
+            JOptionPane.showMessageDialog(this, "Η ενημέρωση του αντιτύπου ΔΕΝ ήταν επιτυχής!");
+            return;
+        }//if.
+        JOptionPane.showMessageDialog(this, "Η ενημέρωση του αντιτύπου ήταν επιτυχής!");
+
+        //enimerwsi modelou....
+        //ananewnoume to model tou jtable...
+        antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
+        diagrafiAntitypouBtn.setEnabled(false);
+        enimerwsiBookCopyBtn.setEnabled(false);
+        neaKatastasiComboBox.setEnabled(false);
+        neaKatastasiComboBox.setSelectedIndex(0);
     }//GEN-LAST:event_enimerwsiBookCopyBtnActionPerformed
 
 

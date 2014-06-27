@@ -4,6 +4,7 @@ import database.connection.DbConnection;
 import database.daos.VivliothikarioiDAO;
 import database.models.Vivliothikarios;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -81,7 +82,7 @@ public class SindesiStoSistima extends javax.swing.JFrame {
 
         welcomeLbl.setText("Καλώς ήρθατε! Παρακαλώ συνδεθείτε για να συνεχίσετε.");
 
-        ipiresiesBtn.setText("Υπηρεσίες");
+        ipiresiesBtn.setText("Διαδικτυακές Υπηρεσίες");
         ipiresiesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ipiresiesBtnActionPerformed(evt);
@@ -206,7 +207,15 @@ public class SindesiStoSistima extends javax.swing.JFrame {
     }//GEN-LAST:event_sindesiBtnActionPerformed
 
     private void ipiresiesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipiresiesBtnActionPerformed
-        // TODO add your handling code here:
+        final Yphresies_Vivliothikis_JFrame_Form yp = new Yphresies_Vivliothikis_JFrame_Form();
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                yp.setLocationRelativeTo(SindesiStoSistima.this);
+                yp.setVisible(true);
+            }
+        });
     }//GEN-LAST:event_ipiresiesBtnActionPerformed
 
 
