@@ -35,7 +35,7 @@
                           <Component id="searchPane" min="-2" max="-2" attributes="0"/>
                           <Component id="enimerwsiPinakaBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="88" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="110" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -52,7 +52,7 @@
                   <Component id="utilsPane" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="searchPane" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="enimerwsiPinakaBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="scrollerForAntitypa" min="-2" pref="230" max="-2" attributes="0"/>
@@ -188,7 +188,7 @@
                               <Component id="deletePane" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                      <Component id="updateBookCopyPane" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -202,7 +202,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="insertBookCopyPane" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="updateBookCopyPane" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -284,7 +284,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="katastasiLbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="katastasiComboBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="eisagwgiAntitypouBtn" min="-2" max="-2" attributes="0"/>
@@ -324,7 +324,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="updateBookCopyPane">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -339,15 +339,60 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="neaKatastasiLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="enimerwsiBookCopyBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="neaKatastasiComboBox" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="neaKatastasiLbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="neaKatastasiComboBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                      <Component id="enimerwsiBookCopyBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="neaKatastasiLbl">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3af;&#x3bb;&#x3b5;&#x3be;&#x3b5; &#x3bd;&#x3ad;&#x3b1; &#x3ba;&#x3b1;&#x3c4;&#x3ac;&#x3c3;&#x3c4;&#x3b1;&#x3c3;&#x3b7; &#x3b1;&#x3bd;&#x3c4;&#x3b9;&#x3c4;&#x3cd;&#x3c0;&#x3bf;&#x3c5;:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="enimerwsiBookCopyBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x395;&#x3bd;&#x3b7;&#x3bc;&#x3ad;&#x3c1;&#x3c9;&#x3c3;&#x3b7; &#x3b1;&#x3bd;&#x3c4;&#x3b9;&#x3c4;&#x3cd;&#x3c0;&#x3bf;&#x3c5;"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enimerwsiBookCopyBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="neaKatastasiComboBox">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="&#x39a;&#x3b1;&#x3ba;&#x3b9;&#x3ac;"/>
+                    <StringItem index="1" value="&#x39c;&#x3ad;&#x3c4;&#x3c1;&#x3b9;&#x3b1;"/>
+                    <StringItem index="2" value="&#x39a;&#x3b1;&#x3bb;&#x3ae;"/>
+                    <StringItem index="3" value="&#x386;&#x3c1;&#x3b9;&#x3c3;&#x3c4;&#x3b7;"/>
+                  </StringArray>
+                </Property>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

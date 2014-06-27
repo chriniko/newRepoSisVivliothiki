@@ -48,7 +48,10 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         katastasiLbl = new javax.swing.JLabel();
         katastasiComboBox = new javax.swing.JComboBox();
         eisagwgiAntitypouBtn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        updateBookCopyPane = new javax.swing.JPanel();
+        neaKatastasiLbl = new javax.swing.JLabel();
+        enimerwsiBookCopyBtn = new javax.swing.JButton();
+        neaKatastasiComboBox = new javax.swing.JComboBox();
         enimerwsiPinakaBtn = new javax.swing.JButton();
 
         setClosable(true);
@@ -183,24 +186,50 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
             .addGroup(insertBookCopyPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(katastasiLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(katastasiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(eisagwgiAntitypouBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Update Book Copy", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
+        updateBookCopyPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Update Book Copy", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        neaKatastasiLbl.setText("Επίλεξε νέα κατάσταση αντιτύπου:");
+
+        enimerwsiBookCopyBtn.setText("Ενημέρωση αντιτύπου");
+        enimerwsiBookCopyBtn.setEnabled(false);
+        enimerwsiBookCopyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enimerwsiBookCopyBtnActionPerformed(evt);
+            }
+        });
+
+        neaKatastasiComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Κακιά", "Μέτρια", "Καλή", "Άριστη" }));
+        neaKatastasiComboBox.setEnabled(false);
+
+        javax.swing.GroupLayout updateBookCopyPaneLayout = new javax.swing.GroupLayout(updateBookCopyPane);
+        updateBookCopyPane.setLayout(updateBookCopyPaneLayout);
+        updateBookCopyPaneLayout.setHorizontalGroup(
+            updateBookCopyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateBookCopyPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(updateBookCopyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(neaKatastasiLbl)
+                    .addComponent(enimerwsiBookCopyBtn)
+                    .addComponent(neaKatastasiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        updateBookCopyPaneLayout.setVerticalGroup(
+            updateBookCopyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(updateBookCopyPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(neaKatastasiLbl)
+                .addGap(18, 18, 18)
+                .addComponent(neaKatastasiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(enimerwsiBookCopyBtn)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout utilsPaneLayout = new javax.swing.GroupLayout(utilsPane);
@@ -215,7 +244,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                         .addGroup(utilsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(insertBookCopyPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(deletePane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(updateBookCopyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         utilsPaneLayout.setVerticalGroup(
@@ -226,7 +255,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(insertBookCopyPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(updateBookCopyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -250,7 +279,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(searchPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(enimerwsiPinakaBtn))
-                        .addGap(0, 88, Short.MAX_VALUE)))
+                        .addGap(0, 110, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(utilsPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -263,7 +292,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                     .addComponent(utilsPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(searchPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(enimerwsiPinakaBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(scrollerForAntitypa, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -320,8 +349,18 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         int selectedRow = antitypaTable.getSelectedRow();
         if (selectedRow < 0) {
             diagrafiAntitypouBtn.setEnabled(false);
+            enimerwsiBookCopyBtn.setEnabled(false);
+            neaKatastasiComboBox.setEnabled(false);
         } else {
             diagrafiAntitypouBtn.setEnabled(true);
+            enimerwsiBookCopyBtn.setEnabled(true);
+            neaKatastasiComboBox.setEnabled(true);
+
+            //kai vazoume thn katallili katastasi sto combo box....
+            ArrayList<Antitypo> antitypa = ((EmfanisiAntitypwnTableModel) antitypaTable.getModel()).getData();
+            Antitypo ant = antitypa.get(selectedRow);
+            neaKatastasiComboBox.setSelectedItem(ant.getKatastasiAntitypou());
+
         }
 
     }//GEN-LAST:event_antitypaTableMouseClicked
@@ -359,11 +398,33 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
     private void diagrafiAntitypouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagrafiAntitypouBtnActionPerformed
 
         int res = JOptionPane.showConfirmDialog(this, "Είστε σίγουρος?");
-        if (res == JOptionPane.YES_OPTION) {
-
-            
-            
+        if (res != JOptionPane.YES_OPTION) {
+            return;
         }//if.
+
+        //anaktisi tou epilegmenou antitypou...
+        int selectedRow = antitypaTable.getSelectedRow();
+        ArrayList<Antitypo> antitypa = ((EmfanisiAntitypwnTableModel) antitypaTable.getModel()).getData();
+        Antitypo ant = antitypa.get(selectedRow);
+
+        //ean auto to antitypo pou theloume na diagrapsoume einai daneismeno tote....
+        if (ant.getAm_daneismenou_melous() != 0 && ant.getHmnia_daneismou() != null) {
+            JOptionPane.showMessageDialog(this, "Το αντίτυπο που θές να διαγράψεις ειναι δανεισμένο σε μέλος!");
+            return;
+        }//if.
+
+        //ean ftasame edw shmainei oti den einai daneismeno se kapoio melos, ara to diagrafoume....
+        boolean deleted = antitypaDao.diagrafiAntitypou(ant.getIsbnVivliou(), ant.getIdAntitypou());
+        if (!deleted) {
+            JOptionPane.showMessageDialog(this, "Η διαγραφή του επιλεγμένου αντιτύπου ΔΕΝ ήταν επιτυχής!");
+            return;
+        }//if.
+
+        JOptionPane.showMessageDialog(this, "Η διαγραφή του βιβλίου ήταν επιτυχής!");
+
+        //ananewnoume to model tou jtable...
+        antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
+        diagrafiAntitypouBtn.setEnabled(false);
 
     }//GEN-LAST:event_diagrafiAntitypouBtnActionPerformed
 
@@ -371,7 +432,18 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         //ananewnoume to model tou jtable...
         antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
         diagrafiAntitypouBtn.setEnabled(false);
+        enimerwsiBookCopyBtn.setEnabled(false);
+        neaKatastasiComboBox.setEnabled(false);
+        neaKatastasiComboBox.setSelectedIndex(0);
     }//GEN-LAST:event_enimerwsiPinakaBtnActionPerformed
+
+    private void enimerwsiBookCopyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enimerwsiBookCopyBtnActionPerformed
+
+        int selectedRow = antitypaTable.getSelectedRow();
+        ArrayList<Antitypo> antitypa = ((EmfanisiAntitypwnTableModel) antitypaTable.getModel()).getData();
+        Antitypo ant = antitypa.get(selectedRow);
+
+    }//GEN-LAST:event_enimerwsiBookCopyBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -380,16 +452,19 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
     private javax.swing.JPanel deletePane;
     private javax.swing.JButton diagrafiAntitypouBtn;
     private javax.swing.JButton eisagwgiAntitypouBtn;
+    private javax.swing.JButton enimerwsiBookCopyBtn;
     private javax.swing.JButton enimerwsiPinakaBtn;
     private javax.swing.JPanel insertBookCopyPane;
     private javax.swing.JTextField isbnFld;
     private javax.swing.JLabel isbnLbl;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox katastasiComboBox;
     private javax.swing.JLabel katastasiLbl;
     private javax.swing.JButton katharismosPediwnBtn;
+    private javax.swing.JComboBox neaKatastasiComboBox;
+    private javax.swing.JLabel neaKatastasiLbl;
     private javax.swing.JScrollPane scrollerForAntitypa;
     private javax.swing.JPanel searchPane;
+    private javax.swing.JPanel updateBookCopyPane;
     private javax.swing.JPanel utilsPane;
     // End of variables declaration//GEN-END:variables
 }
