@@ -2,7 +2,7 @@ package database.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *

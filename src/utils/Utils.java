@@ -25,4 +25,13 @@ public class Utils {
         return sum;
     }//findSum.
 
+    public static boolean isIntegerNumber(String input) {
+        try {
+            Integer.parseInt(input);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }//isIntegerNumber.
+
 }//Utils.

@@ -58,7 +58,8 @@ public class EmfanisiAntitypwnTableModel extends AbstractTableModel {
             if (antitypo.getHmnia_daneismou() == null) {
                 return "---";
             }//if.
-            return antitypo.getHmnia_daneismou();
+            java.sql.Date temp = antitypo.getHmnia_daneismou();
+            return temp;
         }
 
     }//getValueAt.

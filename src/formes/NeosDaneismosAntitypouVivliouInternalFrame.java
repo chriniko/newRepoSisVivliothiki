@@ -1,16 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.DaneismoiDAO;
+import database.daos.MelhDAO;
+import database.models.Antitypo;
+import database.models.Melos;
+import javax.swing.JOptionPane;
+import utils.Utils;
 
 /**
  *
  * @author nikos
  */
 public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInternalFrame {
+
+    private final DaneismoiDAO daneismoiDao = new DaneismoiDAO(DbConnection.getInstance().getConnection());
+    private final MelhDAO melhDao = new MelhDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form NeosDaneismosAntitypouVivliouInternalFrame
@@ -45,6 +50,11 @@ public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInt
         setTitle("Νέος Δανεισμός Αντίτυπου Βιβλίου");
 
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
+        kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoParathirouBtnActionPerformed(evt);
+            }
+        });
 
         isbnAntitypouBibliouLbl.setText("Δώσε ISBN αντίτυπου βιβλίου:");
 
@@ -53,6 +63,11 @@ public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInt
         arithmosMitrwouMelousLbl.setText("Δώσε Αριθμό Μητρώου Μέλους:");
 
         kataxwrisiDaneismouBtn.setText("Καταχώρηση Δανεισμού");
+        kataxwrisiDaneismouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kataxwrisiDaneismouBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);
         mainPane.setLayout(mainPaneLayout);
@@ -120,6 +135,47 @@ public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInt
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
+
+    private void kataxwrisiDaneismouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kataxwrisiDaneismouBtnActionPerformed
+
+        String in_isbn = isbnAntitypouVivliouFld.getText();
+        String in_id = auxwnArithmosAntitypouVivliouFld.getText();
+        String in_am = arithmosMitrwouMelousFld.getText();
+
+        //elegxoume egyrothta stoixeiwn...
+        if (!Utils.isIntegerNumber(in_am) || !Utils.isIntegerNumber(in_id)) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ δώστε έγκυρα στοιχεία για τα πεδία αύξων αριθμός αντιτύπου και ΑΜ μέλους!");
+            return;
+        }//if.
+
+        //elegxoume ean yparxei to antitypo...
+        Antitypo ant = daneismoiDao.euresiAntitypou(in_isbn, Integer.parseInt(in_id));
+        if (ant == null) {
+            JOptionPane.showMessageDialog(this, "Δεν υπάρχει αντίτυπο με αυτό το ISBN ή/και αύξων αριθμό αντιτύπου!");
+            return;
+        }//if.
+
+        //elegxoume ean yparxei melos me auto to AM.
+        Melos melos = melhDao.searchMelosByAm(Integer.parseInt(in_am));
+        if (melos == null) {
+            JOptionPane.showMessageDialog(this, "Δεν υπάρχει μέλος με αυτο το ΑΜ!");
+            return;
+        }//if.
+
+        //twra elegxoume ean to antitypo einai diathesimo gia daneismo....
+        boolean isAvailable = daneismoiDao.einaiToAntitypoDiathesimoGiaDaneismo(in_isbn, Integer.parseInt(in_id));
+        if (!isAvailable) {
+            JOptionPane.showMessageDialog(this, "Το αντίτυπο που θέλετε να δανείσετε είναι ήδη δανεισμένο!");
+            return;
+        }//if.
+        
+        //ean ftasame edw shmainei oti mporoume na kanoume ton daneismo....
+
+    }//GEN-LAST:event_kataxwrisiDaneismouBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

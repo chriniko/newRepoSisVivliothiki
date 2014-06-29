@@ -304,26 +304,30 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
 
     private void anazitisiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anazitisiBtnActionPerformed
 
-        if (isbnFld.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Παρακαλώ δώστε έγκυρο ISBN!");
-            return;
+        try {
+            if (isbnFld.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(this, "Παρακαλώ δώστε έγκυρο ISBN!");
+                return;
+            }
+
+            //elegxos ean yparxei to isbn...
+            Vivlio v = vivliaDao.searchVivlioByISBN(isbnFld.getText());
+            if (v == null) {
+                JOptionPane.showMessageDialog(this, "Δεν υπάρχει βιβλίο με αυτο το ISBN!");
+                return;
+            }
+
+            //ean ftasame edw fortwnoume ta antitypa sto jtable....
+            antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
+
+            isbnFld.setEditable(false);
+            anazitisiBtn.setEnabled(false);
+            katastasiComboBox.setEnabled(true);
+            eisagwgiAntitypouBtn.setEnabled(true);
+            enimerwsiPinakaBtn.setEnabled(true);
+        } catch (Exception ex) {
+            System.err.println("NICK I AM HERE! " + ex.getMessage());
         }
-
-        //elegxos ean yparxei to isbn...
-        Vivlio v = vivliaDao.searchVivlioByISBN(isbnFld.getText());
-        if (v == null) {
-            JOptionPane.showMessageDialog(this, "Δεν υπάρχει βιβλίο με αυτο το ISBN!");
-            return;
-        }
-
-        //ean ftasame edw fortwnoume ta antitypa sto jtable....
-        antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
-
-        isbnFld.setEditable(false);
-        anazitisiBtn.setEnabled(false);
-        katastasiComboBox.setEnabled(true);
-        eisagwgiAntitypouBtn.setEnabled(true);
-        enimerwsiPinakaBtn.setEnabled(true);
 
     }//GEN-LAST:event_anazitisiBtnActionPerformed
 
