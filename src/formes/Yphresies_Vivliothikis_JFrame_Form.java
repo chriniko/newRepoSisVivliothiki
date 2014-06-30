@@ -260,4 +260,17 @@ public class Yphresies_Vivliothikis_JFrame_Form extends javax.swing.JFrame {
     private javax.swing.JTextField titlosFld;
     private javax.swing.JLabel titlosVivliouLbl;
     // End of variables declaration//GEN-END:variables
+
+    //=====================METHODS WHICH CALL WEB SERVICES=========================================================================
+    private static boolean bookRequestService(java.lang.String infos) {
+        org.sistima.vivliothikis.web.yphresia.client.SistimaVivliothikisWebYphresies_Service service = new org.sistima.vivliothikis.web.yphresia.client.SistimaVivliothikisWebYphresies_Service();
+        org.sistima.vivliothikis.web.yphresia.client.SistimaVivliothikisWebYphresies port = service.getSistimaVivliothikisWebYphresiesPort();
+        return port.bookRequestService(infos);
+    }//bookRequestService.
+
+    private static boolean bookReservationService(java.lang.String infos) {
+        org.sistima.vivliothikis.web.yphresia.client.SistimaVivliothikisWebYphresies_Service service = new org.sistima.vivliothikis.web.yphresia.client.SistimaVivliothikisWebYphresies_Service();
+        org.sistima.vivliothikis.web.yphresia.client.SistimaVivliothikisWebYphresies port = service.getSistimaVivliothikisWebYphresiesPort();
+        return port.bookReservationService(infos);
+    }//bookReservationService.
 }
