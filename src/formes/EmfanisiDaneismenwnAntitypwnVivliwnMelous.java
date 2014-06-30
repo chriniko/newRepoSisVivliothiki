@@ -1,16 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package formes;
+
+import database.connection.DbConnection;
+import database.daos.AntitypaDAO;
+import database.daos.DaneismoiDAO;
+import database.daos.MelhDAO;
+import database.models.Antitypo;
+import database.models.Melos;
+import javax.swing.JOptionPane;
+import table_models.EmfanisiDaneismenwnAntitypwnMelousTableModel;
+import utils.Utils;
 
 /**
  *
  * @author nikos
  */
 public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInternalFrame {
+
+    private final DaneismoiDAO daneismoiDao = new DaneismoiDAO(DbConnection.getInstance().getConnection());
+    private final AntitypaDAO antitypaDao = new AntitypaDAO(DbConnection.getInstance().getConnection());
+    private final MelhDAO melhDao = new MelhDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form EmfanisiDaneismenwnAntitypwnVivliwnMelous
@@ -33,6 +41,8 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
         amMelousFld = new javax.swing.JTextField();
         anazitisiDaneismenwnAntitypwnBtn = new javax.swing.JButton();
         kleisimoParathirouBtn = new javax.swing.JButton();
+        katharismosPediwnBtn = new javax.swing.JButton();
+        ananewsiPinakaBtn = new javax.swing.JButton();
         secondPane = new javax.swing.JPanel();
         isbnAntitypoyVivliouLbl = new javax.swing.JLabel();
         auxwnArithmosAntitypouLbl = new javax.swing.JLabel();
@@ -42,7 +52,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
         katastasiAntitypouFld = new javax.swing.JTextField();
         epistrofiAntitypouBtn = new javax.swing.JButton();
         scrollPane = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        daneismenaAntitypaTable = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -54,8 +64,34 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
 
         anazitisiDaneismenwnAntitypwnBtn.setText("Αναζήτηση δανεισμένων αντιτύπων");
         anazitisiDaneismenwnAntitypwnBtn.setToolTipText("");
+        anazitisiDaneismenwnAntitypwnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anazitisiDaneismenwnAntitypwnBtnActionPerformed(evt);
+            }
+        });
 
         kleisimoParathirouBtn.setText("Κλείσιμο παράθυρου");
+        kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoParathirouBtnActionPerformed(evt);
+            }
+        });
+
+        katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
+        katharismosPediwnBtn.setEnabled(false);
+        katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                katharismosPediwnBtnActionPerformed(evt);
+            }
+        });
+
+        ananewsiPinakaBtn.setText("Ανανέωση Πίνακα");
+        ananewsiPinakaBtn.setEnabled(false);
+        ananewsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ananewsiPinakaBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout firstPaneLayout = new javax.swing.GroupLayout(firstPane);
         firstPane.setLayout(firstPaneLayout);
@@ -68,8 +104,14 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
                         .addComponent(amMelousLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(amMelousFld, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(anazitisiDaneismenwnAntitypwnBtn)
-                    .addComponent(kleisimoParathirouBtn))
+                    .addGroup(firstPaneLayout.createSequentialGroup()
+                        .addComponent(anazitisiDaneismenwnAntitypwnBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(katharismosPediwnBtn))
+                    .addGroup(firstPaneLayout.createSequentialGroup()
+                        .addComponent(kleisimoParathirouBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(ananewsiPinakaBtn)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
@@ -83,9 +125,13 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
                     .addComponent(amMelousLbl)
                     .addComponent(amMelousFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(anazitisiDaneismenwnAntitypwnBtn)
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(anazitisiDaneismenwnAntitypwnBtn)
+                    .addComponent(katharismosPediwnBtn))
                 .addGap(18, 18, 18)
-                .addComponent(kleisimoParathirouBtn)
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(kleisimoParathirouBtn)
+                    .addComponent(ananewsiPinakaBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -105,6 +151,11 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
 
         epistrofiAntitypouBtn.setText("Επιστροφή αντίτυπου");
         epistrofiAntitypouBtn.setEnabled(false);
+        epistrofiAntitypouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                epistrofiAntitypouBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout secondPaneLayout = new javax.swing.GroupLayout(secondPane);
         secondPane.setLayout(secondPaneLayout);
@@ -124,7 +175,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
                             .addComponent(katastasiAntitypouFld, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(auxwnArithmosAntitypouFld)
                             .addComponent(isbnAntitypouVivliouFld))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         secondPaneLayout.setVerticalGroup(
             secondPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,18 +197,21 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        daneismenaAntitypaTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ISBN Βιβλίου", "Αύξων αριθμός αντ.", "Τίτλος βιβλίου", "Κατάσταση Αντ.", "ΑΜ Μέλους", "Ημ/νια Δανεισμού", "Εξώφυλλο"
             }
         ));
-        scrollPane.setViewportView(jTable1);
+        daneismenaAntitypaTable.setRowHeight(250);
+        daneismenaAntitypaTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                daneismenaAntitypaTableMouseClicked(evt);
+            }
+        });
+        scrollPane.setViewportView(daneismenaAntitypaTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -181,27 +235,131 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
                     .addComponent(secondPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(firstPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
+
+    private void anazitisiDaneismenwnAntitypwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anazitisiDaneismenwnAntitypwnBtnActionPerformed
+
+        boolean egyro_am = Utils.isIntegerNumber(amMelousFld.getText());
+        if (!egyro_am) {
+            JOptionPane.showMessageDialog(this, "Δώσε έγκυρο ΑΜ!");
+            return;
+        }//if.
+
+        int in_am = Integer.parseInt(amMelousFld.getText());
+
+        Melos melos = melhDao.searchMelosByAm(in_am);
+        if (melos == null) {
+            JOptionPane.showMessageDialog(this, "Δέν υπάρχει μέλος με αυτό το ΑΜ!");
+            return;
+        }//if.
+
+        //ananewnoume to model...
+        daneismenaAntitypaTable.setModel(new EmfanisiDaneismenwnAntitypwnMelousTableModel(in_am));
+        anazitisiDaneismenwnAntitypwnBtn.setEnabled(false);
+        amMelousFld.setEditable(false);
+        katharismosPediwnBtn.setEnabled(true);
+        ananewsiPinakaBtn.setEnabled(true);
+
+    }//GEN-LAST:event_anazitisiDaneismenwnAntitypwnBtnActionPerformed
+
+    private void katharismosPediwnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_katharismosPediwnBtnActionPerformed
+        anazitisiDaneismenwnAntitypwnBtn.setEnabled(true);
+        amMelousFld.setEditable(true);
+        katharismosPediwnBtn.setEnabled(false);
+        daneismenaAntitypaTable.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "ISBN Βιβλίου", "Αύξων αριθμός αντ.", "Τίτλος βιβλίου", "Κατάσταση Αντ.", "ΑΜ Μέλους", "Ημ/νια Δανεισμού", "Εξώφυλλο"
+                }
+        ));
+        amMelousFld.setText("");
+        ananewsiPinakaBtn.setEnabled(false);
+        isbnAntitypouVivliouFld.setText("");
+        auxwnArithmosAntitypouFld.setText("");
+        katastasiAntitypouFld.setText("");
+        epistrofiAntitypouBtn.setEnabled(false);
+    }//GEN-LAST:event_katharismosPediwnBtnActionPerformed
+
+    private void ananewsiPinakaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ananewsiPinakaBtnActionPerformed
+        daneismenaAntitypaTable.setModel(new EmfanisiDaneismenwnAntitypwnMelousTableModel(Integer.parseInt(amMelousFld.getText())));
+        isbnAntitypouVivliouFld.setText("");
+        auxwnArithmosAntitypouFld.setText("");
+        katastasiAntitypouFld.setText("");
+        epistrofiAntitypouBtn.setEnabled(false);
+    }//GEN-LAST:event_ananewsiPinakaBtnActionPerformed
+
+    private void daneismenaAntitypaTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_daneismenaAntitypaTableMouseClicked
+
+        int selectedRow = daneismenaAntitypaTable.getSelectedRow();
+        if (selectedRow < 0) {
+            isbnAntitypouVivliouFld.setText("");
+            auxwnArithmosAntitypouFld.setText("");
+            katastasiAntitypouFld.setText("");
+            epistrofiAntitypouBtn.setEnabled(false);
+            return;
+        }//if.
+
+        Antitypo ant = ((EmfanisiDaneismenwnAntitypwnMelousTableModel) daneismenaAntitypaTable.getModel()).getData().get(selectedRow);
+
+        isbnAntitypouVivliouFld.setText(ant.getIsbnVivliou());
+        auxwnArithmosAntitypouFld.setText(ant.getIdAntitypou() + "");
+        katastasiAntitypouFld.setText(ant.getKatastasiAntitypou());
+        epistrofiAntitypouBtn.setEnabled(true);
+    }//GEN-LAST:event_daneismenaAntitypaTableMouseClicked
+
+    private void epistrofiAntitypouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_epistrofiAntitypouBtnActionPerformed
+
+        int res = JOptionPane.showConfirmDialog(this, "Είστε σίγουρος?");
+        if (res != JOptionPane.YES_OPTION) {
+            return;
+        }//if.
+
+        boolean epistrofiEpityxhs
+                = daneismoiDao.
+                epistrofiDaneismenouAntitypou(isbnAntitypouVivliouFld.getText(), Integer.parseInt(auxwnArithmosAntitypouFld.getText()),
+                        Integer.parseInt(amMelousFld.getText()));
+
+        if (!epistrofiEpityxhs) {
+            JOptionPane.showMessageDialog(this, "Η επιστροφή του αντίτυπου ΔΕΝ ήταν επιτυχής! Παρακαλώ κοιτάξτε τη ΒΔ!");
+            return;
+        }//if.
+
+        JOptionPane.showMessageDialog(this, "Η επιστροφή του βιβλίου ήταν επιτυχής!");
+
+        daneismenaAntitypaTable.setModel(new EmfanisiDaneismenwnAntitypwnMelousTableModel(Integer.parseInt(amMelousFld.getText())));
+        isbnAntitypouVivliouFld.setText("");
+        auxwnArithmosAntitypouFld.setText("");
+        katastasiAntitypouFld.setText("");
+        epistrofiAntitypouBtn.setEnabled(false);
+
+
+    }//GEN-LAST:event_epistrofiAntitypouBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amMelousFld;
     private javax.swing.JLabel amMelousLbl;
+    private javax.swing.JButton ananewsiPinakaBtn;
     private javax.swing.JButton anazitisiDaneismenwnAntitypwnBtn;
     private javax.swing.JTextField auxwnArithmosAntitypouFld;
     private javax.swing.JLabel auxwnArithmosAntitypouLbl;
+    private javax.swing.JTable daneismenaAntitypaTable;
     private javax.swing.JButton epistrofiAntitypouBtn;
     private javax.swing.JPanel firstPane;
     private javax.swing.JTextField isbnAntitypouVivliouFld;
     private javax.swing.JLabel isbnAntitypoyVivliouLbl;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField katastasiAntitypouFld;
     private javax.swing.JLabel katastasiAntitypouLbl;
+    private javax.swing.JButton katharismosPediwnBtn;
     private javax.swing.JButton kleisimoParathirouBtn;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JPanel secondPane;

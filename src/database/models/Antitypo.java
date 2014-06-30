@@ -2,7 +2,6 @@ package database.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.sql.Date;
 
 /**
  *
@@ -14,7 +13,7 @@ public class Antitypo implements Serializable {
     private int idAntitypou;
     private String katastasiAntitypou;
     private int am_daneismenou_melous;
-    private Date hmnia_daneismou;
+    private java.sql.Date hmnia_daneismou;
     private ArrayList<IstorikoMelous> istorikoAntitypo;
 
     public Antitypo() {
@@ -57,11 +56,11 @@ public class Antitypo implements Serializable {
         this.am_daneismenou_melous = am_daneismenou_melous;
     }
 
-    public Date getHmnia_daneismou() {
+    public java.sql.Date getHmnia_daneismou() {
         return hmnia_daneismou;
     }
 
-    public void setHmnia_daneismou(Date hmnia_daneismou) {
+    public void setHmnia_daneismou(java.sql.Date hmnia_daneismou) {
         this.hmnia_daneismou = hmnia_daneismou;
     }
 

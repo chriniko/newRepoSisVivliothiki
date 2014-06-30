@@ -2,26 +2,30 @@ package table_models;
 
 import database.connection.DbConnection;
 import database.daos.AntitypaDAO;
+import database.daos.VivliaDAO;
 import database.models.Antitypo;
-import java.text.SimpleDateFormat;
+import database.models.Vivlio;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author nikos
  */
-public class EmfanisiAntitypwnTableModel extends AbstractTableModel {
+public class EmfanisiDaneismenwnAntitypwnMelousTableModel extends AbstractTableModel {
 
     //fields.
-    private final String[] columnNames = {"ISBN", "Αύξων αριθμός αντίτυπου", "Κατάσταση αντίτυπου", "ΑΜ Δανειζόμενου Μέλους", "Ημερομηνία Δανεισμού"};
+    private final String[] columnNames = {"ISBN Βιβλίου", "Αύξων αριθμός αντ.", "Τίτλος Βιβλίου", "Κατάσταση Αντ.", "ΑΜ Μέλους", "Ημ/νία Δανεισμού", "Εξώφυλλο"};
 
     private final ArrayList<Antitypo> data;
     private final AntitypaDAO antitypaDao = new AntitypaDAO(DbConnection.getInstance().getConnection());
+    private final VivliaDAO vivliaDao = new VivliaDAO(DbConnection.getInstance().getConnection());
 
     //methods.
-    public EmfanisiAntitypwnTableModel(String isbn) {
-        data = antitypaDao.anaktisiAntitypwnVivliou(isbn);
+    public EmfanisiDaneismenwnAntitypwnMelousTableModel(int am_melous) {
+        //anaktoume oles tis eggrafes twn ekdotwn.
+        data = antitypaDao.anaktisiAntitypwnMelousPouExeiDaneistei(am_melous);
     }//ctor.
 
     @Override
@@ -42,26 +46,24 @@ public class EmfanisiAntitypwnTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int col) {
 
-        Antitypo antitypo = data.get(row);
+        //anaktoume thn katallili eggrafi writer.
+        Antitypo ant = data.get(row);
+        Vivlio viv = vivliaDao.searchVivlioByISBN(ant.getIsbnVivliou());
 
         if (col == 0) {
-            return antitypo.getIsbnVivliou();
+            return ant.getIsbnVivliou();
         } else if (col == 1) {
-            return antitypo.getIdAntitypou();
+            return ant.getIdAntitypou();
         } else if (col == 2) {
-            return antitypo.getKatastasiAntitypou();
+            return viv.getTitlos();
         } else if (col == 3) {
-            if (antitypo.getAm_daneismenou_melous() == 0) {
-                return "---";
-            }//if.
-            return antitypo.getAm_daneismenou_melous();
+            return ant.getKatastasiAntitypou();
+        } else if (col == 4) {
+            return ant.getAm_daneismenou_melous();
+        } else if (col == 5) {
+            return ant.getHmnia_daneismou();
         } else {
-            if (antitypo.getHmnia_daneismou() == null) {
-                return "---";
-            }//if.
-            java.util.Date utilDate = new java.util.Date(antitypo.getHmnia_daneismou().getTime());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-            return sdf.format(utilDate);
+            return new ImageIcon(viv.getUrl_exwfilou_vivliou());
         }
 
     }//getValueAt.
@@ -88,4 +90,5 @@ public class EmfanisiAntitypwnTableModel extends AbstractTableModel {
     public ArrayList<Antitypo> getData() {
         return data;
     }
+
 }

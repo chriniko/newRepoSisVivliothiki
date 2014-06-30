@@ -304,30 +304,27 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
 
     private void anazitisiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anazitisiBtnActionPerformed
 
-        try {
-            if (isbnFld.getText().trim().equals("")) {
-                JOptionPane.showMessageDialog(this, "Παρακαλώ δώστε έγκυρο ISBN!");
-                return;
-            }
-
-            //elegxos ean yparxei to isbn...
-            Vivlio v = vivliaDao.searchVivlioByISBN(isbnFld.getText());
-            if (v == null) {
-                JOptionPane.showMessageDialog(this, "Δεν υπάρχει βιβλίο με αυτο το ISBN!");
-                return;
-            }
-
-            //ean ftasame edw fortwnoume ta antitypa sto jtable....
-            antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
-
-            isbnFld.setEditable(false);
-            anazitisiBtn.setEnabled(false);
-            katastasiComboBox.setEnabled(true);
-            eisagwgiAntitypouBtn.setEnabled(true);
-            enimerwsiPinakaBtn.setEnabled(true);
-        } catch (Exception ex) {
-            System.err.println("NICK I AM HERE! " + ex.getMessage());
+        if (isbnFld.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ δώστε έγκυρο ISBN!");
+            return;
         }
+
+        //elegxos ean yparxei to isbn...
+        Vivlio v = vivliaDao.searchVivlioByISBN(isbnFld.getText());
+        if (v == null) {
+            JOptionPane.showMessageDialog(this, "Δεν υπάρχει βιβλίο με αυτο το ISBN!");
+            return;
+        }
+
+        //ean ftasame edw fortwnoume ta antitypa sto jtable....
+        antitypaTable.setModel(new EmfanisiAntitypwnTableModel(isbnFld.getText()));
+
+        isbnFld.setEditable(false);
+        anazitisiBtn.setEnabled(false);
+        katastasiComboBox.setEnabled(true);
+        eisagwgiAntitypouBtn.setEnabled(true);
+        enimerwsiPinakaBtn.setEnabled(true);
+
 
     }//GEN-LAST:event_anazitisiBtnActionPerformed
 
@@ -412,7 +409,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         Antitypo ant = antitypa.get(selectedRow);
 
         //ean auto to antitypo pou theloume na diagrapsoume einai daneismeno tote....
-        if (ant.getAm_daneismenou_melous() != 0 && ant.getHmnia_daneismou() != null) {
+        if (ant.getAm_daneismenou_melous() != 0 || ant.getHmnia_daneismou() != null) {
             JOptionPane.showMessageDialog(this, "Το αντίτυπο που θές να διαγράψεις ειναι δανεισμένο σε μέλος!");
             return;
         }//if.

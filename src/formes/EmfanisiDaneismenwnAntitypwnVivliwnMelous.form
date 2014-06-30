@@ -49,8 +49,8 @@
                   <Component id="firstPane" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="scrollPane" min="-2" pref="236" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <Component id="scrollPane" pref="236" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,8 +69,16 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="amMelousFld" min="-2" pref="220" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="anazitisiDaneismenwnAntitypwnBtn" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="kleisimoParathirouBtn" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="anazitisiDaneismenwnAntitypwnBtn" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="katharismosPediwnBtn" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="kleisimoParathirouBtn" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="ananewsiPinakaBtn" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="75" max="32767" attributes="0"/>
               </Group>
@@ -85,9 +93,15 @@
                       <Component id="amMelousFld" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="anazitisiDaneismenwnAntitypwnBtn" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="anazitisiDaneismenwnAntitypwnBtn" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="katharismosPediwnBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="kleisimoParathirouBtn" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="kleisimoParathirouBtn" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="ananewsiPinakaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -106,11 +120,35 @@
             <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3b6;&#x3ae;&#x3c4;&#x3b7;&#x3c3;&#x3b7; &#x3b4;&#x3b1;&#x3bd;&#x3b5;&#x3b9;&#x3c3;&#x3bc;&#x3ad;&#x3bd;&#x3c9;&#x3bd; &#x3b1;&#x3bd;&#x3c4;&#x3b9;&#x3c4;&#x3cd;&#x3c0;&#x3c9;&#x3bd;"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="anazitisiDaneismenwnAntitypwnBtnActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="kleisimoParathirouBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x39a;&#x3bb;&#x3b5;&#x3af;&#x3c3;&#x3b9;&#x3bc;&#x3bf; &#x3c0;&#x3b1;&#x3c1;&#x3ac;&#x3b8;&#x3c5;&#x3c1;&#x3bf;&#x3c5;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="kleisimoParathirouBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="katharismosPediwnBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x39a;&#x3b1;&#x3b8;&#x3b1;&#x3c1;&#x3b9;&#x3c3;&#x3bc;&#x3cc;&#x3c2; &#x3c0;&#x3b5;&#x3b4;&#x3af;&#x3c9;&#x3bd;"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="katharismosPediwnBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="ananewsiPinakaBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3bd;&#x3ad;&#x3c9;&#x3c3;&#x3b7; &#x3a0;&#x3af;&#x3bd;&#x3b1;&#x3ba;&#x3b1;"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ananewsiPinakaBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -137,7 +175,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="21" max="32767" attributes="0"/>
+                  <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -202,6 +240,9 @@
             <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b9;&#x3c3;&#x3c4;&#x3c1;&#x3bf;&#x3c6;&#x3ae; &#x3b1;&#x3bd;&#x3c4;&#x3af;&#x3c4;&#x3c5;&#x3c0;&#x3bf;&#x3c5;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="epistrofiAntitypouBtnActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -209,17 +250,24 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="daneismenaAntitypaTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              <Table columnCount="7" rowCount="0">
+                <Column editable="true" title="ISBN &#x392;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf;&#x3c5;" type="java.lang.Object"/>
+                <Column editable="true" title="&#x391;&#x3cd;&#x3be;&#x3c9;&#x3bd; &#x3b1;&#x3c1;&#x3b9;&#x3b8;&#x3bc;&#x3cc;&#x3c2; &#x3b1;&#x3bd;&#x3c4;." type="java.lang.Object"/>
+                <Column editable="true" title="&#x3a4;&#x3af;&#x3c4;&#x3bb;&#x3bf;&#x3c2; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf;&#x3c5;" type="java.lang.Object"/>
+                <Column editable="true" title="&#x39a;&#x3b1;&#x3c4;&#x3ac;&#x3c3;&#x3c4;&#x3b1;&#x3c3;&#x3b7; &#x391;&#x3bd;&#x3c4;." type="java.lang.Object"/>
+                <Column editable="true" title="&#x391;&#x39c; &#x39c;&#x3ad;&#x3bb;&#x3bf;&#x3c5;&#x3c2;" type="java.lang.Object"/>
+                <Column editable="true" title="&#x397;&#x3bc;/&#x3bd;&#x3b9;&#x3b1; &#x394;&#x3b1;&#x3bd;&#x3b5;&#x3b9;&#x3c3;&#x3bc;&#x3bf;&#x3cd;" type="java.lang.Object"/>
+                <Column editable="true" title="&#x395;&#x3be;&#x3ce;&#x3c6;&#x3c5;&#x3bb;&#x3bb;&#x3bf;" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="rowHeight" type="int" value="250"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="daneismenaAntitypaTableMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

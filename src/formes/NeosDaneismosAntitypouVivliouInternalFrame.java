@@ -172,8 +172,20 @@ public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInt
             JOptionPane.showMessageDialog(this, "Το αντίτυπο που θέλετε να δανείσετε είναι ήδη δανεισμένο!");
             return;
         }//if.
-        
+
         //ean ftasame edw shmainei oti mporoume na kanoume ton daneismo....
+        boolean daneismosEpityxhs = daneismoiDao.kaneDaneismoAntitypou(in_isbn, Integer.parseInt(in_id), Integer.parseInt(in_am));
+        if (!daneismosEpityxhs) {
+            JOptionPane.showMessageDialog(this, "Ο δανεισμός ΔΕΝ ήταν επιτυχης! Παρακαλώ κοιτάξτε τη ΒΔ!");
+            return;
+        }//if.
+
+        //emfanizoume minima epityxias....
+        JOptionPane.showMessageDialog(this, "Ο δανεισμός του αντίτυπου με στοιχεία: ISBN->" + in_isbn + " , ID->" + in_id
+                + "  στο μέλος με ΑΜ: " + in_am + " ήταν επιτυχής!");
+
+        //kleinoume to parathiro...
+        this.dispose();
 
     }//GEN-LAST:event_kataxwrisiDaneismouBtnActionPerformed
 

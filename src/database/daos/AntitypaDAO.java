@@ -53,8 +53,10 @@ public class AntitypaDAO {
                 temp.setIdAntitypou(rs.getInt("id_antitypou"));
                 temp.setKatastasiAntitypou(rs.getString("katastasi_antitypou"));
                 temp.setAm_daneismenou_melous(rs.getInt("am_daneismenou_melous"));
-                temp.setHmnia_daneismou(rs.getDate("hmnia_daneismou"));
-
+                
+                java.sql.Date tempDate = rs.getDate("hmnia_daneismou");
+                temp.setHmnia_daneismou(tempDate);
+                
                 antitypa.add(temp);
             }//while.
 
