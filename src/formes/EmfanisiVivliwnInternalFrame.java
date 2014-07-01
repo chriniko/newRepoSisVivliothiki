@@ -5,6 +5,8 @@ import database.daos.VivliaDAO;
 import database.models.Siggrafeas;
 import database.models.Vivlio;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
 import table_models.EmfanisiVivliwnTableModel;
 
@@ -14,7 +16,7 @@ import table_models.EmfanisiVivliwnTableModel;
  */
 public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
 
-    private VivliaDAO vivliaDao = new VivliaDAO(DbConnection.getInstance().getConnection());
+    private final VivliaDAO vivliaDao = new VivliaDAO(DbConnection.getInstance().getConnection());
     DefaultListModel listaModelou = new DefaultListModel();
 
     /**
@@ -50,6 +52,9 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
         scrollerPerigrafiTxtPane = new javax.swing.JScrollPane();
         perigrafiVivliouTxtPane = new javax.swing.JTextArea();
         ananewsiPinakaBtn = new javax.swing.JButton();
+        titlosVivliouLbl = new javax.swing.JLabel();
+        titlosToSearch = new javax.swing.JTextField();
+        searchTitlosBtn = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -61,6 +66,7 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
         booksTable.setModel(new EmfanisiVivliwnTableModel
             ());
         booksTable.setRowHeight(250);
+        booksTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         booksTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 booksTableMouseClicked(evt);
@@ -171,6 +177,15 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        titlosVivliouLbl.setText("Πήγαινε στο βιβλίο με τίτλο:");
+
+        searchTitlosBtn.setText("Πήγαινε!");
+        searchTitlosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTitlosBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -182,6 +197,12 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(firstPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ananewsiPinakaBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(titlosVivliouLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(titlosToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchTitlosBtn)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -189,9 +210,13 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ananewsiPinakaBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollerBooksTable, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ananewsiPinakaBtn)
+                    .addComponent(titlosVivliouLbl)
+                    .addComponent(titlosToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchTitlosBtn))
+                .addGap(18, 18, 18)
+                .addComponent(scrollerBooksTable, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(firstPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -219,10 +244,26 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
         ekdoseisFld.setText("");
         listaModelou.clear();
         perigrafiVivliouTxtPane.setText("");
-        
         booksTable.setModel(new EmfanisiVivliwnTableModel());
 
     }//GEN-LAST:event_ananewsiPinakaBtnActionPerformed
+
+    private void searchTitlosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTitlosBtnActionPerformed
+        String toFind = titlosToSearch.getText();
+        ArrayList<Vivlio> vivlia = ((EmfanisiVivliwnTableModel) booksTable.getModel()).getData();
+
+        Pattern pattern = Pattern.compile("^" + toFind + ".*");
+        Matcher matcher;
+
+        for (int i = 0; i < vivlia.size(); i++) {
+            matcher = pattern.matcher(vivlia.get(i).getTitlos());
+            if (matcher.find()) {
+                booksTable.setRowSelectionInterval(i, i);
+                break;
+            }//if.
+        }//for.
+
+    }//GEN-LAST:event_searchTitlosBtnActionPerformed
 
     private void fortwsi_epilegmenis_eggrafis_sta_text_fields() {
 
@@ -269,9 +310,12 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane scrollerBooksTable;
     private javax.swing.JScrollPane scrollerPerigrafiTxtPane;
     private javax.swing.JScrollPane scrollerSiggrafeisList;
+    private javax.swing.JButton searchTitlosBtn;
     private javax.swing.JLabel siggrafeasLbl;
     private javax.swing.JList siggrafeisList;
     private javax.swing.JTextField titleFld;
     private javax.swing.JLabel titleLbl;
+    private javax.swing.JTextField titlosToSearch;
+    private javax.swing.JLabel titlosVivliouLbl;
     // End of variables declaration//GEN-END:variables
 }

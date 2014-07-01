@@ -6,6 +6,7 @@ import database.daos.DaneismoiDAO;
 import database.daos.MelhDAO;
 import database.models.Antitypo;
 import database.models.Melos;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiDaneismenwnAntitypwnMelousTableModel;
 import utils.Utils;
@@ -206,6 +207,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
             }
         ));
         daneismenaAntitypaTable.setRowHeight(250);
+        daneismenaAntitypaTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         daneismenaAntitypaTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 daneismenaAntitypaTableMouseClicked(evt);
@@ -268,6 +270,12 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
         amMelousFld.setEditable(false);
         katharismosPediwnBtn.setEnabled(true);
         ananewsiPinakaBtn.setEnabled(true);
+
+        ArrayList<Antitypo> daneismenaAntitypa = ((EmfanisiDaneismenwnAntitypwnMelousTableModel) daneismenaAntitypaTable.getModel()).getData();
+        if (daneismenaAntitypa.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ο χρήστης δεν έχει δανειστεί κάποιο αντίτυπο!");
+        }//if.
+
 
     }//GEN-LAST:event_anazitisiDaneismenwnAntitypwnBtnActionPerformed
 

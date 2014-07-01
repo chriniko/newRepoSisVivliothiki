@@ -55,6 +55,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
         setTitle("Εμφάνιση Εκδοτών");
 
         ekdotesTable.setModel(new EmfanisiEkdotwnTableModel());
+        ekdotesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ekdotesTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ekdotesTableMouseClicked(evt);

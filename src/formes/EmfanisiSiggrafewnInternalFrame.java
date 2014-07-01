@@ -58,6 +58,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
         setTitle("Εμφάνιση Συγγραφέων");
 
         siggrafeisTable.setModel(new table_models.EmfanisiSiggrafewnTableModel());
+        siggrafeisTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         siggrafeisTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 siggrafeisTableMouseClicked(evt);

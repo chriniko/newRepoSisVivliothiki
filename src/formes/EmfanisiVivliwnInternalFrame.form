@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
@@ -33,6 +33,12 @@
                   <Component id="firstPane" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="ananewsiPinakaBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="titlosVivliouLbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="titlosToSearch" min="-2" pref="250" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="searchTitlosBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -44,9 +50,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ananewsiPinakaBtn" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrollerBooksTable" pref="331" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="ananewsiPinakaBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="titlosVivliouLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="titlosToSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchTitlosBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="scrollerBooksTable" pref="318" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="firstPane" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -68,6 +79,9 @@
               <Connection code="new EmfanisiVivliwnTableModel&#xa;()" type="code"/>
             </Property>
             <Property name="rowHeight" type="int" value="250"/>
+            <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
+              <JTableSelectionModel selectionMode="0"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="booksTableMouseClicked"/>
@@ -239,6 +253,21 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ananewsiPinakaBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="titlosVivliouLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x3a0;&#x3ae;&#x3b3;&#x3b1;&#x3b9;&#x3bd;&#x3b5; &#x3c3;&#x3c4;&#x3bf; &#x3b2;&#x3b9;&#x3b2;&#x3bb;&#x3af;&#x3bf; &#x3bc;&#x3b5; &#x3c4;&#x3af;&#x3c4;&#x3bb;&#x3bf;:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="titlosToSearch">
+    </Component>
+    <Component class="javax.swing.JButton" name="searchTitlosBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x3a0;&#x3ae;&#x3b3;&#x3b1;&#x3b9;&#x3bd;&#x3b5;!"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchTitlosBtnActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

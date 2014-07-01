@@ -1,5 +1,7 @@
 package formes;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nikos
@@ -223,11 +225,58 @@ public class Yphresies_Vivliothikis_JFrame_Form extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void kaneRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kaneRequestBtnActionPerformed
-        // TODO add your handling code here:
+
+        String titlos = titlosFld.getText();
+        String ekdoseis = ekdoseisFld.getText();
+        String siggrafeas = siggrafeasFld.getText();
+        String glwssa = glwssaGrafisFld.getText();
+        String etosEkdosis = etosEkdosisFld.getText();
+
+        if (titlos.trim().equals("") | ekdoseis.trim().equals("") | siggrafeas.trim().equals("")
+                | glwssa.trim().equals("") | etosEkdosis.trim().equals("")) {
+
+            JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε όλα τα πεδία!");
+            return;
+        }//if.
+
+        boolean res = bookRequestService(titlos + "$" + ekdoseis + "$" + siggrafeas + "$" + glwssa + "$" + etosEkdosis);
+
+        if (res) {
+            JOptionPane.showMessageDialog(this, "Η αίτηση σας καταγράφτηκε επιτυχώς!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Η αίτηση σας δεν καταγράφτηκε επιτυχώς!");
+        }
+        titlosFld.setText("");
+        ekdoseisFld.setText("");
+        siggrafeasFld.setText("");
+        glwssaGrafisFld.setText("");
+        etosEkdosisFld.setText("");
     }//GEN-LAST:event_kaneRequestBtnActionPerformed
 
     private void kaneKratisiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kaneKratisiBtnActionPerformed
-        // TODO add your handling code here:
+
+        String isbn = reserveIsbnFld.getText();
+        String titlos = reserveTitlosFld.getText();
+        String ekdoseis = reserveEkdoseisFld.getText();
+        String arithmos = reserveTelephoneFld.getText();
+
+        if (isbn.trim().equals("") | titlos.trim().equals("") | ekdoseis.trim().equals("")
+                | arithmos.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε όλα τα πεδία!");
+            return;
+        }//if.
+
+        boolean res = bookReservationService(isbn + "$" + titlos + "$" + ekdoseis + "$" + arithmos);
+
+        if (res) {
+            JOptionPane.showMessageDialog(this, "Η αίτηση σας καταγράφτηκε επιτυχώς!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Η αίτηση σας δεν καταγράφτηκε επιτυχώς!");
+        }
+        reserveIsbnFld.setText("");
+        reserveTitlosFld.setText("");
+        reserveEkdoseisFld.setText("");
+        reserveTelephoneFld.setText("");
     }//GEN-LAST:event_kaneKratisiBtnActionPerformed
 
     private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed

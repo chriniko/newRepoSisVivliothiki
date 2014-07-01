@@ -85,6 +85,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         siggrafeisLbl.setText("Επιλογή συγγραφέων:");
 
         siggrafeisTable.setModel(new table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel());
+        siggrafeisTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         siggrafeisTableScroller.setViewportView(siggrafeisTable);
 
         perigrafiVivliouLbl.setText("Εισαγωγή περιγραφής βιβλίου:");

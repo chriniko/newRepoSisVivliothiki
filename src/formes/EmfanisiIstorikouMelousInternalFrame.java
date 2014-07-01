@@ -65,6 +65,7 @@ public class EmfanisiIstorikouMelousInternalFrame extends javax.swing.JInternalF
                 "ISBN", "Αύξων αριθμός αντίτυπου", "ΑΜ Μέλους", "Ημερομηνία Δανεισμού", "Ημερομηνία Επιστροφής"
             }
         ));
+        istorikoTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         istorikoTableScroller.setViewportView(istorikoTable);
 
         amMelousLbl.setText("Δώσε ΑΜ μέλους:");

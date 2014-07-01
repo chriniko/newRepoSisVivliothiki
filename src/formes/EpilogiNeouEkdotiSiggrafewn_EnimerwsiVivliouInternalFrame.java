@@ -53,6 +53,7 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
 
         ekdotesTable.setModel(new EmfanisiEkdotwn_StiliEpilogisTableModel
             ());
+        ekdotesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ekdotesScrollPane.setViewportView(ekdotesTable);
 
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
@@ -73,6 +74,7 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
 
         siggrafeisTable.setModel(new table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel
             ());
+        siggrafeisTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         siggrafeisScrollPane.setViewportView(siggrafeisTable);
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);

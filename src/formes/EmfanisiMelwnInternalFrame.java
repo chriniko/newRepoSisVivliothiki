@@ -187,6 +187,7 @@ public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
         );
 
         melhTable.setModel(new EmfanisiMelwnTableModel());
+        melhTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         melhTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 melhTableMouseClicked(evt);

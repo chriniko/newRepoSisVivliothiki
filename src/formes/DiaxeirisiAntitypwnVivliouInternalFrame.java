@@ -117,6 +117,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                 "ISBN", "Αύξων αριθμός αντιτύπου", "Κατάσταση αντιτύπου", "ΑΜ Δανειζόμενου Μέλους", "Ημερομηνία Δανεισμού"
             }
         ));
+        antitypaTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         antitypaTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 antitypaTableMouseClicked(evt);
