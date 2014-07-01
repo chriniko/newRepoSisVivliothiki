@@ -371,9 +371,14 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
 
         //prwta prepei na vroume poio einai to megalytero id antitypou....
         ArrayList<Antitypo> antitypa = ((EmfanisiAntitypwnTableModel) antitypaTable.getModel()).getData();
-        Antitypo ant = antitypa.get(antitypa.size() - 1);//anaktisi tou antitypou me to megalytero id....
 
-        int new_next_id = ant.getIdAntitypou() + 1;
+        int new_next_id;
+        if (antitypa.isEmpty()) {
+            new_next_id = 1;
+        } else {
+            Antitypo ant = antitypa.get(antitypa.size() - 1);//anaktisi tou antitypou me to megalytero id....
+            new_next_id = ant.getIdAntitypou() + 1;
+        }
 
         //anaktisi isbn kai katastasis antitypou....
         String new_katastasi_antitypou = (String) katastasiComboBox.getSelectedItem();

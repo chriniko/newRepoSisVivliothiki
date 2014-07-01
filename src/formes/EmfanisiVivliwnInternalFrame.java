@@ -4,10 +4,12 @@ import database.connection.DbConnection;
 import database.daos.VivliaDAO;
 import database.models.Siggrafeas;
 import database.models.Vivlio;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import table_models.EmfanisiVivliwnTableModel;
 
 /**
@@ -250,6 +252,12 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
 
     private void searchTitlosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTitlosBtnActionPerformed
         String toFind = titlosToSearch.getText();
+
+        if (toFind.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε το πεδίο!");
+            return;
+        }//if.
+
         ArrayList<Vivlio> vivlia = ((EmfanisiVivliwnTableModel) booksTable.getModel()).getData();
 
         Pattern pattern = Pattern.compile("^" + toFind + ".*");
@@ -259,6 +267,7 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
             matcher = pattern.matcher(vivlia.get(i).getTitlos());
             if (matcher.find()) {
                 booksTable.setRowSelectionInterval(i, i);
+                booksTable.scrollRectToVisible(new Rectangle(booksTable.getCellRect(i, 0, true)));
                 break;
             }//if.
         }//for.
