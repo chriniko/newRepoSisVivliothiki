@@ -30,7 +30,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="scrollPane" pref="965" max="32767" attributes="0"/>
+                      <Component id="scrollPane" pref="993" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -47,8 +47,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="scrollPane" min="-2" pref="247" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="mainPane" min="-2" pref="122" max="-2" attributes="0"/>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <Component id="mainPane" pref="160" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,7 +85,7 @@
                   <Component id="akirwsiEnimerwsisBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="epivevaiwshEnimerwsisBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="160" max="32767" attributes="0"/>
+                  <EmptySpace pref="48" max="32767" attributes="0"/>
                   <Component id="diagrafiEkdotiBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="kleisimoDialogBtn" min="-2" max="-2" attributes="0"/>
@@ -147,6 +147,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="kleisimoDialogBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/close.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x39a;&#x3bb;&#x3b5;&#x3af;&#x3c3;&#x3b9;&#x3bc;&#x3bf; &#x3c0;&#x3b1;&#x3c1;&#x3ac;&#x3b8;&#x3c5;&#x3c1;&#x3bf;&#x3c5;"/>
           </Properties>
           <Events>
@@ -155,6 +158,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="diagrafiEkdotiBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/delete.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3b3;&#x3c1;&#x3b1;&#x3c6;&#x3ae; &#x395;&#x3ba;&#x3b4;&#x3cc;&#x3c4;&#x3b7;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -164,6 +170,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="enimerwsiEkdotiBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/update.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x395;&#x3bd;&#x3b7;&#x3bc;&#x3ad;&#x3c1;&#x3c9;&#x3c3;&#x3b7; &#x3b5;&#x3ba;&#x3b4;&#x3cc;&#x3c4;&#x3b7;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -173,6 +182,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="akirwsiEnimerwsisBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/exit.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x391;&#x3ba;&#x3cd;&#x3c1;&#x3c9;&#x3c3;&#x3b7; &#x395;&#x3bd;&#x3b7;&#x3bc;&#x3ad;&#x3c1;&#x3c9;&#x3c3;&#x3b7;&#x3c2;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -182,6 +194,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="epivevaiwshEnimerwsisBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/done.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x395;&#x3c0;&#x3b9;&#x3b2;&#x3b5;&#x3b2;&#x3b1;&#x3af;&#x3c9;&#x3c3;&#x3b7; &#x395;&#x3bd;&#x3b7;&#x3bc;&#x3ad;&#x3c1;&#x3c9;&#x3c3;&#x3b7;&#x3c2;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -201,6 +216,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="ananewsiPinakaBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/refresh.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x391;&#x3bd;&#x3b1;&#x3bd;&#x3ad;&#x3c9;&#x3c3;&#x3b7; &#x3c0;&#x3af;&#x3bd;&#x3b1;&#x3ba;&#x3b1;"/>
           </Properties>
           <Events>

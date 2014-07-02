@@ -56,6 +56,7 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
         ekdotesTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         ekdotesScrollPane.setViewportView(ekdotesTable);
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +64,7 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
             }
         });
 
+        apothikeusiEpilogwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         apothikeusiEpilogwnBtn.setText("Αποθήκευση επιλογών");
         apothikeusiEpilogwnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +114,7 @@ public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends j
                 .addComponent(epilogiSiggrafeaLbl)
                 .addGap(18, 18, 18)
                 .addComponent(siggrafeisScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kleisimoParathirouBtn)
                     .addComponent(apothikeusiEpilogwnBtn))

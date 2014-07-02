@@ -63,6 +63,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
 
         amMelousLbl.setText("Δώσε αριθμό μητρώου μέλους:");
 
+        anazitisiDaneismenwnAntitypwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/search.png"))); // NOI18N
         anazitisiDaneismenwnAntitypwnBtn.setText("Αναζήτηση δανεισμένων αντιτύπων");
         anazitisiDaneismenwnAntitypwnBtn.setToolTipText("");
         anazitisiDaneismenwnAntitypwnBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +72,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
             }
         });
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +80,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
             }
         });
 
+        katharismosPediwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/discardChanges.png"))); // NOI18N
         katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
         katharismosPediwnBtn.setEnabled(false);
         katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +89,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
             }
         });
 
+        ananewsiPinakaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
         ananewsiPinakaBtn.setText("Ανανέωση Πίνακα");
         ananewsiPinakaBtn.setEnabled(false);
         ananewsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +104,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
             firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(firstPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(firstPaneLayout.createSequentialGroup()
                         .addComponent(amMelousLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -112,8 +116,8 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
                     .addGroup(firstPaneLayout.createSequentialGroup()
                         .addComponent(kleisimoParathirouBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(ananewsiPinakaBtn)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addComponent(ananewsiPinakaBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         firstPaneLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {anazitisiDaneismenwnAntitypwnBtn, kleisimoParathirouBtn});
@@ -150,6 +154,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
 
         katastasiAntitypouFld.setEditable(false);
 
+        epistrofiAntitypouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/returnBook.png"))); // NOI18N
         epistrofiAntitypouBtn.setText("Επιστροφή αντίτυπου");
         epistrofiAntitypouBtn.setEnabled(false);
         epistrofiAntitypouBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +181,7 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
                             .addComponent(katastasiAntitypouFld, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                             .addComponent(auxwnArithmosAntitypouFld)
                             .addComponent(isbnAntitypouVivliouFld))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         secondPaneLayout.setVerticalGroup(
             secondPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,8 +230,9 @@ public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInte
                     .addComponent(scrollPane)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(firstPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(secondPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(secondPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(46, 46, 46)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

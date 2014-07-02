@@ -110,6 +110,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         dwsePliroforiaLbl.setText("Δώσε πληροφορία:");
 
+        anazitisiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/search.png"))); // NOI18N
         anazitisiBtn.setText("Αναζήτηση");
         anazitisiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +118,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        katharismosPediwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/discardChanges.png"))); // NOI18N
         katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
         katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +126,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +212,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
         perigrafiVivliouTxtPane.setWrapStyleWord(true);
         scrollerPerigrafiVivliouTxtPane.setViewportView(perigrafiVivliouTxtPane);
 
+        enimerwsiEpilogwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/update.png"))); // NOI18N
         enimerwsiEpilogwnBtn.setText("Ενημέρωση Επιλογών");
         enimerwsiEpilogwnBtn.setEnabled(false);
         enimerwsiEpilogwnBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -267,7 +271,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(perigrafiVivliouLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollerPerigrafiVivliouTxtPane, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addComponent(scrollerPerigrafiVivliouTxtPane, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -277,6 +281,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         lblToLoadBookCoverIcon.setText("εδώ φορτώνεται η εικόνα...");
 
+        fortwseExwfylloVivliouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/loadCoverIcon.png"))); // NOI18N
         fortwseExwfylloVivliouBtn.setText("Φόρτωσε εξώφυλλο");
         fortwseExwfylloVivliouBtn.setEnabled(false);
         fortwseExwfylloVivliouBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -313,6 +318,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
         actionsPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
 
+        enimerwsiVivliouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/update.png"))); // NOI18N
         enimerwsiVivliouBtn.setText("Ενημέρωση Βιβλίου");
         enimerwsiVivliouBtn.setEnabled(false);
         enimerwsiVivliouBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -321,6 +327,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        akirwsiEnimerwsisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/exit.png"))); // NOI18N
         akirwsiEnimerwsisBtn.setText("Ακύρωση Ενημέρωσης");
         akirwsiEnimerwsisBtn.setEnabled(false);
         akirwsiEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -329,6 +336,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        epivevaiwshEnimerwsisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         epivevaiwshEnimerwsisBtn.setText("Επιβεβαίωση Ενημέρωσης");
         epivevaiwshEnimerwsisBtn.setEnabled(false);
         epivevaiwshEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -337,6 +345,7 @@ public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        diagrafiVivliouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/delete.png"))); // NOI18N
         diagrafiVivliouBtn.setText("Διαγραφή Βιβλίου");
         diagrafiVivliouBtn.setEnabled(false);
         diagrafiVivliouBtn.addActionListener(new java.awt.event.ActionListener() {

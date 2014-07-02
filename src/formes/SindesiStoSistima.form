@@ -104,7 +104,7 @@
                       <Component id="ipiresiesLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ipiresiesBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="sindesiBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="kleisimoEfarmogisBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -136,6 +136,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="kleisimoEfarmogisBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/close.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x39a;&#x3bb;&#x3b5;&#x3af;&#x3c3;&#x3b9;&#x3bc;&#x3bf; &#x3b5;&#x3c6;&#x3b1;&#x3c1;&#x3bc;&#x3bf;&#x3b3;&#x3ae;&#x3c2;"/>
           </Properties>
           <Events>
@@ -144,6 +147,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="sindesiBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/log_in.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x3a3;&#x3cd;&#x3bd;&#x3b4;&#x3b5;&#x3c3;&#x3b7;"/>
           </Properties>
           <Events>
@@ -157,6 +163,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="ipiresiesBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ui_icons/manage.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&#x394;&#x3b9;&#x3b1;&#x3b4;&#x3b9;&#x3ba;&#x3c4;&#x3c5;&#x3b1;&#x3ba;&#x3ad;&#x3c2; &#x3a5;&#x3c0;&#x3b7;&#x3c1;&#x3b5;&#x3c3;&#x3af;&#x3b5;&#x3c2;"/>
           </Properties>
           <Events>

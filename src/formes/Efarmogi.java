@@ -1,6 +1,8 @@
 package formes;
 
 import database.models.Vivliothikarios;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -30,6 +32,11 @@ public class Efarmogi extends javax.swing.JFrame {
      */
     public Efarmogi() {
         initComponents();
+       
+        ImageIcon icon = new ImageIcon("/ui_icons/books.png");
+        Image ico = icon.getImage();
+        this.setIconImage(ico);
+        
         this.setLocationRelativeTo(null);
     }
 
@@ -222,13 +229,13 @@ public class Efarmogi extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1204, Short.MAX_VALUE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1314, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

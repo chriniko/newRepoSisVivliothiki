@@ -64,6 +64,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
 
         isbnLbl.setText("Δώσε ISBN:");
 
+        anazitisiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/search.png"))); // NOI18N
         anazitisiBtn.setText("Αναζήτηση");
         anazitisiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +72,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
             }
         });
 
+        katharismosPediwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/discardChanges.png"))); // NOI18N
         katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
         katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +131,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
 
         deletePane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Delete Book Copy", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Bitstream Charter", 0, 14), java.awt.Color.black)); // NOI18N
 
+        diagrafiAntitypouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/delete.png"))); // NOI18N
         diagrafiAntitypouBtn.setText("Διαγραφή Αντίτυπου");
         diagrafiAntitypouBtn.setEnabled(false);
         diagrafiAntitypouBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +164,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
         katastasiComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Κακιά", "Μέτρια", "Καλή", "Άριστη" }));
         katastasiComboBox.setEnabled(false);
 
+        eisagwgiAntitypouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/insert.png"))); // NOI18N
         eisagwgiAntitypouBtn.setText("Εισαγωγή αντίτυπου");
         eisagwgiAntitypouBtn.setToolTipText("");
         eisagwgiAntitypouBtn.setEnabled(false);
@@ -180,7 +184,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                     .addComponent(katastasiLbl)
                     .addComponent(eisagwgiAntitypouBtn)
                     .addComponent(katastasiComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         insertBookCopyPaneLayout.setVerticalGroup(
             insertBookCopyPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,6 +202,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
 
         neaKatastasiLbl.setText("Επίλεξε νέα κατάσταση αντιτύπου:");
 
+        enimerwsiBookCopyBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/saveChanges.png"))); // NOI18N
         enimerwsiBookCopyBtn.setText("Ενημέρωση αντιτύπου");
         enimerwsiBookCopyBtn.setEnabled(false);
         enimerwsiBookCopyBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -242,10 +247,9 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                 .addGroup(utilsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(utilsPaneLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(utilsPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(insertBookCopyPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deletePane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(updateBookCopyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(deletePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(updateBookCopyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(insertBookCopyPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         utilsPaneLayout.setVerticalGroup(
@@ -260,6 +264,7 @@ public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JIntern
                 .addContainerGap())
         );
 
+        enimerwsiPinakaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
         enimerwsiPinakaBtn.setText("Ενημέρωση Πίνακα");
         enimerwsiPinakaBtn.setEnabled(false);
         enimerwsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {

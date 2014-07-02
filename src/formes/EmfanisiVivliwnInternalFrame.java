@@ -87,6 +87,7 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
 
         ekdoseisLbl.setText("Εκδόσεις βιβλίου:");
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +173,7 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
                         .addContainerGap())))
         );
 
+        ananewsiPinakaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
         ananewsiPinakaBtn.setText("Ανανέωση Πίνακα");
         ananewsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +183,7 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
 
         titlosVivliouLbl.setText("Πήγαινε στο βιβλίο με τίτλο:");
 
+        searchTitlosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/eye.png"))); // NOI18N
         searchTitlosBtn.setText("Πήγαινε!");
         searchTitlosBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,7 +198,7 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollerBooksTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1142, Short.MAX_VALUE)
+                    .addComponent(scrollerBooksTable, javax.swing.GroupLayout.DEFAULT_SIZE, 1149, Short.MAX_VALUE)
                     .addComponent(firstPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ananewsiPinakaBtn)
@@ -218,7 +221,7 @@ public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(titlosToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchTitlosBtn))
                 .addGap(18, 18, 18)
-                .addComponent(scrollerBooksTable, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(scrollerBooksTable, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(firstPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())

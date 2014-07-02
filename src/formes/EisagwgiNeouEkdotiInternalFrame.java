@@ -48,6 +48,7 @@ public class EisagwgiNeouEkdotiInternalFrame extends javax.swing.JInternalFrame 
 
         onomaEkdotiLbl.setText("Όνομα εκδότη:");
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +56,7 @@ public class EisagwgiNeouEkdotiInternalFrame extends javax.swing.JInternalFrame 
             }
         });
 
+        eisagwgiEkdotiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         eisagwgiEkdotiBtn.setText("Εισαγωγή Εκδότη");
         eisagwgiEkdotiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

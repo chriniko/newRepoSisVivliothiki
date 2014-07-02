@@ -47,6 +47,7 @@ public class EmfanisiIstorikouMelousInternalFrame extends javax.swing.JInternalF
         setResizable(true);
         setTitle("Εμφάνιση Ιστορικού Μέλους");
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +71,7 @@ public class EmfanisiIstorikouMelousInternalFrame extends javax.swing.JInternalF
 
         amMelousLbl.setText("Δώσε ΑΜ μέλους:");
 
+        fortwsiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/search.png"))); // NOI18N
         fortwsiBtn.setText("Φόρτωση");
         fortwsiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -47,6 +47,7 @@ public class EisagwgiNeouSiggrafeaInternalFrame extends javax.swing.JInternalFra
 
         epithetoSiggrafeaLbl.setText("Επίθετο συγγραφέα:");
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +55,7 @@ public class EisagwgiNeouSiggrafeaInternalFrame extends javax.swing.JInternalFra
             }
         });
 
+        eisagwgiNeouSiggrafeaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         eisagwgiNeouSiggrafeaBtn.setText("Εισαγωγή νεου συγγραφέα");
         eisagwgiNeouSiggrafeaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +78,7 @@ public class EisagwgiNeouSiggrafeaInternalFrame extends javax.swing.JInternalFra
                     .addComponent(epithetoSiggrafeaFld))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(eisagwgiNeouSiggrafeaBtn)
                 .addGap(18, 18, 18)
                 .addComponent(kleisimoParathirouBtn)

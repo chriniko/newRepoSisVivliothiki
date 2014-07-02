@@ -49,6 +49,7 @@ public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInt
         setResizable(true);
         setTitle("Νέος Δανεισμός Αντίτυπου Βιβλίου");
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +63,7 @@ public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInt
 
         arithmosMitrwouMelousLbl.setText("Δώσε Αριθμό Μητρώου Μέλους:");
 
+        kataxwrisiDaneismouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/borrowBook.png"))); // NOI18N
         kataxwrisiDaneismouBtn.setText("Καταχώρηση Δανεισμού");
         kataxwrisiDaneismouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +79,7 @@ public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInt
                 .addContainerGap()
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
-                        .addGap(0, 284, Short.MAX_VALUE)
+                        .addGap(0, 228, Short.MAX_VALUE)
                         .addComponent(kataxwrisiDaneismouBtn)
                         .addGap(18, 18, 18)
                         .addComponent(kleisimoParathirouBtn))
@@ -109,7 +111,7 @@ public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInt
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(arithmosMitrwouMelousLbl)
                     .addComponent(arithmosMitrwouMelousFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kleisimoParathirouBtn)
                     .addComponent(kataxwrisiDaneismouBtn))

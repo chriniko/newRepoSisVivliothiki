@@ -75,6 +75,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
 
         onomaSiggrafeaFld.setEditable(false);
 
+        kleisimoDialogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
         kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +83,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
             }
         });
 
+        diagrafiSiggrafeaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/delete.png"))); // NOI18N
         diagrafiSiggrafeaBtn.setText("Διαγραφή Συγγραφέα");
         diagrafiSiggrafeaBtn.setEnabled(false);
         diagrafiSiggrafeaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +92,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
             }
         });
 
+        enimerwsiSiggrafeaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/update.png"))); // NOI18N
         enimerwsiSiggrafeaBtn.setText("Ενημέρωση συγγραφέα");
         enimerwsiSiggrafeaBtn.setEnabled(false);
         enimerwsiSiggrafeaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +101,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
             }
         });
 
+        akirwsiEnimerwsisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/exit.png"))); // NOI18N
         akirwsiEnimerwsisBtn.setText("Ακύρωση Ενημέρωσης");
         akirwsiEnimerwsisBtn.setEnabled(false);
         akirwsiEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +110,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
             }
         });
 
+        epivevaiwshEnimerwsisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         epivevaiwshEnimerwsisBtn.setText("Επιβεβαίωση Ενημέρωσης");
         epivevaiwshEnimerwsisBtn.setEnabled(false);
         epivevaiwshEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -122,6 +127,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
 
         auxwnArithmosFld.setEditable(false);
 
+        ananewsiPinakaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
         ananewsiPinakaBtn.setText("Ανανέωση πίνακα");
         ananewsiPinakaBtn.setToolTipText("");
         ananewsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +149,7 @@ public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame 
                         .addComponent(akirwsiEnimerwsisBtn)
                         .addGap(18, 18, 18)
                         .addComponent(epivevaiwshEnimerwsisBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addComponent(diagrafiSiggrafeaBtn)
                         .addGap(18, 18, 18)
                         .addComponent(kleisimoDialogBtn))

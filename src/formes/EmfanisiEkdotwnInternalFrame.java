@@ -72,6 +72,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
 
         onomaEkdotiFld.setEditable(false);
 
+        kleisimoDialogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
         kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +80,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        diagrafiEkdotiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/delete.png"))); // NOI18N
         diagrafiEkdotiBtn.setText("Διαγραφή Εκδότη");
         diagrafiEkdotiBtn.setEnabled(false);
         diagrafiEkdotiBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +89,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        enimerwsiEkdotiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/update.png"))); // NOI18N
         enimerwsiEkdotiBtn.setText("Ενημέρωση εκδότη");
         enimerwsiEkdotiBtn.setEnabled(false);
         enimerwsiEkdotiBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +98,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        akirwsiEnimerwsisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/exit.png"))); // NOI18N
         akirwsiEnimerwsisBtn.setText("Ακύρωση Ενημέρωσης");
         akirwsiEnimerwsisBtn.setEnabled(false);
         akirwsiEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +107,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        epivevaiwshEnimerwsisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         epivevaiwshEnimerwsisBtn.setText("Επιβεβαίωση Ενημέρωσης");
         epivevaiwshEnimerwsisBtn.setEnabled(false);
         epivevaiwshEnimerwsisBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +120,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
 
         auxwnArithmosFld.setEditable(false);
 
+        ananewsiPinakaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
         ananewsiPinakaBtn.setText("Ανανέωση πίνακα");
         ananewsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,7 +138,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(akirwsiEnimerwsisBtn)
                 .addGap(18, 18, 18)
                 .addComponent(epivevaiwshEnimerwsisBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(diagrafiEkdotiBtn)
                 .addGap(18, 18, 18)
                 .addComponent(kleisimoDialogBtn))
@@ -179,7 +185,7 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
+                        .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE)
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mainPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,8 +197,8 @@ public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(mainPane, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(mainPane, javax.swing.GroupLayout.PREFERRED_SIZE, 160, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();

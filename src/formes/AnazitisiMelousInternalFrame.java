@@ -85,6 +85,7 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
 
         kwdikosFld.setEditable(false);
 
+        kleisimoDialogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
         kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +159,7 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
 
         dwsePliroforiaLbl.setText("Δώσε πληροφορία:");
 
+        anazitisiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/search.png"))); // NOI18N
         anazitisiBtn.setText("Αναζήτηση!");
         anazitisiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +167,7 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        katharismosPediwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/discardChanges.png"))); // NOI18N
         katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
         katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,7 +212,7 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(pliroforiaFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(anazitisiBtn)
                     .addComponent(katharismosPediwnBtn))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout mainPaneLayout = new javax.swing.GroupLayout(mainPane);

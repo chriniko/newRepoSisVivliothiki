@@ -75,6 +75,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
 
         eikonaLbl.setText("Επιλογή εικόνας:");
 
+        fortwsiEikonasBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/loadCoverIcon.png"))); // NOI18N
         fortwsiEikonasBtn.setText("Φόρτωση εικόνας...");
         fortwsiEikonasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +97,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         perigrafiVivliouTxtPane.setWrapStyleWord(true);
         perigrafiVivliouTxtPaneScroller.setViewportView(perigrafiVivliouTxtPane);
 
+        ananewsiListasEkdotwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
         ananewsiListasEkdotwnBtn.setText("Ανανέωση Λίστας Εκδοτών");
         ananewsiListasEkdotwnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +105,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
             }
         });
 
+        ananewsiPinakaSiggrafewnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
         ananewsiPinakaSiggrafewnBtn.setText("Ανανέωση πίνακα");
         ananewsiPinakaSiggrafewnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +147,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
                                 .addComponent(ananewsiPinakaSiggrafewnBtn))
                             .addComponent(perigrafiVivliouLbl))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(siggrafeisTableScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE))
+                    .addComponent(siggrafeisTableScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE))
                 .addContainerGap())
         );
         firstPaneLayout.setVerticalGroup(
@@ -176,7 +179,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
                 .addGap(18, 18, 18)
                 .addComponent(perigrafiVivliouLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(perigrafiVivliouTxtPaneScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addComponent(perigrafiVivliouTxtPaneScroller, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -205,6 +208,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -212,6 +216,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
             }
         });
 
+        eisagwgiVivliouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/insert.png"))); // NOI18N
         eisagwgiVivliouBtn.setText("Εισαγωγή βιβλίου");
         eisagwgiVivliouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +224,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
             }
         });
 
+        katharismosPediwnBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/discardChanges.png"))); // NOI18N
         katharismosPediwnBtn.setText("Καθαρισμός πεδίων");
         katharismosPediwnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,7 +237,7 @@ public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame
         thirdPaneLayout.setHorizontalGroup(
             thirdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(thirdPaneLayout.createSequentialGroup()
-                .addContainerGap(263, Short.MAX_VALUE)
+                .addContainerGap(250, Short.MAX_VALUE)
                 .addGroup(thirdPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kleisimoParathirouBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(eisagwgiVivliouBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

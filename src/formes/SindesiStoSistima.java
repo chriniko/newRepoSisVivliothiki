@@ -66,6 +66,7 @@ public class SindesiStoSistima extends javax.swing.JFrame {
 
         ipiresiesLbl.setText("Υπηρεσίες Βιβλιοθήκης:");
 
+        kleisimoEfarmogisBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoEfarmogisBtn.setText("Κλείσιμο εφαρμογής");
         kleisimoEfarmogisBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +74,7 @@ public class SindesiStoSistima extends javax.swing.JFrame {
             }
         });
 
+        sindesiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/log_in.png"))); // NOI18N
         sindesiBtn.setText("Σύνδεση");
         sindesiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +84,7 @@ public class SindesiStoSistima extends javax.swing.JFrame {
 
         welcomeLbl.setText("Καλώς ήρθατε! Παρακαλώ συνδεθείτε για να συνεχίσετε.");
 
+        ipiresiesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/manage.png"))); // NOI18N
         ipiresiesBtn.setText("Διαδικτυακές Υπηρεσίες");
         ipiresiesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +138,7 @@ public class SindesiStoSistima extends javax.swing.JFrame {
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ipiresiesLbl)
                     .addComponent(ipiresiesBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sindesiBtn)
                     .addComponent(kleisimoEfarmogisBtn))

@@ -64,6 +64,7 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
 
         kwdikosMelousLbl.setText("Κωδικός μέλους (password):");
 
+        kleisimoDialogBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoDialogBtn.setText("Κλείσιμο παράθυρου");
         kleisimoDialogBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +72,7 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        eisagwgiNeouMelousBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         eisagwgiNeouMelousBtn.setText("Εισαγωγή νέου μέλους");
         eisagwgiNeouMelousBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +82,7 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
 
         statusLbl.setText("Παρακαλώ εισάγετε τα στοιχεία του νέου μελους.");
 
+        generatePassBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/manage.png"))); // NOI18N
         generatePassBtn.setText("Γέννηση Κωδικόυ");
         generatePassBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +98,7 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPaneLayout.createSequentialGroup()
-                        .addGap(0, 152, Short.MAX_VALUE)
+                        .addGap(0, 96, Short.MAX_VALUE)
                         .addComponent(eisagwgiNeouMelousBtn)
                         .addGap(18, 18, 18)
                         .addComponent(kleisimoDialogBtn))
@@ -146,7 +149,7 @@ public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(kwdikosFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(generatePassBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(statusLbl)
                 .addGap(57, 57, 57)
                 .addGroup(mainPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

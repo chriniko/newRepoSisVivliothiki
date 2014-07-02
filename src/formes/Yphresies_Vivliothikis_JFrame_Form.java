@@ -63,6 +63,7 @@ public class Yphresies_Vivliothikis_JFrame_Form extends javax.swing.JFrame {
 
         etosEkdosisLbl.setText("Έτος έκδοσης βιβλίου:");
 
+        kaneRequestBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         kaneRequestBtn.setText("Κάνε Request!");
         kaneRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +134,7 @@ public class Yphresies_Vivliothikis_JFrame_Form extends javax.swing.JFrame {
 
         thlefwnoLbl.setText("Αριθμός τηλεφώνου:");
 
+        kaneKratisiBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/done.png"))); // NOI18N
         kaneKratisiBtn.setText("Κάνε Κράτηση!");
         kaneKratisiBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +189,7 @@ public class Yphresies_Vivliothikis_JFrame_Form extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
         kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
         kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +219,7 @@ public class Yphresies_Vivliothikis_JFrame_Form extends javax.swing.JFrame {
                 .addComponent(requestBookPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(bookCopyReservationPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(kleisimoParathirouBtn)
                 .addContainerGap())
         );
