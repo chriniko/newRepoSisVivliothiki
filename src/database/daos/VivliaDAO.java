@@ -10,10 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import utils.Utils;
 
-/**
- *
- * @author nikos
- */
 @SuppressWarnings("ThrowableResultIgnored")
 public class VivliaDAO {
 

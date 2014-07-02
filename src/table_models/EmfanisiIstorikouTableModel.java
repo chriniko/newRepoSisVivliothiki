@@ -6,10 +6,6 @@ import database.models.IstorikoMelous;
 import java.util.LinkedList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiIstorikouTableModel extends AbstractTableModel {
 
     //fields.

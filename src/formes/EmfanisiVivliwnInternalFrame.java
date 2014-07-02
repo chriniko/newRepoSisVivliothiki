@@ -12,10 +12,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiVivliwnTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiVivliwnInternalFrame extends javax.swing.JInternalFrame {
 
     private final VivliaDAO vivliaDao = new VivliaDAO(DbConnection.getInstance().getConnection());

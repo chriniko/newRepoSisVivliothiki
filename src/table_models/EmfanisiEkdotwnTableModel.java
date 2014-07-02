@@ -6,10 +6,6 @@ import database.models.Ekdotis;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiEkdotwnTableModel extends AbstractTableModel {
 
     //fields.

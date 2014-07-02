@@ -8,10 +8,6 @@ import utils.EmailValidator;
 import utils.SessionIdentifierGenerator;
 import utils.Utils;
 
-/**
- *
- * @author nikos
- */
 public class EisagwgiMelousInternalFrame extends javax.swing.JInternalFrame {
 
     private final MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());

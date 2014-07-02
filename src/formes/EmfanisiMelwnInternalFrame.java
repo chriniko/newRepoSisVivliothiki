@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiMelwnTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiMelwnInternalFrame extends javax.swing.JInternalFrame {
 
     private final MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());

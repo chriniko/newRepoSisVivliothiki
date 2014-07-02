@@ -6,10 +6,6 @@ import database.models.Siggrafeas;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiSiggrafewnTableModel extends AbstractTableModel {
 
     //fields.

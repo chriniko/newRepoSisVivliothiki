@@ -6,10 +6,6 @@ import database.models.Melos;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiMelwnTableModel extends AbstractTableModel {
 
     //fields.

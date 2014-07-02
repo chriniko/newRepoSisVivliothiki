@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiDaneismenwnAntitypwnMelousTableModel extends AbstractTableModel {
 
     //fields.

@@ -11,10 +11,6 @@ import javax.swing.JOptionPane;
 import table_models.EmfanisiDaneismenwnAntitypwnMelousTableModel;
 import utils.Utils;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiDaneismenwnAntitypwnVivliwnMelous extends javax.swing.JInternalFrame {
 
     private final DaneismoiDAO daneismoiDao = new DaneismoiDAO(DbConnection.getInstance().getConnection());

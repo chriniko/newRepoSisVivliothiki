@@ -6,10 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author nikos
- */
 public class DaneismoiDAO {
 
     private final Connection conn;

@@ -3,10 +3,6 @@ package database.models;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- *
- * @author nikos
- */
 public class IstorikoMelous implements Serializable {
 
     private String isbnVivliou;

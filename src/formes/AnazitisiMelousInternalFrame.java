@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formes;
 
 import database.connection.DbConnection;
@@ -10,13 +5,9 @@ import database.daos.MelhDAO;
 import database.models.Melos;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author nikos
- */
 public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
 
-    private MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());
+    private final MelhDAO melhDAO = new MelhDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form AnazitisiMelousInternalFrame
@@ -317,8 +308,7 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Παρακαλώ δώσε έγκυρο επίθετο!");
                 return;
             }
-            
-            
+
             Melos res = melhDAO.searchMelosByEpitheto(input);
             if (res == null) {
 
@@ -340,7 +330,6 @@ public class AnazitisiMelousInternalFrame extends javax.swing.JInternalFrame {
                 onomaFld.setText(res.getOnoma());
 
             }
-
 
         } else {
             JOptionPane.showMessageDialog(this, "Παρακαλώ επέλεξε ενα κριτήριο αναζήτησης!");

@@ -7,10 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-/**
- *
- * @author nikos
- */
 public class IstorikoMelousDAO {
 
     private final Connection conn;

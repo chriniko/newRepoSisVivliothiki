@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formes;
 
 import database.connection.DbConnection;
@@ -10,10 +5,6 @@ import database.daos.EkdotesDAO;
 import database.models.Ekdotis;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author nikos
- */
 public class EisagwgiNeouEkdotiInternalFrame extends javax.swing.JInternalFrame {
 
     private final EkdotesDAO ekdotesDao = new EkdotesDAO(DbConnection.getInstance().getConnection());

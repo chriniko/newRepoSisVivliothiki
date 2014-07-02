@@ -8,15 +8,11 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiEkdotwnTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiEkdotwnInternalFrame extends javax.swing.JInternalFrame {
 
     private final EkdotesDAO ekdotesDao = new EkdotesDAO(DbConnection.getInstance().getConnection());
     private boolean isUnderUpdate = false;
-    private Ekdotis ekdotiToUpdate = new Ekdotis();
+    private final Ekdotis ekdotiToUpdate = new Ekdotis();
 
     /**
      * Creates new form EmfanisiEkdotwnInternalFrame

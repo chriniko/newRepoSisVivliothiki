@@ -9,10 +9,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiAntitypwnTableModel;
 
-/**
- *
- * @author nikos
- */
 public class DiaxeirisiAntitypwnVivliouInternalFrame extends javax.swing.JInternalFrame {
 
     private final VivliaDAO vivliaDao = new VivliaDAO(DbConnection.getInstance().getConnection());

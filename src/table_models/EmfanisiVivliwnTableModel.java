@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author Akis
- */
 public class EmfanisiVivliwnTableModel extends AbstractTableModel {
 
     //fields.

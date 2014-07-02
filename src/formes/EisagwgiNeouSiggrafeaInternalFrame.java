@@ -5,10 +5,6 @@ import database.daos.SiggrafeisDAO;
 import database.models.Siggrafeas;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author nikos
- */
 public class EisagwgiNeouSiggrafeaInternalFrame extends javax.swing.JInternalFrame {
 
     private final SiggrafeisDAO siggrafeisDao = new SiggrafeisDAO(DbConnection.getInstance().getConnection());

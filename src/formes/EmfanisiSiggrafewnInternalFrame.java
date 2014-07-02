@@ -7,17 +7,12 @@ import database.models.Vivlio;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiSiggrafewnTableModel;
-import table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EmfanisiSiggrafewnInternalFrame extends javax.swing.JInternalFrame {
 
     private final SiggrafeisDAO siggrafeisDAO = new SiggrafeisDAO(DbConnection.getInstance().getConnection());
     private boolean isUnderUpdate = false;
-    private Siggrafeas siggrafeasUnderUpdate = new Siggrafeas();
+    private final Siggrafeas siggrafeasUnderUpdate = new Siggrafeas();
 
     /**
      * Creates new form EmfanisiSiggrafewnInternalFrame

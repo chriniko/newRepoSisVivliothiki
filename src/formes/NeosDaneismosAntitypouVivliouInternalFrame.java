@@ -8,10 +8,6 @@ import database.models.Melos;
 import javax.swing.JOptionPane;
 import utils.Utils;
 
-/**
- *
- * @author nikos
- */
 public class NeosDaneismosAntitypouVivliouInternalFrame extends javax.swing.JInternalFrame {
 
     private final DaneismoiDAO daneismoiDao = new DaneismoiDAO(DbConnection.getInstance().getConnection());

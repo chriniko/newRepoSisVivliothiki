@@ -23,10 +23,6 @@ import javax.swing.JTextField;
 import utils.ApothikeutisEnimerwmenwnSiggrafewnEkdoti;
 import utils.ApothikeutisEnimerwmenwnSiggrafewnEkdoti.OnomataArxeiwn;
 
-/**
- *
- * @author nikos
- */
 public class AnazitisiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
     private final VivliaDAO vivliaDAO = new VivliaDAO(DbConnection.getInstance().getConnection());

@@ -3,10 +3,6 @@ package utils;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-/**
- *
- * @author nikos
- */
 public class SessionIdentifierGenerator {
 
     private final SecureRandom random;

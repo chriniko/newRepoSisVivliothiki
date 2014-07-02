@@ -3,10 +3,6 @@ package database.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- *
- * @author nikos
- */
 public class Melos implements Serializable {
 
     private int am;

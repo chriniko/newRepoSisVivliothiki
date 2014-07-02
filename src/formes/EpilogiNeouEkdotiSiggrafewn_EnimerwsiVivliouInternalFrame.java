@@ -3,17 +3,11 @@ package formes;
 import database.models.Ekdotis;
 import database.models.Siggrafeas;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiEkdotwn_StiliEpilogisTableModel;
 import table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel;
 import utils.ApothikeutisEnimerwmenwnSiggrafewnEkdoti;
 
-/**
- *
- * @author nikos
- */
 public class EpilogiNeouEkdotiSiggrafewn_EnimerwsiVivliouInternalFrame extends javax.swing.JInternalFrame {
 
     /**

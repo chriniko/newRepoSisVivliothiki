@@ -12,10 +12,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import table_models.EmfanisiSiggrafewn_StiliEpilogisTableModel;
 
-/**
- *
- * @author nikos
- */
 public class EisagwgiNeouVivliouInternalFrame extends javax.swing.JInternalFrame {
 
     private final VivliaDAO vivliaDAO = new VivliaDAO(DbConnection.getInstance().getConnection());

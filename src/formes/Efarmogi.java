@@ -6,10 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author nikos
- */
 public class Efarmogi extends javax.swing.JFrame {
 
     EisagwgiMelousInternalFrame eisagwgiMelousInternalFrame;
@@ -32,11 +28,11 @@ public class Efarmogi extends javax.swing.JFrame {
      */
     public Efarmogi() {
         initComponents();
-       
+
         ImageIcon icon = new ImageIcon("/ui_icons/books.png");
         Image ico = icon.getImage();
         this.setIconImage(ico);
-        
+
         this.setLocationRelativeTo(null);
     }
 

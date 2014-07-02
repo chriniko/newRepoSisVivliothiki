@@ -6,10 +6,6 @@ import database.models.Vivliothikarios;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author nikos
- */
 public class SindesiStoSistima extends javax.swing.JFrame {
 
     private final VivliothikarioiDAO vivliothikarioiDAO = new VivliothikarioiDAO(DbConnection.getInstance().getConnection());

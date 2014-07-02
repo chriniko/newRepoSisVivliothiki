@@ -1,9 +1,5 @@
 package utils;
 
-/**
- *
- * @author nikos
- */
 public class Utils {
 
     public static final int OK = -1;

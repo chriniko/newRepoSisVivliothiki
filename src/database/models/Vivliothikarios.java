@@ -2,10 +2,6 @@ package database.models;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Akis
- */
 public class Vivliothikarios implements Serializable {
 
     private int am;

@@ -2,10 +2,6 @@ package database.models;
 
 import java.io.Serializable;
 
-/**
- *
- * @author nikos
- */
 public class VivlioHasSiggrafeis implements Serializable {
 
     private String isbnVivliou;

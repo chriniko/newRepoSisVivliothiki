@@ -2,10 +2,6 @@ package formes;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author nikos
- */
 public class Yphresies_Vivliothikis_JFrame_Form extends javax.swing.JFrame {
 
     /**
