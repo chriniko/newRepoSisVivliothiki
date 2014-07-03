@@ -22,6 +22,8 @@ public class Efarmogi extends javax.swing.JFrame {
     AnazitisiVivliouInternalFrame anazitisiVivliouInternalFrame;
     DiaxeirisiAntitypwnVivliouInternalFrame diaxeirisiAntitypwnVivliouInternalFrame;
     EmfanisiIstorikouMelousInternalFrame emfanisiIstorikouMelousInternalFrame;
+    StatistikaAntitypwnInternalFrame statistikaAntitypwnInternalFrame;
+    IstorikoDaneismouAntitypouInternalFrame istorikoDaneismouAntitypouInternalFrame;
 
     /**
      * Creates new form Efarmogi
@@ -61,6 +63,9 @@ public class Efarmogi extends javax.swing.JFrame {
         diaxeirishDaneismwnMenu = new javax.swing.JMenu();
         neosDaneismosAntitypouVivliouItem = new javax.swing.JMenuItem();
         emfanisiDaneismenwnAntitypwnItem = new javax.swing.JMenuItem();
+        pliroforiesAntitypwnMenu = new javax.swing.JMenu();
+        istorikoDaneismouAntitypwnMenuItem = new javax.swing.JMenuItem();
+        statistikaPeriAntitypwn = new javax.swing.JMenuItem();
         aboutMenu = new javax.swing.JMenu();
         kleisimoEfarmogisItem = new javax.swing.JMenuItem();
 
@@ -205,6 +210,26 @@ public class Efarmogi extends javax.swing.JFrame {
 
         menuBar.add(diaxeirishDaneismwnMenu);
 
+        pliroforiesAntitypwnMenu.setText("Πληροφορίες αντιτύπων");
+
+        istorikoDaneismouAntitypwnMenuItem.setText("Ιστορικό δανεισμού αντίτυπου");
+        istorikoDaneismouAntitypwnMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                istorikoDaneismouAntitypwnMenuItemActionPerformed(evt);
+            }
+        });
+        pliroforiesAntitypwnMenu.add(istorikoDaneismouAntitypwnMenuItem);
+
+        statistikaPeriAntitypwn.setText("Στατιστικά περι αντιτύπων");
+        statistikaPeriAntitypwn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statistikaPeriAntitypwnActionPerformed(evt);
+            }
+        });
+        pliroforiesAntitypwnMenu.add(statistikaPeriAntitypwn);
+
+        menuBar.add(pliroforiesAntitypwnMenu);
+
         aboutMenu.setText("Σχετικά...");
         aboutMenu.setToolTipText("");
 
@@ -342,6 +367,18 @@ public class Efarmogi extends javax.swing.JFrame {
         emfanisiIstorikouMelousInternalFrame.show();
     }//GEN-LAST:event_emfanisiIstorikouMelousItemActionPerformed
 
+    private void istorikoDaneismouAntitypwnMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_istorikoDaneismouAntitypwnMenuItemActionPerformed
+        istorikoDaneismouAntitypouInternalFrame = new IstorikoDaneismouAntitypouInternalFrame();
+        desktopPane.add(istorikoDaneismouAntitypouInternalFrame);
+        istorikoDaneismouAntitypouInternalFrame.show();
+    }//GEN-LAST:event_istorikoDaneismouAntitypwnMenuItemActionPerformed
+
+    private void statistikaPeriAntitypwnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statistikaPeriAntitypwnActionPerformed
+        statistikaAntitypwnInternalFrame = new StatistikaAntitypwnInternalFrame();
+        desktopPane.add(statistikaAntitypwnInternalFrame);
+        statistikaAntitypwnInternalFrame.show();
+    }//GEN-LAST:event_statistikaPeriAntitypwnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -423,10 +460,13 @@ public class Efarmogi extends javax.swing.JFrame {
     private javax.swing.JMenuItem emfanisiEkdotwnItem;
     private javax.swing.JMenuItem emfanisiIstorikouMelousItem;
     private javax.swing.JMenuItem emfanisiSiggrafewnItem;
+    private javax.swing.JMenuItem istorikoDaneismouAntitypwnMenuItem;
     private javax.swing.JMenuItem kleisimoEfarmogisItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem neosDaneismosAntitypouVivliouItem;
+    private javax.swing.JMenu pliroforiesAntitypwnMenu;
     private javax.swing.JMenuItem searchBookItem;
+    private javax.swing.JMenuItem statistikaPeriAntitypwn;
     // End of variables declaration//GEN-END:variables
 
 }

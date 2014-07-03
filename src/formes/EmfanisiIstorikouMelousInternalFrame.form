@@ -33,13 +33,15 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="kleisimoParathirouBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="istorikoTableScroller" alignment="0" max="32767" attributes="0"/>
+                  <Component id="istorikoTableScroller" alignment="0" pref="896" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="istorikoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="197" max="32767" attributes="0"/>
+                      <Component id="istorikoLbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jPanel2" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -50,10 +52,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="istorikoLbl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+              <EmptySpace pref="8" max="32767" attributes="0"/>
               <Component id="istorikoTableScroller" min="-2" pref="261" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="kleisimoParathirouBtn" min="-2" max="-2" attributes="0"/>
@@ -108,7 +113,7 @@
                   <Component id="amMelousFld" min="-2" pref="207" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="fortwsiBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="233" max="32767" attributes="0"/>
+                  <EmptySpace pref="45" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -121,7 +126,7 @@
                       <Component id="amMelousFld" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="fortwsiBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -152,5 +157,45 @@
         <Property name="text" type="java.lang.String" value="&#x3a4;&#x3bf; &#x3b9;&#x3c3;&#x3c4;&#x3bf;&#x3c1;&#x3b9;&#x3ba;&#x3cc; &#x3c4;&#x3bf;&#x3c5; &#x3bc;&#x3ad;&#x3bb;&#x3bf;&#x3c5;&#x3c2; &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9;:"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JPanel" name="jPanel2">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="synoloAntitypwnPouExeiDaneisteiLbl" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="sinoloAntitypwnPouExeiDaneisteiFld" min="-2" pref="105" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="synoloAntitypwnPouExeiDaneisteiLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sinoloAntitypwnPouExeiDaneisteiFld" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="synoloAntitypwnPouExeiDaneisteiLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x3a3;&#x3cd;&#x3bd;&#x3bf;&#x3bb;&#x3bf; &#x3b1;&#x3bd;&#x3c4;&#x3b9;&#x3c4;&#x3cd;&#x3c0;&#x3c9;&#x3bd; &#x3c0;&#x3bf;&#x3c5; &#x3b5;&#x3c7;&#x3b5;&#x3b9; &#x3b4;&#x3b1;&#x3bd;&#x3b5;&#x3b9;&#x3c3;&#x3c4;&#x3b5;&#x3af;:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="sinoloAntitypwnPouExeiDaneisteiFld">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>
