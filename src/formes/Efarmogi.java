@@ -1,7 +1,13 @@
 package formes;
 
 import database.models.Vivliothikarios;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -25,10 +31,20 @@ public class Efarmogi extends javax.swing.JFrame {
     StatistikaAntitypwnInternalFrame statistikaAntitypwnInternalFrame;
     IstorikoDaneismouAntitypouInternalFrame istorikoDaneismouAntitypouInternalFrame;
 
+    //h background eikona tou jdesktoppane.
+    private BufferedImage img;
+
     /**
      * Creates new form Efarmogi
      */
     public Efarmogi() {
+
+        try {
+            this.img = ImageIO.read(new File("/home/nikos/SISTIMA_AKIS_NICK/Sistima_Vivliothikis_Ergasia/src/ui_icons/library_system_bg.jpg"));
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+
         initComponents();
 
         ImageIcon icon = new ImageIcon("/ui_icons/books.png");
@@ -42,7 +58,18 @@ public class Efarmogi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        desktopPane = new javax.swing.JDesktopPane();
+        desktopPane = new javax.swing.JDesktopPane(){
+            @Override
+            protected void paintComponent(Graphics grphcs) {
+                super.paintComponent(grphcs);
+                grphcs.drawImage(img, 0, 0, null);
+            }
+
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(img.getWidth(), img.getHeight());
+            }
+        };
         menuBar = new javax.swing.JMenuBar();
         diaxeirisiMelwnMenu = new javax.swing.JMenu();
         eisagwgiNeouMelousItem = new javax.swing.JMenuItem();
