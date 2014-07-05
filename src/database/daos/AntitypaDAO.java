@@ -1,6 +1,5 @@
 package database.daos;
 
-import database.connection.DbConnection;
 import database.models.Antitypo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -48,14 +48,14 @@ public class SiggrafeisDAO {
         try {
             String sql = "SELECT * FROM sistima_vivliothikis_ergasia.siggrafeis ORDER BY epitheto_siggrafea";
             try (Statement s = con.createStatement();
-                    ResultSet rs = s.executeQuery(sql);) {
+                    ResultSet _loc = s.executeQuery(sql);) {
 
-                while (rs.next()) {
+                while (_loc.next()) {
                     siggrafeas = new Siggrafeas();
 
-                    siggrafeas.setId(Integer.parseInt(rs.getString("id_siggrafea")));
-                    siggrafeas.setOnoma(rs.getString("onoma_siggrafea"));
-                    siggrafeas.setEpitheto(rs.getString("epitheto_siggrafea"));
+                    siggrafeas.setId(Integer.parseInt(_loc.getString("id_siggrafea")));
+                    siggrafeas.setOnoma(_loc.getString("onoma_siggrafea"));
+                    siggrafeas.setEpitheto(_loc.getString("epitheto_siggrafea"));
 
                     allWriters.add(siggrafeas);
                 }
