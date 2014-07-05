@@ -1,15 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formes;
 
-/**
- *
- * @author nikos
- */
+import database.connection.DbConnection;
+import database.daos.AntitypaDAO;
+import database.daos.IstorikoMelousDAO;
+import database.models.Antitypo;
+import database.models.IstorikoMelous;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import table_models.EmfanisiIstorikouAntitypouTableModel;
+
 public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JInternalFrame {
+
+    private final AntitypaDAO antitypaDao = new AntitypaDAO(DbConnection.getInstance().getConnection());
+    private final IstorikoMelousDAO istorikoMelousDao = new IstorikoMelousDAO(DbConnection.getInstance().getConnection());
 
     /**
      * Creates new form IstorikoDaneismouAntitypouInternalFrame
@@ -27,19 +34,19 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        firstPane = new javax.swing.JPanel();
+        isbnLbl = new javax.swing.JLabel();
+        auxwnArithmosLbl = new javax.swing.JLabel();
+        isbnFld = new javax.swing.JTextField();
+        idFld = new javax.swing.JTextField();
+        fortwseBtn = new javax.swing.JButton();
+        ananewsiPinakaBtn = new javax.swing.JButton();
+        secondPane = new javax.swing.JPanel();
+        posesForesLbl = new javax.swing.JLabel();
+        posesForesFld = new javax.swing.JTextField();
+        scrollPane = new javax.swing.JScrollPane();
+        istorikoAntitypouTable = new javax.swing.JTable();
+        kleisimoParathirouBtn = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -47,94 +54,108 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
         setResizable(true);
         setTitle("Ιστορικό Δανεισμού Αντίτυπου");
 
-        jLabel1.setText("Δώσε ISBN:");
+        isbnLbl.setText("Δώσε ISBN:");
 
-        jLabel2.setText("Δώσε αύξων αριθμό αντίτυπου:");
+        auxwnArithmosLbl.setText("Δώσε αύξων αριθμό αντίτυπου:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/search.png"))); // NOI18N
-        jButton1.setText("Φόρτωσε");
+        fortwseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/search.png"))); // NOI18N
+        fortwseBtn.setText("Φόρτωσε");
+        fortwseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fortwseBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
-        jButton2.setText("Ανανέωση πίνακα");
+        ananewsiPinakaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
+        ananewsiPinakaBtn.setText("Ανανέωση πίνακα");
+        ananewsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ananewsiPinakaBtnActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout firstPaneLayout = new javax.swing.GroupLayout(firstPane);
+        firstPane.setLayout(firstPaneLayout);
+        firstPaneLayout.setHorizontalGroup(
+            firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(firstPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(firstPaneLayout.createSequentialGroup()
+                            .addComponent(isbnLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
+                            .addComponent(isbnFld, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(firstPaneLayout.createSequentialGroup()
+                            .addComponent(auxwnArithmosLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField2)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                            .addComponent(idFld)))
+                    .addGroup(firstPaneLayout.createSequentialGroup()
+                        .addComponent(fortwseBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(ananewsiPinakaBtn)))
                 .addContainerGap(103, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        firstPaneLayout.setVerticalGroup(
+            firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(firstPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(isbnLbl)
+                    .addComponent(isbnFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(auxwnArithmosLbl)
+                    .addComponent(idFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fortwseBtn)
+                    .addComponent(ananewsiPinakaBtn))
                 .addContainerGap())
         );
 
-        jLabel3.setText("Φορές που εχει δανειστεί το αντίτυπο:");
+        posesForesLbl.setText("Φορές που εχει δανειστεί το αντίτυπο:");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        posesForesFld.setEditable(false);
+
+        javax.swing.GroupLayout secondPaneLayout = new javax.swing.GroupLayout(secondPane);
+        secondPane.setLayout(secondPaneLayout);
+        secondPaneLayout.setHorizontalGroup(
+            secondPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(secondPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(posesForesLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(posesForesFld, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(95, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        secondPaneLayout.setVerticalGroup(
+            secondPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(secondPaneLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(secondPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(posesForesLbl)
+                    .addComponent(posesForesFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        istorikoAntitypouTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ISBN", "Αύξων αριθμός αντιτύπου", "ΑΜ Δανειζόμενου Μέλους", "Ημερομηνία Δανεισμού", "Ημερομηνία Επιστροφής"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scrollPane.setViewportView(istorikoAntitypouTable);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
-        jButton3.setText("Κλείσιμο Παράθυρου");
+        kleisimoParathirouBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/close.png"))); // NOI18N
+        kleisimoParathirouBtn.setText("Κλείσιμο Παράθυρου");
+        kleisimoParathirouBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kleisimoParathirouBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,14 +164,14 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(scrollPane)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(firstPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(secondPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(kleisimoParathirouBtn)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -158,32 +179,85 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(firstPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(secondPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(kleisimoParathirouBtn)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void kleisimoParathirouBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kleisimoParathirouBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
+
+    private void ananewsiPinakaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ananewsiPinakaBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ananewsiPinakaBtnActionPerformed
+
+    private void fortwseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fortwseBtnActionPerformed
+
+        String in_isbn = isbnFld.getText();
+        String in_id = idFld.getText();
+
+        //elegxoume ean o xristis simplirwse ta pedia....
+        if (in_isbn.trim().equals("") || in_id.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Παρακαλώ συμπληρώστε τα πεδία!");
+            return;
+        }//if.
+
+        //elegxos an yparxei antitypo me auto to id kai isbn...
+        Antitypo ant = antitypaDao.anaktisiAntitypou(in_isbn, Integer.parseInt(in_id));
+        if (ant == null) {
+            JOptionPane.showMessageDialog(this, "Δεν υπάρχει αντίτυπο με αυτο το ISBN και τον αύξων αριθμό!");
+            return;
+        }//if.
+
+        //ean ftasame edw shmainei oti yparxei to antitypo ara fortwnoume to modelo tou....
+        istorikoAntitypouTable.setModel(new EmfanisiIstorikouAntitypouTableModel(in_isbn, Integer.parseInt(in_id)));
+
+        //ean to antitypo auto den to exei daneistei kaneis pote tote emfanizoume minima....
+        ArrayList<IstorikoMelous> istAnt = ((EmfanisiIstorikouAntitypouTableModel) istorikoAntitypouTable.getModel()).getData();
+        if (istAnt.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Το συγκεκριμένο αντίτυπο δεν έχει δανειστεί ποτέ απο κάποιο μέλος!");
+        }//if.
+
+        //kaloume th stored function me onoma: posesForesToAntitypo h opoia epistrefei to poses fores ena antitypo exei daneistei apo melh.
+        try {
+            Connection con = DbConnection.getInstance().getConnection();
+            CallableStatement cs = con.prepareCall("{? = call posesForesToAntitypo(?, ?)}");
+            int count;
+            cs.setString(2, in_isbn);
+            cs.setInt(3, Integer.parseInt(in_id));
+            cs.registerOutParameter(1, Types.INTEGER);
+            cs.execute();
+            count = cs.getInt(1);
+
+            posesForesFld.setText(count + "");
+        } catch (SQLException | NumberFormatException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+    }//GEN-LAST:event_fortwseBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton ananewsiPinakaBtn;
+    private javax.swing.JLabel auxwnArithmosLbl;
+    private javax.swing.JPanel firstPane;
+    private javax.swing.JButton fortwseBtn;
+    private javax.swing.JTextField idFld;
+    private javax.swing.JTextField isbnFld;
+    private javax.swing.JLabel isbnLbl;
+    private javax.swing.JTable istorikoAntitypouTable;
+    private javax.swing.JButton kleisimoParathirouBtn;
+    private javax.swing.JTextField posesForesFld;
+    private javax.swing.JLabel posesForesLbl;
+    private javax.swing.JScrollPane scrollPane;
+    private javax.swing.JPanel secondPane;
     // End of variables declaration//GEN-END:variables
 }

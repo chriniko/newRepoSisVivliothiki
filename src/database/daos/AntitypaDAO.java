@@ -1,5 +1,6 @@
 package database.daos;
 
+import database.connection.DbConnection;
 import database.models.Antitypo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -361,5 +362,48 @@ public class AntitypaDAO {
 
         return res;
     }//enimerwsiAntitypou.
+
+    //============================================================================================================
+    private static final String ANAKTISI_ANTITYPOU = "SELECT * FROM antitypa WHERE vivlia_isbn_vivliou=? AND id_antitypou=?";
+
+    public Antitypo anaktisiAntitypou(String isbn, int id) {
+        Antitypo result = null;
+
+        try {
+
+            pStat = conn.prepareStatement(ANAKTISI_ANTITYPOU);
+            pStat.setString(1, isbn);
+            pStat.setInt(2, id);
+
+            rs = pStat.executeQuery();
+
+            if (rs.first()) {
+
+                result = new Antitypo();
+                result.setIsbnVivliou(rs.getString("vivlia_isbn_vivliou"));
+                result.setIdAntitypou(rs.getInt("id_antitypou"));
+                result.setKatastasiAntitypou(rs.getString("katastasi_antitypou"));
+                result.setAm_daneismenou_melous(rs.getInt("am_daneismenou_melous"));
+                result.setHmnia_daneismou(rs.getDate("hmnia_daneismou"));
+
+            }//if.
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        } finally {
+            try {
+                if (!pStat.isClosed()) {
+                    pStat.close();
+                }
+                if (!rs.isClosed()) {
+                    rs.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
+
+        return result;
+    }//anaktisiAntitypou.
 
 }//AntitypaDAO.

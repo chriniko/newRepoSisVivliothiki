@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class IstorikoMelousDAO {
@@ -60,5 +61,47 @@ public class IstorikoMelousDAO {
         }
         return null;
     }//anaktisiIstorikouMelous.
+
+    //=================================================================================
+    private final String ANAKTISI_ISTORIKOU_GIA_ANTITYPO = "SELECT * FROM istoriko_melous WHERE antitypa_vivlia_isbn_vivliou = ? AND antitypa_id_antitypou = ? ORDER BY 4 ASC";
+
+    public ArrayList<IstorikoMelous> anaktisiIstorikouGiaAntitypo(String isbn, int id) {
+
+        ArrayList<IstorikoMelous> result = new ArrayList<>();
+
+        try {
+
+            pStat = conn.prepareStatement(ANAKTISI_ISTORIKOU_GIA_ANTITYPO);
+            pStat.setString(1, isbn);
+            pStat.setInt(2, id);
+
+            rs = pStat.executeQuery();
+
+            IstorikoMelous temp;
+
+            while (rs.next()) {
+
+                temp = new IstorikoMelous();
+
+                temp.setIsbnVivliou(rs.getString(1));
+                temp.setIdAntitypou(rs.getInt(2));
+                temp.setAmMelous(rs.getInt(3));
+                temp.setHmniaDaneismou(rs.getDate(4));
+                temp.setHmniaEpistrofis(rs.getDate(5));
+
+                result.add(temp);
+            }//while.
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getErrorCode() + " === " + ex.getMessage() + " === " + ex.getSQLState());
+        } finally {
+            try {
+
+            } catch (Exception ex) {
+
+            }
+        }
+        return result;
+    }//anaktisiIstorikouGiaAntitypo.
 
 }//IstorikoMelousDAO.
