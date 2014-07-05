@@ -40,7 +40,6 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
         isbnFld = new javax.swing.JTextField();
         idFld = new javax.swing.JTextField();
         fortwseBtn = new javax.swing.JButton();
-        ananewsiPinakaBtn = new javax.swing.JButton();
         secondPane = new javax.swing.JPanel();
         posesForesLbl = new javax.swing.JLabel();
         posesForesFld = new javax.swing.JTextField();
@@ -66,14 +65,6 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
             }
         });
 
-        ananewsiPinakaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui_icons/refresh.png"))); // NOI18N
-        ananewsiPinakaBtn.setText("Ανανέωση πίνακα");
-        ananewsiPinakaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ananewsiPinakaBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout firstPaneLayout = new javax.swing.GroupLayout(firstPane);
         firstPane.setLayout(firstPaneLayout);
         firstPaneLayout.setHorizontalGroup(
@@ -90,10 +81,7 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
                             .addComponent(auxwnArithmosLbl)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(idFld)))
-                    .addGroup(firstPaneLayout.createSequentialGroup()
-                        .addComponent(fortwseBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(ananewsiPinakaBtn)))
+                    .addComponent(fortwseBtn))
                 .addContainerGap(103, Short.MAX_VALUE))
         );
         firstPaneLayout.setVerticalGroup(
@@ -108,9 +96,7 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
                     .addComponent(auxwnArithmosLbl)
                     .addComponent(idFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addGroup(firstPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fortwseBtn)
-                    .addComponent(ananewsiPinakaBtn))
+                .addComponent(fortwseBtn)
                 .addContainerGap())
         );
 
@@ -195,10 +181,6 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
         this.dispose();
     }//GEN-LAST:event_kleisimoParathirouBtnActionPerformed
 
-    private void ananewsiPinakaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ananewsiPinakaBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ananewsiPinakaBtnActionPerformed
-
     private void fortwseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fortwseBtnActionPerformed
 
         String in_isbn = isbnFld.getText();
@@ -224,6 +206,16 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
         ArrayList<IstorikoMelous> istAnt = ((EmfanisiIstorikouAntitypouTableModel) istorikoAntitypouTable.getModel()).getData();
         if (istAnt.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Το συγκεκριμένο αντίτυπο δεν έχει δανειστεί ποτέ απο κάποιο μέλος!");
+            isbnFld.setText("");
+            idFld.setText("");
+            posesForesFld.setText("");
+            istorikoAntitypouTable.setModel(new javax.swing.table.DefaultTableModel(
+                    new Object[][]{},
+                    new String[]{
+                        "ISBN", "Αύξων αριθμός αντιτύπου", "ΑΜ Δανειζόμενου Μέλους", "Ημερομηνία Δανεισμού", "Ημερομηνία Επιστροφής"
+                    }
+            ));
+            return;
         }//if.
 
         //kaloume th stored function me onoma: posesForesToAntitypo h opoia epistrefei to poses fores ena antitypo exei daneistei apo melh.
@@ -246,7 +238,6 @@ public class IstorikoDaneismouAntitypouInternalFrame extends javax.swing.JIntern
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ananewsiPinakaBtn;
     private javax.swing.JLabel auxwnArithmosLbl;
     private javax.swing.JPanel firstPane;
     private javax.swing.JButton fortwseBtn;
